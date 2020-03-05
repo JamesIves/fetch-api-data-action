@@ -1,44 +1,39 @@
-import {actionInterface} from './constants'
+import {actionInterface, action, dataInterface} from './constants'
 import {render} from 'mustache'
-import fetch from 'cross-fetch';
+import fetch from 'cross-fetch'
+import {promises as fs} from 'fs'
+import {isNullOrUndefined} from './util'
+import {exportVariable} from '@actions/core'
 
-export async function retrieveTokens(action: actionInterface) {
+/** Fetches or Posts data to an API. If auth is provided it will replace the mustache variables with the data from it. */
+export async function retrieveData({
+  endpoint,
+  configuration,
+  auth
+}: dataInterface) {
   try {
-    // TODO: Need to throw here if this data is not provided.
-    const configuration = JSON.parse(action.configurationSecondary || '')
+    const settings = JSON.parse(render(configuration || '', auth))
 
-    if (configuration.body) {
-      configuration.body = JSON.stringify(configuration.body)
+    if (settings.body) {
+      // Ensures the body is stringified in the case of a post request being made.
+      settings.body = JSON.stringify(settings.body)
     }
 
-    const response = await fetch(action.endpointSecondary || '', configuration)
-
+    const response = await fetch(endpoint, settings)
     return await response.json()
   } catch (error) {
-    throw new Error(`There was an error fetching the secondary API data: ${error}`)
+    throw new Error(`There was an error fetching from the API: ${error}`)
   }
 }
 
-export async function retrieveData(action: actionInterface) {
+export async function generateExport(data: object, save?: boolean | string) {
   try {
-    let auth: object = {}
-    if (action.endpointSecondary && action.endpointSecondary) {
-      auth = await retrieveTokens(action)
+    if (save) {
+      await fs.writeFile('fetch-api-data-action/data.json', data, 'utf8')
     }
 
-    const configuration = JSON.parse(render(action.configuration, auth))
-
-    const response = await fetch(action.endpoint, configuration)
-    return await response.json()
+    exportVariable('FETCH_API_DATA', JSON.stringify(data))
   } catch (error) {
-    throw new Error(`There was an error fetching the data: ${error}`)
-  }
-}
-
-export async function generateFile() {
-  try {
-    console.log('should be saving here...')
-  } catch(error) {
     throw new Error(`There was an error generating the JSON file: ${error}`)
   }
 }

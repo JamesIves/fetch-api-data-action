@@ -1,5 +1,5 @@
 import {setFailed} from '@actions/core'
-import {retrieveData, retrieveTokens, generateFile} from './fetch'
+import {retrieveData, generateExport} from './fetch'
 import {action, actionInterface} from './constants'
 
 /** Initializes and runs the action. */
@@ -14,7 +14,22 @@ export default async function run(
   }
 
   try {
-    const data = await retrieveData(settings)
+    let auth: object = {}
+
+    if (settings.tokenEndpoint) {
+      auth = await retrieveData({
+        endpoint: settings.tokenEndpoint,
+        configuration: settings.tokenConfiguration
+      })
+    }
+
+    const data = await retrieveData({
+      endpoint: settings.endpoint,
+      configuration: settings.configuration,
+      auth
+    })
+
+    await generateExport(data, settings.save)
   } catch (error) {
     errorState = true
     setFailed(error.message)
@@ -29,4 +44,4 @@ export default async function run(
   }
 }
 
-export {retrieveTokens, retrieveData, generateFile}
+export {retrieveData, generateExport}
