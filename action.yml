@@ -1,0 +1,11 @@
+name: 'Fetch API Data'
+description: 'This action will fetch data from an API and save into your workspace.'
+author: 'James Ives <iam@jamesiv.es>'
+runs:
+  using: 'node12'
+  main: 'lib/main.js'
+branding:
+  icon: 'gift'
+  color: 'purple'
+inputs:
+  # TODO:
