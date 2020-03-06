@@ -92,6 +92,36 @@ jobs:
 In your project you can import the JSON file and make it part of your build script. This way your site will re-build and deploy whenever refreshed data has been fetched from the server.
 </details>
 
+#### Install as a Node Module 📦
+
+If you'd like to use the functionality provided by this action in your own action you can install it using [yarn](https://yarnpkg.com/) by running the following command.
+
+```
+yarn add fetch-api-data-action
+```
+
+It can then be imported into your project like so.
+
+```javascript
+import run, {
+  retrieveData,
+  generateExport
+} from "fetch-api-data-action";
+```
+
+Calling the functions directly will require you to pass in an object containing the variables found in the configuration section.
+
+```javascript
+import run from "fetch-api-data-action";
+
+run({
+  endpoint: 'https://example.com',
+  configuration: JSON.stringify({method: 'GET'})
+});
+```
+
+You can find the npm listing for the module [here](https://www.npmjs.com/package/fetch-api-data-action).
+
 ## Configuration 📁
 
 The `with` portion of the workflow **must** be configured before the action will work. You can add these in the `with` section found in the examples above. Any `secrets` must be referenced using the bracket syntax and stored in the GitHub repositories `Settings/Secrets` menu. You can learn more about setting environment variables with GitHub actions [here](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstepsenv).

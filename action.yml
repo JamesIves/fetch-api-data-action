@@ -13,15 +13,15 @@ inputs:
     required: true
 
   CONFIGURATION: 
-    description: 'Any applicable configuration settings that should be set such as authentication tokens. You can reference secrets using the `${{ secrets.secret_name }}` syntax, or you can reference data returned from the `TOKEN_ENDPOINT` request using the triple bracket syntax: `{{{ data.access_token }}}`.'
+    description: 'Any applicable configuration settings that should be set such as authentication tokens. You can reference secrets using the secrets syntax, or you can reference data returned from the `TOKEN_ENDPOINT` request using the triple bracket syntax.'
     required: false
 
   TOKEN_ENDPOINT:
-    description: 'If the `ENDPOINT` API requires you to make a request to get an access token prior to fetching data you can perform this task by specifying a token endpoint. Any data returned from the token end can be referenced in the `CONFIGURATION` variable using the triple bracket syntax: `{{{ access_token }}}`.'
+    description: 'If the `ENDPOINT` API requires you to make a request to get an access token prior to fetching data you can perform this task by specifying a token endpoint. Any data returned from the token end can be referenced in the `CONFIGURATION` variable using the triple bracket syntax.'
     required: false
 
   TOKEN_CONFIGURATION:
-    description: 'Any applicable configuration settings that should be set such as authentication tokens. You can reference secrets using the `${{ secrets.secret_name }}` syntax.'
+    description: 'Any applicable configuration settings that should be set such as authentication tokens. You can reference secrets using the secrets syntax.'
     required: false
 
   SAVE_LOCATION:
