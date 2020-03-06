@@ -1,0 +1,32 @@
+name: integration-tests
+on:
+  schedule:
+    - cron: 25 17 * * 0-6
+jobs:
+  refresh-api-data:
+    runs-on: ubuntu-latest
+    steps:
+          
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+        
+      - name: Install
+        uses: JamesIves/fetch-api-data-action@releases/v1
+        with:
+          ENDPOINT: https://jsonplaceholder.typicode.com/todos/1
+          SAVE_LOCATION: fetch-api-data-custom
+          SAVE_NAME: todo
+      
+      - uses: webfactory/ssh-agent@v0.2.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+          
+      - name: Build and Deploy Repo
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          BRANCH: gh-pages
+          FOLDER: fetch-api-data-custom
+          TARGET_FOLDER: data
+          SSH: true
