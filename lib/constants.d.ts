@@ -1,4 +1,4 @@
-export interface actionInterface {
+export interface ActionInterface {
     /** The primary endpoint to fetch data from. */
     endpoint: string;
     /** The configuration for the primary endpoint. Must be a stringified JSON object. */
@@ -8,15 +8,25 @@ export interface actionInterface {
     /** The configuration for the token endpoint. Must be a stringified JSON object. */
     tokenConfiguration?: string;
     /** The save location of the exported JSON file. */
-    saveLocation: string;
+    saveLocation?: string;
+    /** The save name of the exported JSON file. */
+    saveName?: string;
 }
-export interface dataInterface {
+export interface DataInterface {
     /** The endpoint to make the API request to. */
     endpoint: string;
-    /** Optional configuration settings. Maps to the fetch API configuration object. */
+    /** Optional configuration settings that map to the fetch API configuration object. */
     configuration?: string;
     /** Optional data fetched from the previous endpoint. This data can be accessed via the mustache syntax. */
     auth?: object;
+}
+export interface ExportInterface {
+    /** The data to save. */
+    data: object;
+    /** The save location. */
+    saveLocation?: string;
+    /** The name of the file to save. */
+    saveName?: string;
 }
 export declare const action: {
     endpoint: string;
