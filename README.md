@@ -109,7 +109,7 @@ import run, {
 } from "fetch-api-data-action";
 ```
 
-Calling the functions directly will require you to pass in an object containing the variables found in the configuration section.
+Calling the functions directly will require you to pass in an object containing the variables found in the [configuration section](https://github.com/JamesIves/fetch-api-data-action#configuration-).
 
 ```javascript
 import run from "fetch-api-data-action";
