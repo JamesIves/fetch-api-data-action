@@ -15,7 +15,7 @@ jobs:
   refresh-feed:
     runs-on: ubuntu-latest
     steps:
-      - name: Fetch API Data
+      - name: Fetch API Data 📦
         uses: JamesIves/fetch-api-data-action@releases/v1
         with:
           ENDPOINT: https://example.com
