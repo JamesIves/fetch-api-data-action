@@ -1,6 +1,6 @@
 import {setFailed} from '@actions/core'
-import {retrieveData, generateExport} from './fetch'
 import {action, actionInterface} from './constants'
+import {generateExport, retrieveData} from './fetch'
 
 /** Initializes and runs the action. */
 export default async function run(
@@ -29,7 +29,7 @@ export default async function run(
       auth
     })
 
-    await generateExport(data, settings.save)
+    await generateExport(data, settings.saveLocation)
   } catch (error) {
     errorState = true
     setFailed(error.message)

@@ -28,6 +28,7 @@
   ],
   "dependencies": {
     "@actions/core": "^1.2.0",
+    "@actions/io": "^1.0.2",
     "cross-fetch": "^3.0.4",
     "mustache": "^4.0.0"
   },

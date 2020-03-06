@@ -1,9 +1,9 @@
-import {actionInterface, action, dataInterface} from './constants'
-import {render} from 'mustache'
+import {exportVariable} from '@actions/core'
+import {mkdirP} from '@actions/io'
 import fetch from 'cross-fetch'
 import {promises as fs} from 'fs'
-import {isNullOrUndefined} from './util'
-import {exportVariable} from '@actions/core'
+import {render} from 'mustache'
+import {dataInterface} from './constants'
 
 /** Fetches or Posts data to an API. If auth is provided it will replace the mustache variables with the data from it. */
 export async function retrieveData({
@@ -26,13 +26,16 @@ export async function retrieveData({
   }
 }
 
-export async function generateExport(data: object, save?: boolean | string) {
+export async function generateExport(data: object, saveLocation?: string) {
   try {
-    if (save) {
-      await fs.writeFile('fetch-api-data-action/data.json', data, 'utf8')
-    }
-
-    exportVariable('FETCH_API_DATA', JSON.stringify(data))
+    const output = JSON.stringify(data)
+    await mkdirP(`${saveLocation ? saveLocation : 'fetch-api-data-action'}`)
+    await fs.writeFile(
+      `${saveLocation ? saveLocation : 'fetch-api-data-action'}/data.json`,
+      output,
+      'utf8'
+    )
+    exportVariable('FETCH_API_DATA', output)
   } catch (error) {
     throw new Error(`There was an error generating the JSON file: ${error}`)
   }
