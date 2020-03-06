@@ -40,18 +40,18 @@ jobs:
   refresh-feed:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout 🛎️
         uses: actions/checkout@v2
         with:
           persist-credentials: false
   
-      - name: Fetch API Data
+      - name: Fetch API Data 📦
         uses: JamesIves/fetch-api-data-action@releases/v1
         with:
           ENDPOINT: https://example.com
           CONFIGURATION: '{ "method": "GET", "headers": {"Authorization": "Bearer ${{ secrets.API_TOKEN }}"} }'
 
-      - name: Build and Deploy
+      - name: Build and Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
@@ -71,17 +71,17 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout 🛎️
         uses: actions/checkout@v2
         with:
           persist-credentials: false
 
-      - name: Install
+      - name: Install 🔧
         run: |
           npm install
           npm run-script build
 
-      - name: Build and Deploy
+      - name: Build and Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
@@ -105,7 +105,8 @@ It can then be imported into your project like so.
 ```javascript
 import run, {
   retrieveData,
-  generateExport
+  generateExport,
+  ActionInterface
 } from "fetch-api-data-action";
 ```
 
@@ -159,7 +160,7 @@ jobs:
   refresh-feed:
     runs-on: ubuntu-latest
     steps:
-      - name: Fetch API Data
+      - name: Fetch API Data 📦
         uses: JamesIves/fetch-api-data-action@releases/v1
         with:
           # The token endpoint is requested first. This retrieves the access token for the other endpoint.
