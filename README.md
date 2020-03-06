@@ -22,7 +22,7 @@ jobs:
           CONFIGURATION: '{ "method": "GET", "headers": {"Authorization": "Bearer ${{ secrets.API_TOKEN }}"} }'
 ```
 
-Once the action has run the requested data will be exported into the `FETCH_API_DATA` environment variable and will also be available as a `.json` file in your workspace located by default in the `fetch-api-data/data.json` directory.
+Once the action has run the requested data will be exported into the `FETCH_API_DATA` environment variable and will also be available as a `.json` file in your workspace located by default in the `fetch-api-data-action/data.json` directory.
 
 You can combine the use of this with the [GitHub Pages Deploy Action](https://github.com/JamesIves/github-pages-deploy-action) to trigger scheduled updates to a feed on your website. 
 
@@ -55,16 +55,18 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: master
-          FOLDER: fetch-api-data-action
-          TARGET_FOLDER: data
+          BRANCH: master # Pushes the updates to the master branch.
+          FOLDER: fetch-api-data-action # The location of the data.json file saved by the Fetch API Data action.
+          TARGET_FOLDER: data # Saves the data into the 'data' directory on the master branch.
 ```
 
  In another workflow you can then build and deploy your page whenever a push is made to that branch.
 
  ```yml
  name: Build and Deploy
-on: [push]
+on:
+  branches:
+   - master
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -100,13 +102,13 @@ The following configuration options must be set.
 
 | Key            | Value Information                                                                                                                                                                                                                                                                                                                                                                                                                                              | Type             | Required |
 | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | -------- |
-| `ENDPOINT`          | The URL of the endpoint you'd like to retrieve data from. For example: `https://example.com/data`.                                                                                                                                                           | `with`           | **Yes**  |
-| `CONFIGURATION` | Any applicable configuration settings that should be set such as authentication tokens. You can reference secrets using the `${{ secrets.secret_name }}` syntax, or you can reference data returned from the `TOKEN_ENDPOINT` request using the triple bracket syntax: `{{{ data.access_token }}}`. For more information refer to the [Token Request part of the readme](https://github.com/JamesIves/fetch-api-data-action#token-request-%EF%B8%8F) and the [Fetch API documentation](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).                                                                                                | `secrets / with` | **Yes**  |
+| `ENDPOINT`          | The URL of the endpoint you'd like to retrieve data from. For example: `https://example.com/data`. If no `CONFIGURATION` is provided then the default request method will be `GET`.                                                                                                                                                          | `with`           | **Yes**  |
 
 #### Optional Choices
 
 | Key            | Value Information                                                                                                                                                                                                                                                                                                                                                                                                                                              | Type             | Required |
 | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | -------- |
+| `CONFIGURATION` | Any applicable configuration settings that should be set such as authentication tokens. You can reference secrets using the `${{ secrets.secret_name }}` syntax, or you can reference data returned from the `TOKEN_ENDPOINT` request using the triple bracket syntax: `{{{ data.access_token }}}`. For more information refer to the [Token Request part of the readme](https://github.com/JamesIves/fetch-api-data-action#token-request-%EF%B8%8F) and the [Fetch API documentation](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).                                                                                                | `secrets / with` | **No**  |
 | `TOKEN_ENDPOINT`          | If the `ENDPOINT` API requires you to make a request to get an access token prior to fetching data you can perform this task by specifying a token endpoint. Any data returned from the token end can be referenced in the `CONFIGURATION` variable using the triple bracket syntax: `{{{ access_token }}}`. For more information refer to the [Token Request part of the readme](https://github.com/JamesIves/fetch-api-data-action#token-request-%EF%B8%8F);                                                                                                                                                         | `with`           | **No**  |
 | `TOKEN_CONFIGURATION` | Any applicable configuration settings that should be set such as authentication tokens. You can reference secrets using the `${{ secrets.secret_name }}` syntax. For more information refer to the [Fetch API documentation](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).                                                                                               | `secrets / with` | **No**  |
 | `SAVE_LOCATION` | By default the save location of the JSON file is `fetch-api-data-action/data.json`, if you'd like to override the directory you can do so by specifying a new one with this variable.                                                                                                | `with` | **No**  |
