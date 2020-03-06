@@ -1,5 +1,5 @@
 name: 'Fetch API Data'
-description: 'This action will handle authenticated API requests, allowing you to save the data from the request into your workspace as an environment variable and a .json file.'
+description: 'This action will handle authenticated API requests, allowing you to save the data from the request into your workspace.'
 author: 'James Ives <iam@jamesiv.es>'
 runs:
   using: 'node12'
