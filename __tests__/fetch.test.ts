@@ -1,8 +1,6 @@
-import {enableFetchMocks} from 'jest-fetch-mock'
-enableFetchMocks()
-
-import fetchMock from 'jest-fetch-mock'
 import {retrieveData, generateExport} from '../src/fetch'
+import fetchMock, {enableFetchMocks} from 'jest-fetch-mock'
+enableFetchMocks()
 
 describe('fetch', () => {
   describe('retrieveData', () => {
@@ -10,17 +8,17 @@ describe('fetch', () => {
       fetchMock.mockResponseOnce(JSON.stringify({data: '12345'}))
 
       const data = await retrieveData({
-        endpoint: 'https://example.com'
+        endpoint: 'https://jamesiv.es'
       })
 
-      expect(data).toEqual('')
+      expect(data).toEqual({data: '12345'})
     })
 
     it('should stringify settings.body if it exists', async () => {
       fetchMock.mockResponseOnce(JSON.stringify({data: '12345'}))
 
       const data = await retrieveData({
-        endpoint: 'https://example.com',
+        endpoint: 'https://jamesiv.es',
         configuration: JSON.stringify({
           method: 'POST',
           body: {
@@ -29,14 +27,14 @@ describe('fetch', () => {
         })
       })
 
-      expect(data).toEqual('')
+      expect(data).toEqual({data: '12345'})
     })
 
     it('should handle the triple bracket replacements ', async () => {
       fetchMock.mockResponseOnce(JSON.stringify({data: '12345'}))
 
       await retrieveData({
-        endpoint: 'https://example.com',
+        endpoint: 'https://jamesiv.es',
         configuration: JSON.stringify({
           method: 'POST',
           body: {
@@ -46,8 +44,10 @@ describe('fetch', () => {
         auth: {cat: 'Montezuma'}
       })
 
-      // TODO: Get Config Arg here
-      expect(fetchMock).toBeCalledWith('')
+      expect(fetchMock).toBeCalledWith('https://jamesiv.es', {
+        body: '{"bestCat":"Montezuma"}',
+        method: 'POST'
+      })
     })
 
     it('should error if improperly formatted json is passed in ', async () => {

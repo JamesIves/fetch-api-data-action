@@ -1,15 +1,16 @@
 {
   "name": "fetch-api-data-action",
-  "description": "GitHub action for building a project and deploying it to GitHub pages.",
+  "description": "GitHub action for handling authenticated API requests, allowing you to save the data from the request into your workspace as an environment variable and a .json file.",
   "author": "James Ives <iam@jamesiv.es>",
   "version": "0.1.0",
   "license": "MIT",
   "main": "lib/lib.js",
   "types": "lib/lib.d.ts",
+  "root": true,
   "scripts": {
     "build": "rm -rf lib && tsc --declaration",
     "test": "jest",
-    "lint": "eslint src/**/*.ts || (echo Project needs formatting)",
+    "lint": "eslint src/**/*.ts",
     "format": "prettier --write './**/*.ts'"
   },
   "repository": {
@@ -38,6 +39,7 @@
     "@types/jest": "^25.1.0",
     "@types/mustache": "^4.0.1",
     "@types/node": "^13.1.2",
+    "eslint": "^5.16.0",
     "eslint-plugin-github": "^2.0.0",
     "eslint-plugin-jest": "^22.21.0",
     "jest": "^25.1.0",

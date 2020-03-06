@@ -1,6 +1,6 @@
 import {getInput} from '@actions/core'
 
-export interface actionInterface {
+export interface ActionInterface {
   /** The primary endpoint to fetch data from. */
   endpoint: string
   /** The configuration for the primary endpoint. Must be a stringified JSON object. */
@@ -15,16 +15,16 @@ export interface actionInterface {
   saveName?: string
 }
 
-export interface dataInterface {
+export interface DataInterface {
   /** The endpoint to make the API request to. */
   endpoint: string
-  /** Optional configuration settings. Maps to the fetch API configuration object. */
+  /** Optional configuration settings that map to the fetch API configuration object. */
   configuration?: string
   /** Optional data fetched from the previous endpoint. This data can be accessed via the mustache syntax. */
   auth?: object
 }
 
-export interface exportInterface {
+export interface ExportInterface {
   /** The data to save. */
   data: object
   /** The save location. */

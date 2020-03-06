@@ -1,21 +1,21 @@
 import {exportVariable} from '@actions/core'
 import {mkdirP} from '@actions/io'
-import fetch from 'cross-fetch'
+import 'cross-fetch/polyfill'
 import {promises as fs} from 'fs'
 import {render} from 'mustache'
-import {dataInterface, exportInterface} from './constants'
+import {DataInterface, ExportInterface} from './constants'
 
 /** Fetches or Posts data to an API. If auth is provided it will replace the mustache variables with the data from it. */
 export async function retrieveData({
   endpoint,
   configuration,
   auth
-}: dataInterface): Promise<object> {
+}: DataInterface): Promise<object> {
   try {
     console.log('Fetching the requested data... 📦')
 
     const settings = configuration
-      ? JSON.parse(render(configuration || '', auth))
+      ? JSON.parse(render(configuration, auth))
       : {}
 
     if (settings.body) {
@@ -35,7 +35,7 @@ export async function generateExport({
   data,
   saveLocation,
   saveName
-}: exportInterface): Promise<void> {
+}: ExportInterface): Promise<void> {
   console.log('Saving the data... 📁')
   const output = JSON.stringify(data)
   await mkdirP(`${saveLocation ? saveLocation : 'fetch-api-data-action'}`)

@@ -1,13 +1,13 @@
 import {setFailed} from '@actions/core'
-import {action, actionInterface} from './constants'
+import {action, ActionInterface} from './constants'
 import {generateExport, retrieveData} from './fetch'
 import {hasRequiredParameters} from './util'
 
 /** Initializes and runs the action. */
 export default async function run(
-  configuration: actionInterface
+  configuration: ActionInterface
 ): Promise<void> {
-  let errorState: boolean = false
+  let errorState = false
 
   const settings = {
     ...action,
@@ -16,7 +16,7 @@ export default async function run(
 
   try {
     console.log('Checking configuration and initializing... 🚚')
-    hasRequiredParameters(action)
+    hasRequiredParameters(settings)
 
     let auth: object = {}
     if (settings.tokenEndpoint) {
