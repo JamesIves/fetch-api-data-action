@@ -11,6 +11,8 @@ export interface actionInterface {
   tokenConfiguration?: string
   /** The save location of the exported JSON file. */
   saveLocation: string
+  /** The save name of the exported JSON file. */
+  saveName: string
 }
 
 export interface dataInterface {

@@ -12,6 +12,8 @@ export async function retrieveData({
   auth
 }: dataInterface) {
   try {
+    console.log('Fetching the requested data... 📦')
+
     const settings = JSON.parse(render(configuration || '', auth))
 
     if (settings.body) {
@@ -26,12 +28,19 @@ export async function retrieveData({
   }
 }
 
-export async function generateExport(data: object, saveLocation?: string) {
+export async function generateExport(
+  data: object,
+  saveLocation?: string,
+  saveName?: string
+) {
   try {
+    console.log('Saving the data... 📁')
     const output = JSON.stringify(data)
     await mkdirP(`${saveLocation ? saveLocation : 'fetch-api-data-action'}`)
     await fs.writeFile(
-      `${saveLocation ? saveLocation : 'fetch-api-data-action'}/data.json`,
+      `${saveLocation ? saveLocation : 'fetch-api-data-action'}/${
+        saveName ? saveName : 'data'
+      }.json`,
       output,
       'utf8'
     )

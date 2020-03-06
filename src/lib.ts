@@ -14,9 +14,13 @@ export default async function run(
   }
 
   try {
+    console.log('Initializing... 🚚')
+
     let auth: object = {}
 
     if (settings.tokenEndpoint) {
+      console.log('Fetching data from the token endpoint... 🎟️')
+
       auth = await retrieveData({
         endpoint: settings.tokenEndpoint,
         configuration: settings.tokenConfiguration
@@ -29,7 +33,7 @@ export default async function run(
       auth
     })
 
-    await generateExport(data, settings.saveLocation)
+    await generateExport(data, settings.saveLocation, settings.saveName)
   } catch (error) {
     errorState = true
     setFailed(error.message)
@@ -38,7 +42,7 @@ export default async function run(
       `${
         errorState
           ? 'There was an error fetching the data. ❌'
-          : 'Data has been fetched! ✅'
+          : 'The data was succesfully retrieved and saved! ✅ 🚚'
       }`
     )
   }
