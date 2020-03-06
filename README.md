@@ -1,7 +1,5 @@
 # Fetch API Data Action 📦 🚚
 
-## Work in Progress (Pre-Release)
-
 This GitHub action will handle authenticated API requests for you, allowing you to save the data from the request into your workspace as an environment variable and a `.json` file. Using this action will allow you to save data from these queries on a schedule so they can be used in a static page without exposing your API credentials.
 
 This action was originally created for the [2020 GitHub Actions Hackathon](https://github.community/t5/Events/Featured-Event-GitHub-Actions-Hackathon/td-p/48206).
@@ -25,22 +23,73 @@ jobs:
 
 Once the action has run the requested data will be exported as the `FETCH_API_DATA` environment variable and will also be available as a `.json` file in your workspace located by default in `fetch-api-data/data.json`.
 
-You can combine this action with the github-pages-deploy-action to trigger scheduled updates to a feed on your website.
+You can combine this with the [github-pages-deploy-action](https://github.com/JamesIves/github-pages-deploy-action) to trigger scheduled updates to a feed on your website. 
+
+<details>
+<summary>You can view a full example of this here.</summary>
+
+In one workflow you can fetch data from an API on a schedule and push it to your master branch.
 
 ```yml
 name: Refresh Feed
-on: [push]
+on: 
+  schedule:
+    - cron: 10 15 * * 0-6
 jobs:
   refresh-feed:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
+        with:
+          persist-credentials: false
+  
       - name: Fetch API Data
         uses: JamesIves/fetch-api-data-action@releases/v1
         with:
           ENDPOINT: https://example.com
           CONFIGURATION: '{ "method": "GET", "headers": {"Authorization": "Bearer ${{ secrets.API_TOKEN }}"} }'
           SAVE: true
+
+      - name: Build and Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: master
+          FOLDER: fetch-api-data-action
+          TARGET_FOLDER: data
 ```
+
+ In another workflow you can then build and deploy your page whenever a push is made to that branch.
+
+ ```yml
+ name: Build and Deploy
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
+        with:
+          persist-credentials: false
+
+      - name: Install
+        run: |
+          npm install
+          npm run-script build
+
+      - name: Build and Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: build # The folder the action should deploy.
+```
+
+In your project you can import the JSON file and make it part of your build script. This way your site will re-build and deploy whenever refreshed data has been fetched from the server.
+
+</details>
 
 ## Configuration 📁
 
