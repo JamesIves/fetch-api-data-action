@@ -9,7 +9,7 @@ branding:
   color: 'purple'
 inputs:
   ENDPOINT:
-    description: 'The URL of the endpoint you'd like to retrieve data from.'
+    description: 'The URL of the endpoint you would like to retrieve data from.'
     required: true
 
   CONFIGURATION: 
@@ -25,7 +25,7 @@ inputs:
     required: false
 
   SAVE_LOCATION:
-    description: 'By default the save location of the JSON file is `fetch-api-data-action/data.json`, if you'd like to override the directory you can do so by specifying a new one with this variable.'
+    description: 'By default the save location of the JSON file is `fetch-api-data-action/data.json`, if you would like to override the directory you can do so by specifying a new one with this variable.'
     required: false
 
   SAVE_NAME:
