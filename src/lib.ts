@@ -53,4 +53,4 @@ export default async function run(
   }
 }
 
-export {retrieveData, generateExport}
+export {retrieveData, generateExport, ActionInterface}
