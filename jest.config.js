@@ -8,6 +8,7 @@ module.exports = {
     '^.+\\.ts$': 'ts-jest'
   },
   verbose: true,
+  
   collectCoverage: true,
   collectCoverageFrom: ['src/*.ts','!src/constants.ts']
 }

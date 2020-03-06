@@ -1,18 +1,22 @@
 import {exportVariable} from '@actions/core'
 import {mkdirP} from '@actions/io'
-import fetch from 'cross-fetch'
+import 'cross-fetch/polyfill'
 import {promises as fs} from 'fs'
 import {render} from 'mustache'
-import {dataInterface} from './constants'
+import {DataInterface, ExportInterface} from './constants'
 
 /** Fetches or Posts data to an API. If auth is provided it will replace the mustache variables with the data from it. */
 export async function retrieveData({
   endpoint,
   configuration,
   auth
-}: dataInterface) {
+}: DataInterface): Promise<object> {
   try {
-    const settings = JSON.parse(render(configuration || '', auth))
+    console.log('Fetching the requested data... 📦')
+
+    const settings = configuration
+      ? JSON.parse(render(configuration, auth))
+      : {}
 
     if (settings.body) {
       // Ensures the body is stringified in the case of a post request being made.
@@ -26,17 +30,21 @@ export async function retrieveData({
   }
 }
 
-export async function generateExport(data: object, saveLocation?: string) {
-  try {
-    const output = JSON.stringify(data)
-    await mkdirP(`${saveLocation ? saveLocation : 'fetch-api-data-action'}`)
-    await fs.writeFile(
-      `${saveLocation ? saveLocation : 'fetch-api-data-action'}/data.json`,
-      output,
-      'utf8'
-    )
-    exportVariable('FETCH_API_DATA', output)
-  } catch (error) {
-    throw new Error(`There was an error generating the JSON file: ${error}`)
-  }
+/** Saves the data to the local file system and exports an environment variable containing the retrieved data. */
+export async function generateExport({
+  data,
+  saveLocation,
+  saveName
+}: ExportInterface): Promise<void> {
+  console.log('Saving the data... 📁')
+  const output = JSON.stringify(data)
+  await mkdirP(`${saveLocation ? saveLocation : 'fetch-api-data-action'}`)
+  await fs.writeFile(
+    `${saveLocation ? saveLocation : 'fetch-api-data-action'}/${
+      saveName ? saveName : 'data'
+    }.json`,
+    output,
+    'utf8'
+  )
+  exportVariable('FETCH_API_DATA', output)
 }

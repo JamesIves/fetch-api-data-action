@@ -1,0 +1,28 @@
+name: unit-tests
+on:
+  pull_request:
+    branches:
+      - dev
+      - releases/v1
+  push:
+    branches:
+      - dev
+    tags-ignore:
+      - '*.*'
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Install and Test
+        run: |
+          npm install
+          npm run-script lint
+          npm run-script test
+
+      - name: Uploade CodeCov Report
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}

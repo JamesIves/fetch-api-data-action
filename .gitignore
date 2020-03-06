@@ -119,3 +119,7 @@ yarn-error.log
 
 ## CodeCov
 coverage
+
+## Test Data
+fetch-api-data-action
+fetch-api-data-custom
