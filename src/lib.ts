@@ -1,6 +1,7 @@
 import {setFailed} from '@actions/core'
 import {action, actionInterface} from './constants'
 import {generateExport, retrieveData} from './fetch'
+import {hasRequiredParameters} from './util'
 
 /** Initializes and runs the action. */
 export default async function run(
@@ -14,10 +15,10 @@ export default async function run(
   }
 
   try {
-    console.log('Initializing... 🚚')
+    console.log('Checking configuration and initializing... 🚚')
+    hasRequiredParameters(action)
 
     let auth: object = {}
-
     if (settings.tokenEndpoint) {
       console.log('Fetching data from the token endpoint... 🎟️')
 
@@ -33,7 +34,11 @@ export default async function run(
       auth
     })
 
-    await generateExport(data, settings.saveLocation, settings.saveName)
+    await generateExport({
+      data,
+      saveLocation: settings.saveLocation,
+      saveName: settings.saveName
+    })
   } catch (error) {
     errorState = true
     setFailed(error.message)

@@ -24,6 +24,8 @@
     "api",
     "data",
     "fetch",
+    "json",
+    "store",
     "ssr"
   ],
   "dependencies": {
@@ -40,6 +42,7 @@
     "eslint-plugin-jest": "^22.21.0",
     "jest": "^25.1.0",
     "jest-circus": "^25.1.0",
+    "jest-fetch-mock": "^3.0.2",
     "prettier": "^1.19.1",
     "ts-jest": "^25.0.0",
     "typescript": "^3.7.4"

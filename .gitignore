@@ -96,7 +96,7 @@ Thumbs.db
 
 # Ignore built ts files
 __tests__/runner/*
-lib/**/*
+lib
 
 # .DS_Store
 .DS_Store
@@ -105,10 +105,6 @@ lib/**/*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-node_modules
-
-# Build
-lib
 
 ## Registry
 package-lock.json
@@ -120,3 +116,7 @@ yarn-error.log
 
 ## CodeCov
 coverage
+
+## Test Data
+fetch-api-data-action
+fetch-api-data-custom
