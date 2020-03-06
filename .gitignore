@@ -1,5 +1,5 @@
 # Dependency directory
-node_modules
+#node_modules
 
 # Rest pulled from https://github.com/github/gitignore/blob/master/Node.gitignore
 # Logs
@@ -96,7 +96,7 @@ Thumbs.db
 
 # Ignore built ts files
 __tests__/runner/*
-lib/**/*
+#lib/**/*
 
 # .DS_Store
 .DS_Store
@@ -105,10 +105,9 @@ lib/**/*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-node_modules
 
 # Build
-lib
+#lib
 
 ## Registry
 package-lock.json
