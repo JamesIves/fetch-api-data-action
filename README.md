@@ -132,10 +132,13 @@ jobs:
       - name: Fetch API Data
         uses: JamesIves/fetch-api-data-action@releases/v1
         with:
+          # The token endpoint is requested first. This retrieves the access token for the other endpoint.
           TOKEN_ENDPOINT: https://example.com/auth/token
-          TOKEN_CONFIGURATION: '{ "method": "GET", "body": {"client_id": "${{ secrets.client_id }}", "client_secret": "${{ secrets.client_secret }}"} }'
+          # The configuration contains secrets held in the Settings/Secrets menu of the repository.
+          TOKEN_CONFIGURATION: '{ "method": "POST", "body": {"client_id": "${{ secrets.client_id }}", "client_secret": "${{ secrets.client_secret }}"} }'
+          # Once the token endpoint has fetched then this endpoint is requested.
           ENDPOINT: https://example.com/data
-          # The token here is returned from the TOKEN_ENDPOINT call. The returned data looks like so: {data: {access_token: '123'}}
+          # The bearer token here is returned from the TOKEN_ENDPOINT call. The returned data looks like so: {data: {access_token: '123'}}, meaning it can be accessed using the triple bracket syntax.
           CONFIGURATION: '{ "method": "GET", "headers": {"Authorization": "Bearer {{{ data.access_token }}}"} }'
 ```
 
