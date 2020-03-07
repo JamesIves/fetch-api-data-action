@@ -3,7 +3,10 @@ import {action, ActionInterface} from './constants'
 import {generateExport, retrieveData} from './fetch'
 import {hasRequiredParameters} from './util'
 
-/** Initializes and runs the action. */
+/** Initializes and runs the action.
+ *
+ * @param {ActionInterface} configuration - The configuration object.
+ */
 export default async function run(
   configuration: ActionInterface
 ): Promise<void> {
