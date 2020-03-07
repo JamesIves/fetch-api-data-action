@@ -5,6 +5,8 @@ This [GitHub action](https://github.com/features/actions) will handle authentica
 
 This action was originally created for the [2020 GitHub Actions Hackathon](https://github.community/t5/Events/Featured-Event-GitHub-Actions-Hackathon/td-p/48206). You can read about my inspiration for this action [here](https://jamesiv.es/github/actions/2020/03/07/fetching-authenticated-api-data/).
 
+![Screenshot](./screenshot.png)
+
 ## Getting Started ✈️
 You can include the action in your workflow to trigger on any event that [GitHub actions supports](https://help.github.com/en/articles/events-that-trigger-workflows). You'll need to provide the action with the endpoint you'd like to request along with [any configuration options](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) as [stringified JSON](https://www.w3schools.com/js/js_json_stringify.asp).
 
