@@ -24,6 +24,12 @@ export async function retrieveData({
     }
 
     const response = await fetch(endpoint, settings)
+
+    if (!response.ok) {
+      const error = await response.text()
+      throw new Error(error)
+    }
+
     return await response.json()
   } catch (error) {
     throw new Error(`There was an error fetching from the API: ${error}`)

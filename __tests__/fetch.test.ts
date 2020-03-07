@@ -50,7 +50,7 @@ describe('fetch', () => {
       })
     })
 
-    it('should error if improperly formatted json is passed in ', async () => {
+    it('should error if improperly formatted json is passed in', async () => {
       try {
         await retrieveData({
           endpoint: 'https://example.com',
@@ -60,6 +60,25 @@ describe('fetch', () => {
       } catch (error) {
         expect(error.message).toBe(
           'There was an error fetching from the API: SyntaxError: Unexpected token m in JSON at position 3'
+        )
+      }
+    })
+
+    it('should error if the response is not ok', async () => {
+      fetchMock.mockResponseOnce(JSON.stringify({a: 1}), {status: 404})
+      try {
+        await retrieveData({
+          endpoint: 'https://jamesiv.es',
+          configuration: JSON.stringify({
+            method: 'POST',
+            body: {
+              bestCat: 'Montezuma'
+            }
+          })
+        })
+      } catch (error) {
+        expect(error.message).toBe(
+          'There was an error fetching from the API: Error: {"a":1}'
         )
       }
     })

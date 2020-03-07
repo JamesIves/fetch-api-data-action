@@ -1,5 +1,5 @@
 # Fetch API Data Action 📦 🚚
-[![Build Status](https://github.com/JamesIves/fetch-api-data-action/workflows/unit-tests/badge.svg)](https://github.com/JamesIves/fetch-api-data-action/actions) [![Version](https://img.shields.io/github/v/release/JamesIves/fetch-api-data-action.svg?logo=github)](https://github.com/JamesIves/fetch-api-data-action/releases) [![Codecov Coverage](https://codecov.io/gh/JamesIves/fetch-api-data-action/branch/dev/graph/badge.svg)](https://codecov.io/gh/JamesIves/fetch-api-data-action/branch/dev)
+[![Build Status](https://github.com/JamesIves/fetch-api-data-action/workflows/unit-tests/badge.svg)](https://github.com/JamesIves/fetch-api-data-action/actions) ![integration-tests](https://github.com/JamesIves/fetch-api-data-action/workflows/integration-tests/badge.svg) [![View Action](https://img.shields.io/badge/action-marketplace-blue.svg?logo=github&color=orange)](https://github.com/marketplace/actions/fetch-api-data) [![Version](https://img.shields.io/github/v/release/JamesIves/fetch-api-data-action.svg?logo=github)](https://github.com/JamesIves/fetch-api-data-action/releases) [![Codecov Coverage](https://codecov.io/gh/JamesIves/fetch-api-data-action/branch/dev/graph/badge.svg)](https://codecov.io/gh/JamesIves/fetch-api-data-action/branch/dev)
 
 This [GitHub action](https://github.com/features/actions) will handle authenticated API requests for you, allowing you to save the data from the request into your workspace as an environment variable and a `.json` file. Using this action will allow you to save data from these queries on a schedule so they can be used in a static page without exposing your API credentials.
 
@@ -15,7 +15,7 @@ jobs:
   refresh-feed:
     runs-on: ubuntu-latest
     steps:
-      - name: Fetch API Data
+      - name: Fetch API Data 📦
         uses: JamesIves/fetch-api-data-action@releases/v1
         with:
           ENDPOINT: https://example.com
