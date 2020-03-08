@@ -3,7 +3,9 @@
 
 This [GitHub action](https://github.com/features/actions) will handle authenticated API requests for you, allowing you to save the data from the request into your workspace as an environment variable and a `.json` file. Using this action will allow you to save data from these queries on a schedule so they can be used in a static page without exposing your API credentials.
 
-This action was originally created for the [2020 GitHub Actions Hackathon](https://github.community/t5/Events/Featured-Event-GitHub-Actions-Hackathon/td-p/48206).
+This action was originally created for the [2020 GitHub Actions Hackathon](https://github.community/t5/Events/Featured-Event-GitHub-Actions-Hackathon/td-p/48206). You can read about my inspiration for this action [here](https://jamesiv.es/github/actions/2020/03/07/fetching-authenticated-api-data/).
+
+![Screenshot](./screenshot.png)
 
 ## Getting Started ✈️
 You can include the action in your workflow to trigger on any event that [GitHub actions supports](https://help.github.com/en/articles/events-that-trigger-workflows). You'll need to provide the action with the endpoint you'd like to request along with [any configuration options](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) as [stringified JSON](https://www.w3schools.com/js/js_json_stringify.asp).
@@ -117,7 +119,7 @@ import run from "fetch-api-data-action";
 
 run({
   endpoint: 'https://example.com',
-  configuration: JSON.stringify({method: 'GET'})
+  configuration: JSON.stringify({method: 'GET', headers: {Authorization: `Bearer ${process.env['TOKEN']}`} })
 });
 ```
 

@@ -3,7 +3,10 @@ import {action, ActionInterface} from './constants'
 import {generateExport, retrieveData} from './fetch'
 import {hasRequiredParameters} from './util'
 
-/** Initializes and runs the action. */
+/** Initializes and runs the action.
+ *
+ * @param {ActionInterface} configuration - The configuration object.
+ */
 export default async function run(
   configuration: ActionInterface
 ): Promise<void> {
@@ -20,11 +23,10 @@ export default async function run(
 
     let auth: object = {}
     if (settings.tokenEndpoint) {
-      console.log('Fetching data from the token endpoint... 🎟️')
-
       auth = await retrieveData({
         endpoint: settings.tokenEndpoint,
-        configuration: settings.tokenConfiguration
+        configuration: settings.tokenConfiguration,
+        isTokenRequest: true
       })
     }
 

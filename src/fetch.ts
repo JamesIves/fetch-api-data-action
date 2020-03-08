@@ -9,10 +9,15 @@ import {DataInterface, ExportInterface} from './constants'
 export async function retrieveData({
   endpoint,
   configuration,
-  auth
+  auth,
+  isTokenRequest
 }: DataInterface): Promise<object> {
   try {
-    console.log('Fetching the requested data... 📦')
+    console.log(
+      isTokenRequest
+        ? 'Fetching credentials from the token endpoint... 🎟️'
+        : 'Fetching the requested data... 📦'
+    )
 
     const settings = configuration
       ? JSON.parse(render(configuration, auth))

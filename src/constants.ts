@@ -22,6 +22,8 @@ export interface DataInterface {
   configuration?: string
   /** Optional data fetched from the previous endpoint. This data can be accessed via the mustache syntax. */
   auth?: object
+  /** Tells the log if the action is fetching from the token endpoint or not. */
+  isTokenRequest?: boolean | null
 }
 
 export interface ExportInterface {
