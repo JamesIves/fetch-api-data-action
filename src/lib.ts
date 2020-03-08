@@ -23,11 +23,10 @@ export default async function run(
 
     let auth: object = {}
     if (settings.tokenEndpoint) {
-      console.log('Fetching data from the token endpoint... 🎟️')
-
       auth = await retrieveData({
         endpoint: settings.tokenEndpoint,
-        configuration: settings.tokenConfiguration
+        configuration: settings.tokenConfiguration,
+        isTokenRequest: true
       })
     }
 

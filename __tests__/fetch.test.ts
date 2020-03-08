@@ -24,7 +24,8 @@ describe('fetch', () => {
           body: {
             bestCat: 'Montezuma'
           }
-        })
+        }),
+        isTokenRequest: true
       })
 
       expect(data).toEqual({data: '12345'})
