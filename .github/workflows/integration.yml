@@ -2,6 +2,12 @@ name: integration-tests
 on:
   schedule:
     - cron: 25 17 * * 0-6
+  push:
+    tags-ignore:
+      - '*.*'
+    branches:
+      - dev
+      - releases/v1
 jobs:
   refresh-api-data:
     runs-on: ubuntu-latest
