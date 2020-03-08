@@ -2,17 +2,23 @@ name: integration-tests
 on:
   schedule:
     - cron: 25 17 * * 0-6
+  push:
+    tags-ignore:
+      - '*.*'
+    branches:
+      - dev
+      - releases/v1
 jobs:
   refresh-api-data:
     runs-on: ubuntu-latest
     steps:
           
-      - name: Checkout
+      - name: Checkout 🛎️
         uses: actions/checkout@v2
         with:
           persist-credentials: false
         
-      - name: Install
+      - name: Fetch Data 📦
         uses: JamesIves/fetch-api-data-action@releases/v1
         with:
           ENDPOINT: https://jsonplaceholder.typicode.com/todos/1
@@ -23,7 +29,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
           
-      - name: Build and Deploy Repo
+      - name: Build and Deploy Repo 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           BRANCH: gh-pages
