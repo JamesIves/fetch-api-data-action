@@ -119,7 +119,7 @@ import run from "fetch-api-data-action";
 
 run({
   endpoint: 'https://example.com',
-  configuration: JSON.stringify({method: 'GET'})
+  configuration: JSON.stringify({method: 'GET', headers: {Authorization: `Bearer ${process.env['TOKEN']}`} })
 });
 ```
 
