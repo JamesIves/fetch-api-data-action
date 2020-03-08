@@ -4,7 +4,8 @@ import {DataInterface, ExportInterface} from './constants'
 export declare function retrieveData({
   endpoint,
   configuration,
-  auth
+  auth,
+  isTokenRequest
 }: DataInterface): Promise<object>
 /** Saves the data to the local file system and exports an environment variable containing the retrieved data. */
 export declare function generateExport({
