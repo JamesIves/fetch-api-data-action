@@ -2138,8 +2138,8 @@ jest-environment-node@^25.1.0:
     jest-util "^25.1.0"
 
 jest-fetch-mock@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/jest-fetch-mock/-/jest-fetch-mock-3.0.2.tgz#b89f59704a6866c8dee3425ce17e853ab408ee69"
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/jest-fetch-mock/-/jest-fetch-mock-3.0.3.tgz#31749c456ae27b8919d69824f1c2bd85fe0a1f3b"
   dependencies:
     cross-fetch "^3.0.4"
     promise-polyfill "^8.1.3"

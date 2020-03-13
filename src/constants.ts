@@ -41,5 +41,6 @@ export const action = {
   configuration: getInput('CONFIGURATION'),
   tokenEndpoint: getInput('TOKEN_ENDPOINT'),
   tokenConfiguration: getInput('TOKEN_CONFIGURATION'),
-  saveLocation: getInput('SAVE_LOCATION')
+  saveLocation: getInput('SAVE_LOCATION'),
+  saveName: getInput('SAVE_NAME')
 }
