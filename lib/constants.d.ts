@@ -36,4 +36,5 @@ export declare const action: {
   tokenEndpoint: string
   tokenConfiguration: string
   saveLocation: string
+  saveName: string
 }
