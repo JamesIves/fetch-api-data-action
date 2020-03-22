@@ -1,5 +1,7 @@
 <p align="center">
+  <a href="https://github.com/marketplace/actions/fetch-api-data">
     <img width="150px" src="./assets/icon.png">
+  </a>
 </p>
 
 <h1 align="center">
