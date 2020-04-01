@@ -96,7 +96,6 @@ Thumbs.db
 
 # Ignore built ts files
 __tests__/runner/*
-lib/**/*
 
 # .DS_Store
 .DS_Store
