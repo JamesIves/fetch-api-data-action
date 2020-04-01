@@ -11,6 +11,8 @@ export interface ActionInterface {
     saveLocation?: string;
     /** The save name of the exported JSON file. */
     saveName?: string;
+    /** Optional configuration that allows the fetch request to make a series of retry requests before failing. */
+    retry?: boolean | null;
 }
 export interface DataInterface {
     /** The endpoint to make the API request to. */
@@ -21,6 +23,8 @@ export interface DataInterface {
     auth?: object;
     /** Tells the log if the action is fetching from the token endpoint or not. */
     isTokenRequest?: boolean | null;
+    /** Optional configuration that allows the fetch request to make a series of retry requests before failing. */
+    retry?: boolean | null;
 }
 export interface ExportInterface {
     /** The data to save. */
@@ -34,6 +38,7 @@ export declare const action: {
     endpoint: string;
     configuration: string;
     tokenEndpoint: string;
+    retry: boolean;
     tokenConfiguration: string;
     saveLocation: string;
     saveName: string;
