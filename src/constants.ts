@@ -1,4 +1,5 @@
 import {getInput} from '@actions/core'
+import {isNullOrUndefined} from './util'
 
 export interface ActionInterface {
   /** The primary endpoint to fetch data from. */
@@ -44,8 +45,9 @@ export const action = {
   endpoint: getInput('ENDPOINT'),
   configuration: getInput('CONFIGURATION'),
   tokenEndpoint: getInput('TOKEN_ENDPOINT'),
-  retry: getInput('RETRY'),
-  retryAttempts: getInput('RETRY_ATTEMPTS'),
+  retry: !isNullOrUndefined(getInput('RETRY'))
+    ? getInput('RETRY').toLowerCase() === 'true'
+    : false,
   tokenConfiguration: getInput('TOKEN_CONFIGURATION'),
   saveLocation: getInput('SAVE_LOCATION'),
   saveName: getInput('SAVE_NAME')
