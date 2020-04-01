@@ -96,7 +96,6 @@ Thumbs.db
 
 # Ignore built ts files
 __tests__/runner/*
-lib
 
 # .DS_Store
 .DS_Store
@@ -105,6 +104,9 @@ lib
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Build
+lib
 
 ## Registry
 package-lock.json
