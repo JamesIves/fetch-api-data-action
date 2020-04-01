@@ -1,4 +1,4 @@
-import {exportVariable} from '@actions/core'
+import {info, exportVariable, debug} from '@actions/core'
 import {mkdirP} from '@actions/io'
 import 'cross-fetch/polyfill'
 import {promises as fs} from 'fs'
@@ -15,7 +15,7 @@ export async function retrieveData({
   retry
 }: DataInterface): Promise<object> {
   try {
-    console.log(
+    info(
       isTokenRequest
         ? 'Fetching credentials from the token endpoint... 🎟️'
         : 'Fetching the requested data... 📦'
@@ -44,9 +44,15 @@ export async function retrieveData({
         return await response.json()
       },
       {
-        retries: retry ? 5 : 0,
-        onRetry: () =>
-          console.log('There was an error with the request, retrying...')
+        retries: retry ? 4 : 0,
+        onRetry: error => {
+          debug(error.message)
+          info(
+            `There was an error with the ${
+              isTokenRequest ? 'token request' : 'request'
+            }, retrying... ⏳`
+          )
+        }
       }
     )
   } catch (error) {
@@ -60,7 +66,7 @@ export async function generateExport({
   saveLocation,
   saveName
 }: ExportInterface): Promise<void> {
-  console.log('Saving the data... 📁')
+  info('Saving the data... 📁')
   const output = JSON.stringify(data)
   await mkdirP(`${saveLocation ? saveLocation : 'fetch-api-data-action'}`)
   await fs.writeFile(

@@ -1,4 +1,4 @@
-import {setFailed} from '@actions/core'
+import {info, setFailed} from '@actions/core'
 import {action, ActionInterface} from './constants'
 import {generateExport, retrieveData} from './fetch'
 import {hasRequiredParameters} from './util'
@@ -18,7 +18,7 @@ export default async function run(
   }
 
   try {
-    console.log('Checking configuration and initializing... 🚚')
+    info('Checking configuration and initializing... 🚚')
     hasRequiredParameters(settings)
 
     let auth: object = {}
@@ -47,7 +47,7 @@ export default async function run(
     errorState = true
     setFailed(error.message)
   } finally {
-    console.log(
+    info(
       `${
         errorState
           ? 'There was an error fetching the data. ❌'
