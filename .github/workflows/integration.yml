@@ -22,10 +22,10 @@ jobs:
       - name: Fetch Data 📦
         uses: JamesIves/fetch-api-data-action@releases/v1-test
         with:
-          ENDPOINT: https://jsonplaceholder.typicode.coxxxxm/todos/1
+          ENDPOINT: https://jsonplaceholder.typicode.com/todos/1
           SAVE_LOCATION: fetch-api-data-custom
           SAVE_NAME: todo
-          RETRY: false
+          RETRY: true
       
       - uses: webfactory/ssh-agent@v0.2.0
         with:
