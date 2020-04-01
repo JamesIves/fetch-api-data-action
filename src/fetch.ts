@@ -37,9 +37,12 @@ export async function retrieveData({
 
         if (!response.ok) {
           const error = await response.text()
-          console.log(
-            'An error was encountered in the fetch request, retrying...'
-          )
+
+          if (retry) {
+            console.log(
+              'An error was encountered in the fetch request, retrying...'
+            )
+          }
 
           bail(new Error(error))
         }
