@@ -33,26 +33,22 @@ export async function retrieveData({
     return await retryRequest(
       async (bail: (arg: Error) => void) => {
         // if anything throws, we retry
-        console.log('starting fetch....')
         const response = await fetch(endpoint, settings)
 
         if (!response.ok) {
-          console.log('Request was not ok');
           const error = await response.text()
 
-          if (retry) {
-            console.log(
-              'An error was encountered in the fetch request, retrying...'
-            )
-          }
+          bail(new Error(error))
 
-          return bail(new Error(error))
+          return
         }
 
         return await response.json()
       },
       {
-        retries: retry ? 5 : 0
+        retries: retry ? 5 : 0,
+        onRetry: () =>
+          console.log('There was an error with the request, retrying...')
       }
     )
   } catch (error) {
