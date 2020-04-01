@@ -3,6 +3,7 @@ import {mkdirP} from '@actions/io'
 import 'cross-fetch/polyfill'
 import {promises as fs} from 'fs'
 import {render} from 'mustache'
+import retryRequest from 'async-retry'
 import {DataInterface, ExportInterface} from './constants'
 
 /** Fetches or Posts data to an API. If auth is provided it will replace the mustache variables with the data from it. */
@@ -10,7 +11,8 @@ export async function retrieveData({
   endpoint,
   configuration,
   auth,
-  isTokenRequest
+  isTokenRequest,
+  retry
 }: DataInterface): Promise<object> {
   try {
     console.log(
@@ -28,14 +30,26 @@ export async function retrieveData({
       settings.body = JSON.stringify(settings.body)
     }
 
-    const response = await fetch(endpoint, settings)
+    return await retryRequest(
+      async (bail: (arg: Error) => void) => {
+        // if anything throws, we retry
+        const response = await fetch(endpoint, settings)
 
-    if (!response.ok) {
-      const error = await response.text()
-      throw new Error(error)
-    }
+        if (!response.ok) {
+          const error = await response.text()
+          console.log(
+            'An error was encountered in the fetch request, retrying...'
+          )
 
-    return await response.json()
+          bail(new Error(error))
+        }
+
+        return await response.json()
+      },
+      {
+        retries: retry ? 5 : 0
+      }
+    )
   } catch (error) {
     throw new Error(`There was an error fetching from the API: ${error}`)
   }
