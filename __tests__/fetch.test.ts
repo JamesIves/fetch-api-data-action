@@ -2,6 +2,8 @@ import {retrieveData, generateExport} from '../src/fetch'
 import fetchMock, {enableFetchMocks} from 'jest-fetch-mock'
 enableFetchMocks()
 
+jest.setTimeout(60000)
+
 describe('fetch', () => {
   describe('retrieveData', () => {
     it('should return some data', async () => {
@@ -80,6 +82,27 @@ describe('fetch', () => {
       } catch (error) {
         expect(error.message).toBe(
           'There was an error fetching from the API: Error: {"a":1}'
+        )
+      }
+    })
+
+    it('should error if the response is not ok after several retrys', async () => {
+      fetchMock.mockAbort()
+      jest.setTimeout(1000000)
+      try {
+        await retrieveData({
+          endpoint: 'https://jamesiv.es',
+          retry: true,
+          configuration: JSON.stringify({
+            method: 'POST',
+            body: {
+              bestCat: 'Montezuma'
+            }
+          })
+        })
+      } catch (error) {
+        expect(error.message).toBe(
+          'There was an error fetching from the API: ReferenceError: DOMException is not defined'
         )
       }
     })

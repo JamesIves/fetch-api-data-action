@@ -31,14 +31,14 @@ export async function retrieveData({
     }
 
     return await retryRequest(
-      async (bail: (arg: Error) => void) => {
+      async () => {
         // if anything throws, we retry
         const response = await fetch(endpoint, settings)
 
-        if (!retry && !response.ok) {
+        if (!response.ok) {
           const error = await response.text()
 
-          return bail(new Error(error))
+          return new Error(error)
         }
 
         return await response.json()
@@ -47,11 +47,7 @@ export async function retrieveData({
         retries: retry ? 4 : 0,
         onRetry: error => {
           debug(error.message)
-          info(
-            `There was an error with the ${
-              isTokenRequest ? 'token request' : 'request'
-            }, retrying... ⏳`
-          )
+          info(`There was an error with the request, retrying... ⏳`)
         }
       }
     )
