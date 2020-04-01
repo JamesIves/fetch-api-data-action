@@ -20,7 +20,7 @@ jobs:
           persist-credentials: false
         
       - name: Fetch Data 📦
-        uses: JamesIves/fetch-api-data-action@releases/v1
+        uses: JamesIves/fetch-api-data-action@releases/v1-test
         with:
           ENDPOINT: https://jsonplaceholder.typicode.coxxxxm/todos/1
           SAVE_LOCATION: fetch-api-data-custom
