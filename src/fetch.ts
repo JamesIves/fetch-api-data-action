@@ -33,9 +33,11 @@ export async function retrieveData({
     return await retryRequest(
       async (bail: (arg: Error) => void) => {
         // if anything throws, we retry
+        console.log('starting fetch....')
         const response = await fetch(endpoint, settings)
 
         if (!response.ok) {
+          console.log('Request was not ok');
           const error = await response.text()
 
           if (retry) {
@@ -44,7 +46,7 @@ export async function retrieveData({
             )
           }
 
-          bail(new Error(error))
+          return bail(new Error(error))
         }
 
         return await response.json()
