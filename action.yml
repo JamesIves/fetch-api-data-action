@@ -24,6 +24,10 @@ inputs:
     description: 'Any applicable configuration settings that should be set such as authentication tokens. You can reference secrets using the secrets syntax.'
     required: false
 
+  RETRY:
+    description: 'If you are working with an intermittent API you can toggle this option to true. Doing so will make the action try the request 4 times before failing.'
+    required: false
+
   SAVE_LOCATION:
     description: 'By default the save location of the JSON file is `fetch-api-data-action/data.json`, if you would like to override the directory you can do so by specifying a new one with this variable.'
     required: false
