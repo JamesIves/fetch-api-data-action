@@ -18,7 +18,7 @@ export default async function run(
   }
 
   try {
-    info('Checking configuration and initializing... 🚚')
+    info('Checking configuration and initializing… 🚚')
     hasRequiredParameters(settings)
 
     let auth: object = {}

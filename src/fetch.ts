@@ -17,8 +17,8 @@ export async function retrieveData({
   try {
     info(
       isTokenRequest
-        ? 'Fetching credentials from the token endpoint... 🎟️'
-        : 'Fetching the requested data... 📦'
+        ? 'Fetching credentials from the token endpoint… 🎟️'
+        : 'Fetching the requested data… 📦'
     )
 
     const settings = configuration
@@ -37,17 +37,16 @@ export async function retrieveData({
 
         if (!response.ok) {
           const error = await response.text()
-
           return new Error(error)
         }
 
         return await response.json()
       },
       {
-        retries: retry ? 4 : 0,
+        retries: retry ? 3 : 0,
         onRetry: error => {
           debug(error.message)
-          info(`There was an error with the request, retrying... ⏳`)
+          info(`There was an error with the request, retrying… ⏳`)
         }
       }
     )
