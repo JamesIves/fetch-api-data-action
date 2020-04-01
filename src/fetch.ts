@@ -35,12 +35,10 @@ export async function retrieveData({
         // if anything throws, we retry
         const response = await fetch(endpoint, settings)
 
-        if (!response.ok) {
+        if (!retry && !response.ok) {
           const error = await response.text()
 
-          bail(new Error(error))
-
-          return
+          return bail(new Error(error))
         }
 
         return await response.json()
