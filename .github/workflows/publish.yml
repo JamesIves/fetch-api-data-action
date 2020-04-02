@@ -25,9 +25,9 @@ jobs:
     - run: npm run-script build
     - run: npm version patch -m "Release %s"
     - run: |
-      git add package.json
-      git commit -m "Package Version 📣"
-      git push
+        git add package.json
+        git commit -m "Package Version 📣"
+        git push
     - run: npm ci
     # Publish to npm
     - run: npm publish --access public
