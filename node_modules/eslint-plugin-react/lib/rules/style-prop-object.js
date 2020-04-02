@@ -20,26 +20,10 @@ module.exports = {
       recommended: false,
       url: docsUrl('style-prop-object')
     },
-    schema: [
-      {
-        type: 'object',
-        properties: {
-          allow: {
-            type: 'array',
-            items: {
-              type: 'string'
-            },
-            additionalItems: false,
-            uniqueItems: true
-          }
-        }
-      }
-    ]
+    schema: []
   },
 
   create(context) {
-    const allowed = new Set(context.options.length > 0 && context.options[0].allow || []);
-
     /**
      * @param {ASTNode} expression An Identifier node
      * @returns {boolean}
@@ -74,16 +58,6 @@ module.exports = {
           node.callee.property.name === 'createElement' &&
           node.arguments.length > 1
         ) {
-          if (node.arguments[0].name) {
-            // store name of component
-            const componentName = node.arguments[0].name;
-
-            // allowed list contains the name
-            if (allowed.has(componentName)) {
-              // abort operation
-              return;
-            }
-          }
           if (node.arguments[1].type === 'ObjectExpression') {
             const style = node.arguments[1].properties.find(property => property.key && property.key.name === 'style' && !property.computed);
             if (style) {
@@ -103,20 +77,6 @@ module.exports = {
       JSXAttribute(node) {
         if (!node.value || node.name.name !== 'style') {
           return;
-        }
-        // store parent element
-        const parentElement = node.parent;
-
-        // parent element is a JSXOpeningElement
-        if (parentElement && parentElement.type === 'JSXOpeningElement') {
-          // get the name of the JSX element
-          const name = parentElement.name && parentElement.name.name;
-
-          // allowed list contains the name
-          if (allowed.has(name)) {
-            // abort operation
-            return;
-          }
         }
 
         if (node.value.type !== 'JSXExpressionContainer' || isNonNullaryLiteral(node.value.expression)) {

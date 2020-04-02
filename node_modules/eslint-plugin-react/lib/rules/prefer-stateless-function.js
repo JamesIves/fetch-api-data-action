@@ -186,7 +186,6 @@ module.exports = {
         const contextTypes = name === 'contextTypes';
         const defaultProps = name === 'defaultProps';
         const isUselessConstructor = property.kind === 'constructor' &&
-          !!property.value.body &&
           isRedundantSuperCall(property.value.body.body, property.value.params);
         const isRender = name === 'render';
         return !isDisplayName && !isPropTypes && !contextTypes && !defaultProps && !isUselessConstructor && !isRender;

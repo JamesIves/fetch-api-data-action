@@ -42,11 +42,7 @@ module.exports = {
 
   create(context) {
     function isComponent(node) {
-      return (
-        node.name &&
-        (node.name.type === 'JSXIdentifier' || node.name.type === 'JSXMemberExpression') &&
-        !jsxUtil.isDOMComponent(node)
-      );
+      return node.name && node.name.type === 'JSXIdentifier' && !jsxUtil.isDOMComponent(node);
     }
 
     function childrenIsEmpty(node) {

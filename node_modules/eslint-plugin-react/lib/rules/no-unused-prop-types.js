@@ -104,7 +104,7 @@ module.exports = {
 
         if (prop.node && !isPropUsed(component, prop)) {
           context.report({
-            node: prop.node.key || prop.node,
+            node: prop.node.value || prop.node,
             message: UNUSED_MESSAGE,
             data: {
               name: prop.fullName

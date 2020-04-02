@@ -168,9 +168,6 @@ function getKeyValue(context, node) {
   if (node.type === 'GenericTypeAnnotation') {
     return node.id.name;
   }
-  if (node.type === 'ObjectTypeAnnotation') {
-    return;
-  }
   const key = node.key || node.argument;
   return key.type === 'Identifier' ? key.name : key.value;
 }

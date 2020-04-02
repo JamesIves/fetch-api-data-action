@@ -339,8 +339,6 @@ module.exports = function usedPropTypesInstructions(context, components, utils) 
         type = 'destructuring';
         properties = node.properties;
         break;
-      case 'TSEmptyBodyFunctionExpression':
-        break;
       default:
         throw new Error(`${node.type} ASTNodes are not handled by markPropTypesAsUsed`);
     }

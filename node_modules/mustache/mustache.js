@@ -644,7 +644,7 @@
       if (tagIndex == 0 && indentation) {
         indentedValue = this.indentPartial(value, indentation, lineHasNonSpace);
       }
-      return this.renderTokens(this.parse(indentedValue, tags), context, partials, indentedValue);
+      return this.renderTokens(this.parse(indentedValue, tags), context, partials, indentedValue, tags);
     }
   };
 
@@ -666,7 +666,7 @@
 
   var mustache = {
     name: 'mustache.js',
-    version: '4.0.0',
+    version: '4.0.1',
     tags: [ '{{', '}}' ],
     clearCache: undefined,
     escape: undefined,
