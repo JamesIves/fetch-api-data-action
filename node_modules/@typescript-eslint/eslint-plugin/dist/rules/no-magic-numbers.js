@@ -133,9 +133,8 @@ function isGrandparentTSUnionType(node) {
  * @private
  */
 function isParentTSEnumDeclaration(node) {
-    var _a;
     const parent = getLiteralParent(node);
-    return ((_a = parent) === null || _a === void 0 ? void 0 : _a.type) === experimental_utils_1.AST_NODE_TYPES.TSEnumMember;
+    return (parent === null || parent === void 0 ? void 0 : parent.type) === experimental_utils_1.AST_NODE_TYPES.TSEnumMember;
 }
 /**
  * Checks if the node parent is a Typescript literal type
@@ -181,9 +180,8 @@ function isTSNumericLiteralType(node) {
  * @private
  */
 function isParentTSReadonlyClassProperty(node) {
-    var _a;
     const parent = getLiteralParent(node);
-    if (((_a = parent) === null || _a === void 0 ? void 0 : _a.type) === experimental_utils_1.AST_NODE_TYPES.ClassProperty && parent.readonly) {
+    if ((parent === null || parent === void 0 ? void 0 : parent.type) === experimental_utils_1.AST_NODE_TYPES.ClassProperty && parent.readonly) {
         return true;
     }
     return false;
