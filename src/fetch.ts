@@ -1,8 +1,9 @@
-import {exportVariable} from '@actions/core'
+import {info, exportVariable, debug} from '@actions/core'
 import {mkdirP} from '@actions/io'
 import 'cross-fetch/polyfill'
 import {promises as fs} from 'fs'
 import {render} from 'mustache'
+import retryRequest from 'async-retry'
 import {DataInterface, ExportInterface} from './constants'
 
 /** Fetches or Posts data to an API. If auth is provided it will replace the mustache variables with the data from it. */
@@ -10,13 +11,14 @@ export async function retrieveData({
   endpoint,
   configuration,
   auth,
-  isTokenRequest
+  isTokenRequest,
+  retry
 }: DataInterface): Promise<object> {
   try {
-    console.log(
+    info(
       isTokenRequest
-        ? 'Fetching credentials from the token endpoint... 🎟️'
-        : 'Fetching the requested data... 📦'
+        ? 'Fetching credentials from the token endpoint… 🎟️'
+        : 'Fetching the requested data… 📦'
     )
 
     const settings = configuration
@@ -28,14 +30,26 @@ export async function retrieveData({
       settings.body = JSON.stringify(settings.body)
     }
 
-    const response = await fetch(endpoint, settings)
+    return await retryRequest(
+      async () => {
+        // if anything throws, we retry
+        const response = await fetch(endpoint, settings)
 
-    if (!response.ok) {
-      const error = await response.text()
-      throw new Error(error)
-    }
+        if (!response.ok) {
+          const error = await response.text()
+          return new Error(error)
+        }
 
-    return await response.json()
+        return await response.json()
+      },
+      {
+        retries: retry ? 3 : 0,
+        onRetry: error => {
+          debug(error.message)
+          info(`There was an error with the request, retrying… ⏳`)
+        }
+      }
+    )
   } catch (error) {
     throw new Error(`There was an error fetching from the API: ${error}`)
   }
@@ -47,7 +61,7 @@ export async function generateExport({
   saveLocation,
   saveName
 }: ExportInterface): Promise<void> {
-  console.log('Saving the data... 📁')
+  info('Saving the data... 📁')
   const output = JSON.stringify(data)
   await mkdirP(`${saveLocation ? saveLocation : 'fetch-api-data-action'}`)
   await fs.writeFile(

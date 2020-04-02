@@ -8,6 +8,7 @@ enableFetchMocks()
 const originalAction = JSON.stringify(action)
 
 jest.mock('@actions/core', () => ({
+  info: jest.fn(),
   setFailed: jest.fn(),
   getInput: jest.fn(),
   exportVariable: jest.fn()

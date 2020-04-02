@@ -1,4 +1,4 @@
-import {setFailed} from '@actions/core'
+import {info, setFailed} from '@actions/core'
 import {action, ActionInterface} from './constants'
 import {generateExport, retrieveData} from './fetch'
 import {hasRequiredParameters} from './util'
@@ -18,22 +18,24 @@ export default async function run(
   }
 
   try {
-    console.log('Checking configuration and initializing... 🚚')
+    info('Checking configuration and initializing… 🚚')
     hasRequiredParameters(settings)
 
     let auth: object = {}
     if (settings.tokenEndpoint) {
       auth = await retrieveData({
-        endpoint: settings.tokenEndpoint,
         configuration: settings.tokenConfiguration,
-        isTokenRequest: true
+        endpoint: settings.tokenEndpoint,
+        isTokenRequest: true,
+        retry: settings.retry
       })
     }
 
     const data = await retrieveData({
-      endpoint: settings.endpoint,
+      auth,
       configuration: settings.configuration,
-      auth
+      endpoint: settings.endpoint,
+      retry: settings.retry
     })
 
     await generateExport({
@@ -45,7 +47,7 @@ export default async function run(
     errorState = true
     setFailed(error.message)
   } finally {
-    console.log(
+    info(
       `${
         errorState
           ? 'There was an error fetching the data. ❌'

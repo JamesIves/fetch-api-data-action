@@ -1,11 +1,47 @@
-# Fetch API Data Action 📦 🚚
-[![Build Status](https://github.com/JamesIves/fetch-api-data-action/workflows/unit-tests/badge.svg)](https://github.com/JamesIves/fetch-api-data-action/actions) ![integration-tests](https://github.com/JamesIves/fetch-api-data-action/workflows/integration-tests/badge.svg) [![View Action](https://img.shields.io/badge/action-marketplace-blue.svg?logo=github&color=orange)](https://github.com/marketplace/actions/fetch-api-data) [![Version](https://img.shields.io/github/v/release/JamesIves/fetch-api-data-action.svg?logo=github)](https://github.com/JamesIves/fetch-api-data-action/releases) [![Codecov Coverage](https://codecov.io/gh/JamesIves/fetch-api-data-action/branch/dev/graph/badge.svg)](https://codecov.io/gh/JamesIves/fetch-api-data-action/branch/dev)
+<p align="center">
+  <a href="https://github.com/marketplace/actions/fetch-api-data">
+    <img width="150px" src="./assets/icon.png">
+  </a>
+</p>
 
-This [GitHub action](https://github.com/features/actions) will handle authenticated API requests for you, allowing you to save the data from the request into your workspace as an environment variable and a `.json` file. Using this action will allow you to save data from these queries on a schedule so they can be used in a static page without exposing your API credentials.
+<h1 align="center">
+  Fetch API Data Action 📦 🚚
+</h1>
 
-This action was originally created for the [2020 GitHub Actions Hackathon](https://github.community/t5/Events/Featured-Event-GitHub-Actions-Hackathon/td-p/48206). You can read about my inspiration for this action [here](https://jamesiv.es/github/actions/2020/03/07/fetching-authenticated-api-data/).
+<p align="center">
+  <a href="https://github.com/JamesIves/fetch-api-data-action/actions">
+    <img src="https://github.com/JamesIves/fetch-api-data-action/workflows/unit-tests/badge.svg">
+  </a>
 
-![Screenshot](./screenshot.png)
+  <a href="https://github.com/JamesIves/fetch-api-data-action/actions">
+    <img src="https://github.com/JamesIves/fetch-api-data-action/workflows/integration-tests/badge.svg">
+  </a>
+
+  <a href="https://github.com/marketplace/actions/fetch-api-data">
+    <img src="https://img.shields.io/badge/action-marketplace-blue.svg?logo=github&color=orange">
+  </a>
+
+  <a href="https://github.com/JamesIves/fetch-api-data-action/releases">
+    <img src="https://img.shields.io/github/v/release/JamesIves/fetch-api-data-action.svg?logo=github">
+  </a>
+
+  <a href="https://codecov.io/gh/JamesIves/fetch-api-data-action/branch/dev">
+    <img src="https://codecov.io/gh/JamesIves/fetch-api-data-action/branch/dev/graph/badge.svg">
+  </a>
+</p>
+
+<p align="center">
+
+  This <a href="https://github.com/features/actions">GitHub Action</a> will handle authenticated API requests for you, allowing you to save the data from the request into your workspace as an environment variable and a <b>.json</b> file. Using this action will allow you to save data from these queries on a schedule so they can be used in a static page without exposing your API credentials.
+</p>
+
+<p align="center">
+  This action was originally created for the <a href="https://github.community/t5/Events/Featured-Event-GitHub-Actions-Hackathon/td-p/48206">2020 GitHub Actions Hackathon</a>. You can read about my inspiration for this action <a href="ttps://jamesiv.es/github/actions/2020/03/07/fetching-authenticated-api-data/">here</a>. The README icon is provided by <a href="https://twemoji.twitter.com/">Twemoji</a>.
+</p>
+
+<p align="center">
+  <img src="./assets/screenshot.png">
+</p>
 
 ## Getting Started ✈️
 You can include the action in your workflow to trigger on any event that [GitHub actions supports](https://help.github.com/en/articles/events-that-trigger-workflows). You'll need to provide the action with the endpoint you'd like to request along with [any configuration options](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) as [stringified JSON](https://www.w3schools.com/js/js_json_stringify.asp).
@@ -144,6 +180,7 @@ The following configuration options should be set.
 | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | -------- |
 | `TOKEN_ENDPOINT`          | If the `ENDPOINT` API requires you to make a request to get an access token prior to fetching data you can perform this task by specifying a token endpoint. Any data returned from the token end can be referenced in the `CONFIGURATION` variable using the triple bracket syntax: `{{{ access_token }}}`. For more information refer to the [Token Request part of the readme](https://github.com/JamesIves/fetch-api-data-action#token-request-%EF%B8%8F);                                                                                                                                                         | `with`           | **No**  |
 | `TOKEN_CONFIGURATION` | Any applicable configuration settings that should be set such as authentication tokens. You can reference secrets using the `${{ secrets.secret_name }}` syntax. For more information refer to the [Fetch API documentation](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).                                                                                               | `secrets / with` | **No**  |
+| `RETRY` | If you're working with an intermittent API you can toggle this option to `true`. Doing so will make the action try the request 3 times at random invervals before failing.                                                                                                | `with` | **No**  |
 | `SAVE_LOCATION` | By default the save location of the JSON file is `fetch-api-data-action/data.json`, if you'd like to override the directory you can do so by specifying a new one with this variable.                                                                                                | `with` | **No**  |
 | `SAVE_NAME` | You can override the name of the exported `.json` file by specifying a new one here. You should _not_ include the file extension in your name.                                                                                                | `with` | **No**  |
 
