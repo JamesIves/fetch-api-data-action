@@ -24,6 +24,10 @@ jobs:
     - run: npm install
     - run: npm run-script build
     - run: npm version patch -m "Release %s"
+    - run: |
+      git add package.json
+      git commit -m "Package Version 📣"
+      git push
     - run: npm ci
     # Publish to npm
     - run: npm publish --access public
@@ -33,6 +37,7 @@ jobs:
     # Setup .npmrc file to publish to GitHub Packages
     - uses: actions/setup-node@v1
       with:
+        node-version: 12
         registry-url: 'https://npm.pkg.github.com'
         scope: '@JamesIves'
 
