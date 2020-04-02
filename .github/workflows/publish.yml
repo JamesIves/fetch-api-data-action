@@ -28,6 +28,7 @@ jobs:
         git add package.json
         git commit -m "Package Version 📣"
         git push
+
     - run: npm ci
     # Publish to npm
     - run: npm publish --access public
