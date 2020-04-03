@@ -27,6 +27,8 @@ jobs:
     - run: npm version patch -m "Release %s 📣"
     - run: git push
     - run: npm ci
+    - run: npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+
     # Publish to npm
     - run: npm publish --access public
       env:
