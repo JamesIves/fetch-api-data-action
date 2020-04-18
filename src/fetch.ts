@@ -32,7 +32,7 @@ export async function retrieveData({
 
     return await retryRequest(
       async () => {
-        // if anything throws, we retry
+        // If anything throws the request is retried.
         const response = await fetch(endpoint, settings)
 
         if (!response.ok) {
