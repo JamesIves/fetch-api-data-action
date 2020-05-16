@@ -21,8 +21,6 @@ jobs:
         git config user.email "iam@jamesiv.es"
         git config user.name "James Ives"
 
-    - run: npm config set scope "@JamesIves"
-
     - name: Install Yarn
       run: npm install -g yarn
 
@@ -30,7 +28,6 @@ jobs:
     - run: yarn build
     - run: npm version patch -m "Release %s 📣"
     - run: git push
-    - run: npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
 
     # Publish to npm
     - run: npm publish --access public
