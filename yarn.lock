@@ -482,9 +482,9 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@types/async-retry@^1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@types/async-retry/-/async-retry-1.4.1.tgz#3b136a707b7a850f4947a727eb0f7b473b601992"
+"@types/async-retry@^1.4.2":
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/@types/async-retry/-/async-retry-1.4.2.tgz#7f910188cd3893b51e32df51765ee8d5646053e3"
   dependencies:
     "@types/retry" "*"
 
