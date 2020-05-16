@@ -6,7 +6,7 @@ import {render} from 'mustache'
 import retryRequest from 'async-retry'
 import {DataInterface, ExportInterface} from './constants'
 
-/** Fetches or Posts data to an API. If auth is provided it will replace the mustache variables with the data from it. */
+/* Fetches or Posts data to an API. If auth is provided it will replace the mustache variables with the data from it. */
 export async function retrieveData({
   endpoint,
   configuration,
@@ -32,7 +32,7 @@ export async function retrieveData({
 
     return await retryRequest(
       async () => {
-        // if anything throws, we retry
+        // If anything throws the request is retried.
         const response = await fetch(endpoint, settings)
 
         if (!response.ok) {
@@ -55,7 +55,7 @@ export async function retrieveData({
   }
 }
 
-/** Saves the data to the local file system and exports an environment variable containing the retrieved data. */
+/* Saves the data to the local file system and exports an environment variable containing the retrieved data. */
 export async function generateExport({
   data,
   saveLocation,

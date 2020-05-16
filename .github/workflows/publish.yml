@@ -13,7 +13,7 @@ jobs:
     # Setup .npmrc file to publish to npm
     - uses: actions/setup-node@v1
       with:
-        node-version: 12
+        node-version: '10.15.1'
         registry-url: 'https://registry.npmjs.org'
 
     - name: Configure git
@@ -22,12 +22,14 @@ jobs:
         git config user.name "James Ives"
 
     - run: npm config set scope "@JamesIves"
-    - run: npm install
-    - run: npm run-script build
+
+    - name: Install Yarn
+      run: npm install -g yarn
+
+    - run: yarn install --frozen-lockfile
+    - run: yarn build
     - run: npm version patch -m "Release %s 📣"
     - run: git push
-    - run: npm ci
-    - run: npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
 
     # Publish to npm
     - run: npm publish --access public
@@ -40,6 +42,11 @@ jobs:
         node-version: 12
         registry-url: 'https://npm.pkg.github.com'
         scope: '@JamesIves'
+
+    - name: Authenticate with the GitHub Package Registry
+      run:
+        echo "//npm.pkg.github.com:_authToken=${{ secrets.GITHUB_TOKEN }}" >
+        ~/.npmrc
 
     # Publish to GitHub Packages
     - run: npm publish

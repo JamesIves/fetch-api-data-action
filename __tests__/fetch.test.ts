@@ -1,13 +1,17 @@
 import {retrieveData, generateExport} from '../src/fetch'
-import fetchMock, {enableFetchMocks} from 'jest-fetch-mock'
-enableFetchMocks()
+import nock from 'nock'
 
 jest.setTimeout(60000)
 
 describe('fetch', () => {
   describe('retrieveData', () => {
+    afterEach(nock.cleanAll)
+    afterAll(nock.restore)
+
     it('should return some data', async () => {
-      fetchMock.mockResponseOnce(JSON.stringify({data: '12345'}))
+      nock('https://jamesiv.es').get('/').reply(200, {
+        data: '12345'
+      })
 
       const data = await retrieveData({
         endpoint: 'https://jamesiv.es'
@@ -16,28 +20,17 @@ describe('fetch', () => {
       expect(data).toEqual({data: '12345'})
     })
 
-    it('should stringify settings.body if it exists', async () => {
-      fetchMock.mockResponseOnce(JSON.stringify({data: '12345'}))
+    it('should handle the triple bracket replacements ', async () => {
+      nock('https://jives.dev/')
+        .post('/', {
+          bestCat: 'Montezuma'
+        })
+        .reply(200, {
+          data: '12345'
+        })
 
       const data = await retrieveData({
-        endpoint: 'https://jamesiv.es',
-        configuration: JSON.stringify({
-          method: 'POST',
-          body: {
-            bestCat: 'Montezuma'
-          }
-        }),
-        isTokenRequest: true
-      })
-
-      expect(data).toEqual({data: '12345'})
-    })
-
-    it('should handle the triple bracket replacements ', async () => {
-      fetchMock.mockResponseOnce(JSON.stringify({data: '12345'}))
-
-      await retrieveData({
-        endpoint: 'https://jamesiv.es',
+        endpoint: 'https://jives.dev/',
         configuration: JSON.stringify({
           method: 'POST',
           body: {
@@ -47,14 +40,13 @@ describe('fetch', () => {
         auth: {cat: 'Montezuma'}
       })
 
-      expect(fetchMock).toBeCalledWith('https://jamesiv.es', {
-        body: '{"bestCat":"Montezuma"}',
-        method: 'POST'
-      })
+      expect(data).toEqual({data: '12345'})
     })
 
     it('should error if improperly formatted json is passed in', async () => {
       try {
+        nock('https://jamesiv.es').get('/').reply(200)
+
         await retrieveData({
           endpoint: 'https://example.com',
           configuration: '"{"method:"POST","body":{"bestCat":"{{{ cat }}}"}}"',
@@ -68,7 +60,10 @@ describe('fetch', () => {
     })
 
     it('should error if the response is not ok', async () => {
-      fetchMock.mockResponseOnce(JSON.stringify({a: 1}), {status: 404})
+      nock('https://jamesiv.es').post('/').reply(404, {
+        a: 1
+      })
+
       try {
         await retrieveData({
           endpoint: 'https://jamesiv.es',
@@ -87,22 +82,24 @@ describe('fetch', () => {
     })
 
     it('should error if the response is not ok after several retrys', async () => {
-      fetchMock.mockAbort()
       jest.setTimeout(1000000)
+
       try {
+        nock('https://jives.dev').get('/').once().replyWithError({
+          message: 'This is catastrophic'
+        })
+
+        nock('https://jives.dev').get('/').reply(200, {
+          data: '12345'
+        })
+
         await retrieveData({
-          endpoint: 'https://jamesiv.es',
-          retry: true,
-          configuration: JSON.stringify({
-            method: 'POST',
-            body: {
-              bestCat: 'Montezuma'
-            }
-          })
+          endpoint: 'https://jives.dev',
+          retry: true
         })
       } catch (error) {
         expect(error.message).toBe(
-          'There was an error fetching from the API: ReferenceError: DOMException is not defined'
+          'There was an error fetching from the API: FetchError: invalid json response body at https://jives.dev/ reason: Unexpected token < in JSON at position 0'
         )
       }
     })
