@@ -22,11 +22,14 @@ jobs:
         git config user.name "James Ives"
 
     - run: npm config set scope "@JamesIves"
-    - run: npm install
-    - run: npm run-script build
+
+    - name: Install Yarn
+      run: npm install -g yarn
+
+    - run: yarn install
+    - run: yarn build
     - run: npm version patch -m "Release %s 📣"
     - run: git push
-    - run: npm ci
     - run: npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
 
     # Publish to npm

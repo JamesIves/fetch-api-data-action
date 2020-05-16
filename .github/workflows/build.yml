@@ -21,6 +21,9 @@ jobs:
           node-version: '10.15.1'
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Install Yarn
+        run: npm install -g yarn
+
       - name: Install and Test
         run: |
           npm install
