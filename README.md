@@ -40,7 +40,7 @@
 </p>
 
 <p align="center">
-  <img src="./assets/screenshot.png">
+  <img src="https://github.com/JamesIves/fetch-api-data-action/raw/dev/assets/screenshot.png">
 </p>
 
 ## Getting Started ✈️
@@ -135,7 +135,7 @@ In your project you can import the JSON file and make it part of your build scri
 If you'd like to use the functionality provided by this action in your own action you can install it using [yarn](https://yarnpkg.com/) by running the following command.
 
 ```
-yarn add fetch-api-data-action
+yarn add @jamesives/fetch-api-data-action
 ```
 
 It can then be imported into your project like so.
@@ -159,7 +159,7 @@ run({
 });
 ```
 
-You can find the npm listing for the module [here](https://www.npmjs.com/package/fetch-api-data-action).
+You can find the npm registry listing for the module [here](https://www.npmjs.com/package/fetch-api-data-action), and the GitHub registry listing [here](https://github.com/JamesIves/fetch-api-data-action/packages/229982).
 
 ## Configuration 📁
 
