@@ -26,7 +26,7 @@ jobs:
     - name: Install Yarn
       run: npm install -g yarn
 
-    - run: yarn install
+    - run: yarn install --frozen-lockfile
     - run: yarn build
     - run: npm version patch -m "Release %s 📣"
     - run: git push
