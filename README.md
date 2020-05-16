@@ -159,7 +159,7 @@ run({
 });
 ```
 
-You can find the npm registry listing for the module [here](https://www.npmjs.com/package/fetch-api-data-action), and the GitHub registry listing [here](https://github.com/JamesIves/fetch-api-data-action/packages/229982).
+You can find the npm registry listing for the module [here](https://www.npmjs.com/package/@jamesives/fetch-api-data-action), and the GitHub registry listing [here](https://github.com/JamesIves/fetch-api-data-action/packages/229982).
 
 ## Configuration 📁
 
