@@ -41,6 +41,11 @@ jobs:
         registry-url: 'https://npm.pkg.github.com'
         scope: '@JamesIves'
 
+    - name: Authenticate with the GitHub Package Registry
+      run:
+        echo "//npm.pkg.github.com:_authToken=${{ secrets.GITHUB_TOKEN }}" >
+        ~/.npmrc
+
     # Publish to GitHub Packages
     - run: npm publish
       env:
