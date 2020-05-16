@@ -1,9 +1,8 @@
 import {exportVariable, setFailed} from '@actions/core'
-import fetchMock, {enableFetchMocks} from 'jest-fetch-mock'
+import nock from 'nock'
 import {action} from '../src/constants'
 import run from '../src/lib'
 import '../src/main'
-enableFetchMocks()
 
 const originalAction = JSON.stringify(action)
 
@@ -15,12 +14,20 @@ jest.mock('@actions/core', () => ({
 }))
 
 describe('lib', () => {
+  beforeEach(() => {
+    nock('https://jamesiv.es').get('/').reply(200, {
+      data: '12345'
+    })
+  })
+
   afterEach(() => {
+    nock.restore()
     Object.assign(action, JSON.parse(originalAction))
   })
 
+  afterEach(nock.cleanAll)
+
   it('should run through the commands', async () => {
-    fetchMock.mockResponseOnce(JSON.stringify({data: '12345'}))
     Object.assign(action, {
       endpoint: 'https://jamesiv.es'
     })
@@ -30,7 +37,6 @@ describe('lib', () => {
   })
 
   it('should throw an error if no endpoint is provided', async () => {
-    fetchMock.mockResponseOnce(JSON.stringify({data: '12345'}))
     Object.assign(action, {
       endpoint: null
     })
@@ -43,7 +49,6 @@ describe('lib', () => {
   })
 
   it('should fetch data if a token endpoint is provided', async () => {
-    fetchMock.mockResponseOnce(JSON.stringify({data: '12345'}))
     Object.assign(action, {
       endpoint: 'https://jamesiv.es',
       tokenEndpoint: 'https://jamesiv.es',
