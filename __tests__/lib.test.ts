@@ -15,9 +15,11 @@ jest.mock('@actions/core', () => ({
 
 describe('lib', () => {
   beforeEach(() => {
-    nock('https://jamesiv.es').get('/').reply(200, {
-      data: '12345'
-    })
+    nock('https://jamesiv.es')
+      .get('/')
+      .reply(200, {
+        data: '12345'
+      })
   })
 
   afterEach(() => {
