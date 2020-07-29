@@ -18,6 +18,15 @@ export default async function run(
   }
 
   try {
+    info(`
+    Fetch API Data Action 📦 🚚
+
+    🚀 Getting Started Guide: https://github.com/marketplace/actions/fetch-api-data
+    🔧 Support: https://github.com/JamesIves/fetch-api-data-action/issues
+    ⭐ Contribute: https://github.com/JamesIves/fetch-api-data-action/blob/dev/CONTRIBUTING.md
+    
+    📣 Maintained by James Ives (https://jamesiv.es)`)
+
     info('Checking configuration and initializing… 🚚')
     hasRequiredParameters(settings)
 
