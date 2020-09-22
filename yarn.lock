@@ -1592,8 +1592,8 @@ eslint-plugin-import@>=2.18.2:
     resolve "^1.12.0"
 
 eslint-plugin-jest@^24.0.0:
-  version "24.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-24.0.0.tgz#6b1c460c529104c7d16d889e76fe708b281c4d14"
+  version "24.0.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-24.0.2.tgz#4bf0fcdc86289d702a7dacb430b4363482af773b"
   dependencies:
     "@typescript-eslint/experimental-utils" "^4.0.1"
 
