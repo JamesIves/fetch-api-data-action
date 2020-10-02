@@ -1,18 +1,15 @@
 ---
-name: Bug Report
-about: Create a bug report to help us improve the action.
+name: Feature Request
+about: If you'd like to make a suggestion please fill out the form below.
 labels:
-  - bug
+  - feature request
 
 ---
-**Describe the bug**
-<!-- Please provide a clear and concise description of what the bug is. -->
+**Is your feature request related to a problem? Please describe.**
+<!-- Please provide a clear and concise description of what the problem is. Please be sure to read the README first! -->
 
-**Reproduce**
-<!-- Steps to reproduce the behavior. -->
-
-**Logs**
-<!-- Please provide your deployment logs and a link or sample to/of your workflow. If the error message isn't revealing the problem please set ACTIONS_STEP_DEBUG to true in your repository's secrets menu and run the workflow again. -->
+**Describe the solution you'd like**
+<!-- Please provide a clear and concise description of what you want to happen. -->
 
 **Additional Comments**
-<!--Add any other context about the problem here. -->
+<!-- Add any other context about the feature request here. -->
