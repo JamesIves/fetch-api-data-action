@@ -16,17 +16,17 @@
   <a href="https://github.com/JamesIves/fetch-api-data-action/actions">
     <img src="https://github.com/JamesIves/fetch-api-data-action/workflows/integration-tests/badge.svg">
   </a>
-
-  <a href="https://github.com/marketplace/actions/fetch-api-data">
-    <img src="https://img.shields.io/badge/action-marketplace-blue.svg?logo=github&color=orange">
+  
+  <a href="https://codecov.io/gh/JamesIves/fetch-api-data-action/branch/dev">
+    <img src="https://codecov.io/gh/JamesIves/fetch-api-data-action/branch/dev/graph/badge.svg">
   </a>
 
   <a href="https://github.com/JamesIves/fetch-api-data-action/releases">
     <img src="https://img.shields.io/github/v/release/JamesIves/fetch-api-data-action.svg?logo=github">
   </a>
-
-  <a href="https://codecov.io/gh/JamesIves/fetch-api-data-action/branch/dev">
-    <img src="https://codecov.io/gh/JamesIves/fetch-api-data-action/branch/dev/graph/badge.svg">
+  
+   <a href="https://github.com/marketplace/actions/fetch-api-data">
+    <img src="https://img.shields.io/badge/action-marketplace-blue.svg?logo=github&color=orange">
   </a>
 </p>
 
