@@ -666,7 +666,7 @@
     semver "^7.3.2"
     tsutils "^3.17.1"
 
-"@typescript-eslint/experimental-utils@4.2.0":
+"@typescript-eslint/experimental-utils@4.2.0", "@typescript-eslint/experimental-utils@^4.0.1":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-4.2.0.tgz#3d0b5cd4aa61f5eb7aa1e873dea0db1410b062d2"
   dependencies:
@@ -674,17 +674,6 @@
     "@typescript-eslint/scope-manager" "4.2.0"
     "@typescript-eslint/types" "4.2.0"
     "@typescript-eslint/typescript-estree" "4.2.0"
-    eslint-scope "^5.0.0"
-    eslint-utils "^2.0.0"
-
-"@typescript-eslint/experimental-utils@^4.0.1":
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-4.0.1.tgz#7d9a3ab6821ad5274dad2186c1aa0d93afd696eb"
-  dependencies:
-    "@types/json-schema" "^7.0.3"
-    "@typescript-eslint/scope-manager" "4.0.1"
-    "@typescript-eslint/types" "4.0.1"
-    "@typescript-eslint/typescript-estree" "4.0.1"
     eslint-scope "^5.0.0"
     eslint-utils "^2.0.0"
 
@@ -697,13 +686,6 @@
     "@typescript-eslint/typescript-estree" "4.2.0"
     debug "^4.1.1"
 
-"@typescript-eslint/scope-manager@4.0.1":
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/scope-manager/-/scope-manager-4.0.1.tgz#24d93c3000bdfcc5a157dc4d32b742405a8631b5"
-  dependencies:
-    "@typescript-eslint/types" "4.0.1"
-    "@typescript-eslint/visitor-keys" "4.0.1"
-
 "@typescript-eslint/scope-manager@4.2.0":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/scope-manager/-/scope-manager-4.2.0.tgz#d10e6854a65e175b22a28265d372a97c8cce4bfc"
@@ -711,26 +693,9 @@
     "@typescript-eslint/types" "4.2.0"
     "@typescript-eslint/visitor-keys" "4.2.0"
 
-"@typescript-eslint/types@4.0.1":
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-4.0.1.tgz#1cf72582f764931f085cb8230ff215980fe467b2"
-
 "@typescript-eslint/types@4.2.0":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-4.2.0.tgz#6f6b094329e72040f173123832397c7c0b910fc8"
-
-"@typescript-eslint/typescript-estree@4.0.1":
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-4.0.1.tgz#29a43c7060641ec51c902d9f50ac7c5866ec479f"
-  dependencies:
-    "@typescript-eslint/types" "4.0.1"
-    "@typescript-eslint/visitor-keys" "4.0.1"
-    debug "^4.1.1"
-    globby "^11.0.1"
-    is-glob "^4.0.1"
-    lodash "^4.17.15"
-    semver "^7.3.2"
-    tsutils "^3.17.1"
 
 "@typescript-eslint/typescript-estree@4.2.0":
   version "4.2.0"
@@ -744,13 +709,6 @@
     lodash "^4.17.15"
     semver "^7.3.2"
     tsutils "^3.17.1"
-
-"@typescript-eslint/visitor-keys@4.0.1":
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-4.0.1.tgz#d4e8de62775f2a6db71c7e8539633680039fdd6c"
-  dependencies:
-    "@typescript-eslint/types" "4.0.1"
-    eslint-visitor-keys "^2.0.0"
 
 "@typescript-eslint/visitor-keys@4.2.0":
   version "4.2.0"
@@ -1578,8 +1536,8 @@ eslint-plugin-import@>=2.20.1:
     tsconfig-paths "^3.9.0"
 
 eslint-plugin-jest@^24.0.0:
-  version "24.0.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-24.0.2.tgz#4bf0fcdc86289d702a7dacb430b4363482af773b"
+  version "24.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-24.1.0.tgz#6708037d7602e5288ce877fd0103f329dc978361"
   dependencies:
     "@typescript-eslint/experimental-utils" "^4.0.1"
 
