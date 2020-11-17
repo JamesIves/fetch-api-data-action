@@ -16,17 +16,17 @@
   <a href="https://github.com/JamesIves/fetch-api-data-action/actions">
     <img src="https://github.com/JamesIves/fetch-api-data-action/workflows/integration-tests/badge.svg">
   </a>
-
-  <a href="https://github.com/marketplace/actions/fetch-api-data">
-    <img src="https://img.shields.io/badge/action-marketplace-blue.svg?logo=github&color=orange">
+  
+  <a href="https://codecov.io/gh/JamesIves/fetch-api-data-action/branch/dev">
+    <img src="https://codecov.io/gh/JamesIves/fetch-api-data-action/branch/dev/graph/badge.svg">
   </a>
 
   <a href="https://github.com/JamesIves/fetch-api-data-action/releases">
     <img src="https://img.shields.io/github/v/release/JamesIves/fetch-api-data-action.svg?logo=github">
   </a>
-
-  <a href="https://codecov.io/gh/JamesIves/fetch-api-data-action/branch/dev">
-    <img src="https://codecov.io/gh/JamesIves/fetch-api-data-action/branch/dev/graph/badge.svg">
+  
+   <a href="https://github.com/marketplace/actions/fetch-api-data">
+    <img src="https://img.shields.io/badge/action-marketplace-blue.svg?logo=github&color=orange">
   </a>
 </p>
 
@@ -132,7 +132,7 @@ In your project you can import the JSON file and make it part of your build scri
 
 #### Install as a Node Module 📦
 
-If you'd like to use the functionality provided by this action in your own action you can install it using [yarn](https://yarnpkg.com/) by running the following command.
+If you'd like to use the functionality provided by this action in your own action you can install it using [yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/get-npm) by running the following commands. It's available on both the [npm](https://www.npmjs.com/package/@jamesives/fetch-api-data-action) and [GitHub registry](https://github.com/JamesIves/fetch-api-data-action/packages/229982). 
 
 ```
 yarn add @jamesives/fetch-api-data-action
@@ -158,8 +158,6 @@ run({
   configuration: JSON.stringify({method: 'GET', headers: {Authorization: `Bearer ${process.env['TOKEN']}`} })
 });
 ```
-
-You can find the npm registry listing for the module [here](https://www.npmjs.com/package/@jamesives/fetch-api-data-action), and the GitHub registry listing [here](https://github.com/JamesIves/fetch-api-data-action/packages/229982).
 
 ## Configuration 📁
 
