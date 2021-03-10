@@ -1564,8 +1564,8 @@ eslint-plugin-import@>=2.20.1:
     tsconfig-paths "^3.9.0"
 
 eslint-plugin-jest@^24.0.0:
-  version "24.1.5"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-24.1.5.tgz#1e866a9f0deac587d0a3d5d7cefe99815a580de2"
+  version "24.2.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-24.2.0.tgz#2d7784f58bf424b7ba888305c6c070f80bd2af5d"
   dependencies:
     "@typescript-eslint/experimental-utils" "^4.0.1"
 
