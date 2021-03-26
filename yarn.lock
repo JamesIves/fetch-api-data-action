@@ -3339,8 +3339,8 @@ nice-try@^1.0.4:
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
 
 nock@^13.0.0:
-  version "13.0.8"
-  resolved "https://registry.yarnpkg.com/nock/-/nock-13.0.8.tgz#1375f878b4ce8c3f9cf9e4b06acf670543a99e3e"
+  version "13.0.11"
+  resolved "https://registry.yarnpkg.com/nock/-/nock-13.0.11.tgz#ba733252e720897ca50033205c39db0c7470f331"
   dependencies:
     debug "^4.1.0"
     json-stringify-safe "^5.0.1"
