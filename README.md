@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/marketplace/actions/fetch-api-data">
-    <img width="150px" src="https://github.com/JamesIves/fetch-api-data-action/raw/dev/assets/icon.png">
+    <img width="200px" src="https://github.com/JamesIves/fetch-api-data-action/raw/dev/assets/icon.png">
   </a>
 </p>
 
