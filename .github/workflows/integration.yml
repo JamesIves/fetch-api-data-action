@@ -21,19 +21,19 @@ jobs:
       - name: Fetch Data 📦
         uses: JamesIves/fetch-api-data-action@releases/v1
         with:
-          ENDPOINT: https://jsonplaceholder.typicode.com/todos/1
-          SAVE_LOCATION: fetch-api-data-custom
-          SAVE_NAME: todo
-          RETRY: true
+          endpoint: https://jsonplaceholder.typicode.com/todos/1
+          save-location: fetch-api-data-custom
+          save-name: todo
+          retry: true
       
       - uses: webfactory/ssh-agent@v0.4.1
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
           
       - name: Build and Deploy Repo 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
-          BRANCH: gh-pages
-          FOLDER: fetch-api-data-custom
-          TARGET_FOLDER: data
-          SSH: true
+          branch: gh-pages
+          folder: fetch-api-data-custom
+          target-folder: data
+          ssh: true
