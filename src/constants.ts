@@ -42,13 +42,13 @@ export interface ExportInterface {
 
 // Required action data that gets initialized when running within the GitHub Actions environment.
 export const action = {
-  endpoint: getInput('ENDPOINT'),
-  configuration: getInput('CONFIGURATION'),
-  tokenEndpoint: getInput('TOKEN_ENDPOINT'),
-  retry: !isNullOrUndefined(getInput('RETRY'))
-    ? getInput('RETRY').toLowerCase() === 'true'
+  endpoint: getInput('endpoint'),
+  configuration: getInput('configuration'),
+  tokenEndpoint: getInput('token-endpoint'),
+  retry: !isNullOrUndefined(getInput('retry'))
+    ? getInput('retry').toLowerCase() === 'true'
     : false,
-  tokenConfiguration: getInput('TOKEN_CONFIGURATION'),
-  saveLocation: getInput('SAVE_LOCATION'),
-  saveName: getInput('SAVE_NAME')
+  tokenConfiguration: getInput('token-configuration'),
+  saveLocation: getInput('save-location'),
+  saveName: getInput('save-name')
 }

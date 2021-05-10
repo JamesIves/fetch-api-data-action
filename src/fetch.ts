@@ -44,7 +44,7 @@ export async function retrieveData({
       },
       {
         retries: retry ? 3 : 0,
-        onRetry: error => {
+        onRetry: (error: Error) => {
           debug(error.message)
           info(`There was an error with the request, retrying… ⏳`)
         }
@@ -71,5 +71,5 @@ export async function generateExport({
     output,
     'utf8'
   )
-  exportVariable('FETCH_API_DATA', output)
+  exportVariable('fetch-api-data', output)
 }
