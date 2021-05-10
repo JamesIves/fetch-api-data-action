@@ -1,0 +1,9 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Feature Request and Ideas
+    url: https://github.com/JamesIves/fetch-api-data-action/discussions/categories/ideas
+    about: If you have an idea or would like to make a feature request please open a discussion thread.
+
+  - name: Support and Questions
+    url: https://github.com/JamesIves/fetch-api-data-action/discussions/categories/q-a
+    about: Need help or just have a general question? Please open a discussion thread.
