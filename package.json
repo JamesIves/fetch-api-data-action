@@ -10,8 +10,8 @@
   "scripts": {
     "build": "rm -rf lib && tsc --declaration",
     "test": "jest",
-    "lint": "eslint src/**/*.ts",
-    "format": "prettier --write './**/*.ts'"
+    "lint": "eslint src/**/*.ts __tests__/**/*.ts",
+    "lint:format": "prettier --write './**/*.{ts,js,json,yml,md}' './*.{ts,js,json,yml,md}'"
   },
   "repository": {
     "type": "git",
@@ -39,19 +39,21 @@
     "mustache": "^4.0.0"
   },
   "devDependencies": {
-    "@types/async-retry": "^1.4.2",
-    "@types/jest": "^26.0.0",
-    "@types/mustache": "^4.0.1",
-    "@types/node": "^15.0.1",
-    "eslint": "^7.0.0",
-    "eslint-plugin-github": "^4.1.1",
-    "eslint-plugin-jest": "^24.0.0",
-    "eslint-plugin-prettier": "^3.1.2",
-    "jest": "^25.1.0",
-    "jest-circus": "^26.0.1",
-    "nock": "^13.0.0",
-    "prettier": "^2.0.2",
-    "ts-jest": "^25.5.1",
-    "typescript": "^3.9.2"
+    "@types/async-retry": "1.4.2",
+    "@types/jest": "26.0.0",
+    "@types/mustache": "4.0.1",
+    "@types/node": "15.0.1",
+    "@typescript-eslint/eslint-plugin": "4.22.1",
+    "@typescript-eslint/parser": "4.22.0",
+    "eslint": "7.25.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-jest": "24.3.6",
+    "eslint-plugin-prettier": "3.4.0",
+    "jest": "25.1.0",
+    "jest-circus": "26.0.1",
+    "nock": "13.0.0",
+    "prettier": "2.0.2",
+    "ts-jest": "25.5.1",
+    "typescript": "3.9.9"
   }
 }

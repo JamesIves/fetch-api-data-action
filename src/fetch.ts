@@ -4,7 +4,7 @@ import 'cross-fetch/polyfill'
 import {promises as fs} from 'fs'
 import {render} from 'mustache'
 import retryRequest from 'async-retry'
-import {DataInterface, ExportInterface} from './constants'
+import {DataInterface, ExportInterface, Status} from './constants'
 
 /* Fetches or Posts data to an API. If auth is provided it will replace the mustache variables with the data from it. */
 export async function retrieveData({
@@ -13,7 +13,7 @@ export async function retrieveData({
   auth,
   isTokenRequest,
   retry
-}: DataInterface): Promise<object> {
+}: DataInterface): Promise<Record<string, unknown>> {
   try {
     info(
       isTokenRequest
@@ -60,7 +60,7 @@ export async function generateExport({
   data,
   saveLocation,
   saveName
-}: ExportInterface): Promise<void> {
+}: ExportInterface): Promise<Status> {
   info('Saving the data... 📁')
   const output = JSON.stringify(data)
   await mkdirP(`${saveLocation ? saveLocation : 'fetch-api-data-action'}`)
@@ -72,4 +72,6 @@ export async function generateExport({
     'utf8'
   )
   exportVariable('fetch-api-data', output)
+
+  return Status.SUCCESS
 }
