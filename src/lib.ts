@@ -1,5 +1,5 @@
 import {info, setFailed} from '@actions/core'
-import {action, ActionInterface} from './constants'
+import {action, ActionInterface, Status} from './constants'
 import {generateExport, retrieveData} from './fetch'
 import {hasRequiredParameters} from './util'
 
@@ -10,7 +10,7 @@ import {hasRequiredParameters} from './util'
 export default async function run(
   configuration: ActionInterface
 ): Promise<void> {
-  let errorState = false
+  let status: Status = Status.RUNNING
 
   const settings = {
     ...action,
@@ -30,7 +30,7 @@ export default async function run(
     info('Checking configuration and initializing… 🚚')
     hasRequiredParameters(settings)
 
-    let auth: object = {}
+    let auth: Record<string, unknown> = {}
     if (settings.tokenEndpoint) {
       auth = await retrieveData({
         configuration: settings.tokenConfiguration,
@@ -47,18 +47,18 @@ export default async function run(
       retry: settings.retry
     })
 
-    await generateExport({
+    status = await generateExport({
       data,
       saveLocation: settings.saveLocation,
       saveName: settings.saveName
     })
   } catch (error) {
-    errorState = true
+    status = Status.FAILED
     setFailed(error.message)
   } finally {
     info(
       `${
-        errorState
+        status === Status.FAILED
           ? 'There was an error fetching the data. ❌'
           : 'The data was succesfully retrieved and saved! ✅ 🚚'
       }`
