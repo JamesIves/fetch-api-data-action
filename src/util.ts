@@ -12,3 +12,10 @@ export const hasRequiredParameters = (action: ActionInterface): void => {
     )
   }
 }
+
+export const extractErrorMessage = (error: unknown): string =>
+  error instanceof Error
+    ? error.message
+    : typeof error == 'string'
+    ? error
+    : JSON.stringify(error)

@@ -1,4 +1,4 @@
-import {isNullOrUndefined} from '../src/util'
+import {extractErrorMessage, isNullOrUndefined} from '../src/util'
 
 describe('util', () => {
   describe('isNullOrUndefined', () => {
@@ -15,6 +15,24 @@ describe('util', () => {
     it('should return false if the value is defined', async () => {
       const value = 'montezuma'
       expect(isNullOrUndefined(value)).toBeFalsy()
+    })
+  })
+
+  describe('extractErrorMessage', () => {
+    it('gets the message of a Error', () => {
+      expect(extractErrorMessage(new Error('a error message'))).toBe(
+        'a error message'
+      )
+    })
+
+    it('gets the message of a string', () => {
+      expect(extractErrorMessage('a error message')).toBe('a error message')
+    })
+
+    it('gets the message of a object', () => {
+      expect(extractErrorMessage({special: 'a error message'})).toBe(
+        `{"special":"a error message"}`
+      )
     })
   })
 })

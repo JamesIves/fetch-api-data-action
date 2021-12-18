@@ -1,8 +1,11 @@
-**Description**
-> Provide a description of what your changes do.
+## Description
 
-**Testing Instructions**
-> Give us step by step instructions on how to test your changes.
+<!-- Provide a description of what your changes do. -->
 
-**Additional Notes**
-> Anything else that will help us test the pull request.
+## Testing Instructions
+
+<!-- Give us step by step instructions on how to test your changes. -->
+
+## Additional Notes
+
+<!-- Anything else that will help us test the pull request. -->

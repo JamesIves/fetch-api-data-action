@@ -1,7 +1,7 @@
 import {info, setFailed} from '@actions/core'
-import {action, ActionInterface} from './constants'
+import {action, ActionInterface, Status} from './constants'
 import {generateExport, retrieveData} from './fetch'
-import {hasRequiredParameters} from './util'
+import {extractErrorMessage, hasRequiredParameters} from './util'
 
 /** Initializes and runs the action.
  *
@@ -10,7 +10,7 @@ import {hasRequiredParameters} from './util'
 export default async function run(
   configuration: ActionInterface
 ): Promise<void> {
-  let errorState = false
+  let status: Status = Status.RUNNING
 
   const settings = {
     ...action,
@@ -22,15 +22,16 @@ export default async function run(
     Fetch API Data Action 📦 🚚
 
     🚀 Getting Started Guide: https://github.com/marketplace/actions/fetch-api-data
-    🔧 Support: https://github.com/JamesIves/fetch-api-data-action/issues
-    ⭐ Contribute: https://github.com/JamesIves/fetch-api-data-action/blob/dev/CONTRIBUTING.md
-    
-    📣 Maintained by James Ives (https://jamesiv.es)`)
+    ❓ Discussions / Q&A: https://github.com/JamesIves/fetch-api-data-action/discussions
+    🔧 Report a Bug: https://github.com/JamesIves/fetch-api-data-action/issues
+
+    📣 Maintained by James Ives: https://jamesiv.es
+    💖 Support: https://github.com/sponsors/JamesIves`)
 
     info('Checking configuration and initializing… 🚚')
     hasRequiredParameters(settings)
 
-    let auth: object = {}
+    let auth: Record<string, unknown> = {}
     if (settings.tokenEndpoint) {
       auth = await retrieveData({
         configuration: settings.tokenConfiguration,
@@ -47,18 +48,18 @@ export default async function run(
       retry: settings.retry
     })
 
-    await generateExport({
+    status = await generateExport({
       data,
       saveLocation: settings.saveLocation,
       saveName: settings.saveName
     })
   } catch (error) {
-    errorState = true
-    setFailed(error.message)
+    status = Status.FAILED
+    setFailed(extractErrorMessage(error))
   } finally {
     info(
       `${
-        errorState
+        status === Status.FAILED
           ? 'There was an error fetching the data. ❌'
           : 'The data was succesfully retrieved and saved! ✅ 🚚'
       }`

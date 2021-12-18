@@ -12,28 +12,23 @@ jobs:
   refresh-api-data:
     runs-on: ubuntu-latest
     steps:
-          
       - name: Checkout 🛎️
         uses: actions/checkout@v2
         with:
           persist-credentials: false
-        
+
       - name: Fetch Data 📦
-        uses: JamesIves/fetch-api-data-action@releases/v1
+        uses: JamesIves/fetch-api-data-action@releases/v2
         with:
-          ENDPOINT: https://jsonplaceholder.typicode.com/todos/1
-          SAVE_LOCATION: fetch-api-data-custom
-          SAVE_NAME: todo
-          RETRY: true
-      
-      - uses: webfactory/ssh-agent@v0.4.1
-        with:
-          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
-          
+          endpoint: https://jsonplaceholder.typicode.com/todos/1
+          save-location: fetch-api-data-custom
+          save-name: todo
+          retry: true
+
       - name: Build and Deploy Repo 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
-          BRANCH: gh-pages
-          FOLDER: fetch-api-data-custom
-          TARGET_FOLDER: data
-          SSH: true
+          branch: gh-pages
+          folder: fetch-api-data-custom
+          target-folder: data
+          ssh-key: ${{ secrets.DEPLOY_KEY }}

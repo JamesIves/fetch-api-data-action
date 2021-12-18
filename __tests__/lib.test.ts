@@ -29,6 +29,7 @@ describe('lib', () => {
 
   it('should run through the commands', async () => {
     Object.assign(action, {
+      debug: true,
       endpoint: 'https://jamesiv.es'
     })
     await run(action)
@@ -38,6 +39,7 @@ describe('lib', () => {
 
   it('should throw an error if no endpoint is provided', async () => {
     Object.assign(action, {
+      debug: true,
       endpoint: null
     })
 
@@ -50,6 +52,7 @@ describe('lib', () => {
 
   it('should fetch data if a token endpoint is provided', async () => {
     Object.assign(action, {
+      debug: true,
       endpoint: 'https://jamesiv.es',
       tokenEndpoint: 'https://jamesiv.es',
       tokenConfiguration: JSON.stringify({method: 'GET'})
