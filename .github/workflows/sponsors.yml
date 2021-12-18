@@ -1,18 +1,8 @@
 name: publish-sponsors
 on:
   workflow_dispatch:
-    inputs:
-      branch:
-        description: 'Specifies the branch which the sponsors should be generated on.'
-        required: true
-        default: 'dev'
   schedule:
     - cron: 30 15 * * 0-6
-  push:
-    tags-ignore:
-      - '*.*'
-    branches:
-      - releases/v1
 
 jobs:
   generate-sponsors:
@@ -25,14 +15,12 @@ jobs:
         uses: JamesIves/github-sponsors-readme-action@releases/v1
         with:
           token: ${{ secrets.PAT }}
-          marker: 'real-sponsors'
           file: 'README.md'
-          template: '<a href="https://github.com/{{{ login }}}"><img src="https://github.com/{{{ login }}}.png" width="40px" alt="" /></a>'
-          fallback: '<img src="./github/assets/placeholder.png" width="40px" alt="" />'
-          minimum: 1000
+          template: '<a href="https://github.com/{{{ login }}}"><img src="https://github.com/{{{ login }}}.png" width="50px" alt="" /></a>'
+          minimum: 500
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.1
+        uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
-          branch: ${{ github.event.inputs.branch }}
+          branch: dev
           folder: '.'
