@@ -8,6 +8,7 @@ import {DataInterface, ExportInterface, Status} from './constants'
 
 /* Fetches or Posts data to an API. If auth is provided it will replace the mustache variables with the data from it. */
 export async function retrieveData({
+  debug: requestDebug,
   endpoint,
   configuration,
   auth,
@@ -40,7 +41,14 @@ export async function retrieveData({
           return new Error(error)
         }
 
-        return await response.json()
+        const data = await response.json()
+
+        if (requestDebug) {
+          info('📡  Request Response Debug: ')
+          info(JSON.stringify(data))
+        }
+
+        return data
       },
       {
         retries: retry ? 3 : 0,

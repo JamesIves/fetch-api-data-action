@@ -30,6 +30,7 @@ describe('fetch', () => {
         })
 
       const data = await retrieveData({
+        debug: true,
         endpoint: 'https://jives.dev/',
         configuration: JSON.stringify({
           method: 'POST',
@@ -48,12 +49,13 @@ describe('fetch', () => {
         nock('https://jamesiv.es').get('/').reply(200)
 
         await retrieveData({
+          debug: true,
           endpoint: 'https://example.com',
           configuration: '"{"method:"POST","body":{"bestCat":"{{{ cat }}}"}}"',
           auth: {cat: 'Montezuma'}
         })
       } catch (error) {
-        expect(error.message).toBe(
+        expect(error instanceof Error && error.message).toBe(
           'There was an error fetching from the API: SyntaxError: Unexpected token m in JSON at position 3'
         )
       }
@@ -66,6 +68,7 @@ describe('fetch', () => {
 
       try {
         await retrieveData({
+          debug: true,
           endpoint: 'https://jamesiv.es',
           configuration: JSON.stringify({
             method: 'POST',
@@ -75,7 +78,7 @@ describe('fetch', () => {
           })
         })
       } catch (error) {
-        expect(error.message).toBe(
+        expect(error instanceof Error && error.message).toBe(
           'There was an error fetching from the API: Error: {"a":1}'
         )
       }
@@ -94,11 +97,12 @@ describe('fetch', () => {
         })
 
         await retrieveData({
+          debug: true,
           endpoint: 'https://jives.dev',
           retry: true
         })
       } catch (error) {
-        expect(error.message).toBe(
+        expect(error instanceof Error && error.message).toBe(
           'There was an error fetching from the API: FetchError: invalid json response body at https://jives.dev/ reason: Unexpected token < in JSON at position 0'
         )
       }
@@ -112,7 +116,7 @@ describe('fetch', () => {
           bestCat: 'montezuma'
         }
       })
-      expect(process.env.FETCH_API_DATA).toBe('{"bestCat":"montezuma"}')
+      expect(process.env['fetch-api-data']).toBe('{"bestCat":"montezuma"}')
     })
 
     it('should save the file with customized file location/names', async () => {
@@ -123,7 +127,7 @@ describe('fetch', () => {
         saveLocation: 'fetch-api-data-custom',
         saveName: 'montezuma'
       })
-      expect(process.env.FETCH_API_DATA).toBe('{"bestCat":"montezuma"}')
+      expect(process.env['fetch-api-data']).toBe('{"bestCat":"montezuma"}')
     })
   })
 })

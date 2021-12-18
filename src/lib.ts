@@ -1,7 +1,7 @@
 import {info, setFailed} from '@actions/core'
 import {action, ActionInterface, Status} from './constants'
 import {generateExport, retrieveData} from './fetch'
-import {hasRequiredParameters} from './util'
+import {extractErrorMessage, hasRequiredParameters} from './util'
 
 /** Initializes and runs the action.
  *
@@ -22,10 +22,11 @@ export default async function run(
     Fetch API Data Action 📦 🚚
 
     🚀 Getting Started Guide: https://github.com/marketplace/actions/fetch-api-data
-    🔧 Support: https://github.com/JamesIves/fetch-api-data-action/issues
-    ⭐ Contribute: https://github.com/JamesIves/fetch-api-data-action/blob/dev/CONTRIBUTING.md
-    
-    📣 Maintained by James Ives (https://jamesiv.es)`)
+    ❓ Discussions / Q&A: https://github.com/JamesIves/fetch-api-data-action/discussions
+    🔧 Report a Bug: https://github.com/JamesIves/fetch-api-data-action/issues
+
+    📣 Maintained by James Ives: https://jamesiv.es
+    💖 Support: https://github.com/sponsors/JamesIves`)
 
     info('Checking configuration and initializing… 🚚')
     hasRequiredParameters(settings)
@@ -54,7 +55,7 @@ export default async function run(
     })
   } catch (error) {
     status = Status.FAILED
-    setFailed(error.message)
+    setFailed(extractErrorMessage(error))
   } finally {
     info(
       `${

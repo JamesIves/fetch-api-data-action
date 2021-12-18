@@ -2,6 +2,8 @@ import {getInput} from '@actions/core'
 import {isNullOrUndefined} from './util'
 
 export interface ActionInterface {
+  /** Allows you to log the retrieved data to the terminal. */
+  debug?: boolean
   /** The primary endpoint to fetch data from. */
   endpoint: string
   /** The configuration for the primary endpoint. Must be a stringified JSON object. */
@@ -19,6 +21,8 @@ export interface ActionInterface {
 }
 
 export interface DataInterface {
+  /** Allows you to log the retrieved data to the terminal. */
+  debug?: boolean
   /** The endpoint to make the API request to. */
   endpoint: string
   /** Optional configuration settings that map to the fetch API configuration object. */
@@ -42,6 +46,9 @@ export interface ExportInterface {
 
 // Required action data that gets initialized when running within the GitHub Actions environment.
 export const action = {
+  debug: !isNullOrUndefined(getInput('debug'))
+    ? getInput('clean').toLowerCase() === 'true'
+    : false,
   endpoint: getInput('endpoint'),
   configuration: getInput('configuration'),
   tokenEndpoint: getInput('token-endpoint'),
