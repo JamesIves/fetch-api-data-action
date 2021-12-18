@@ -37,7 +37,7 @@ This <a href="https://github.com/features/actions">GitHub Action</a> will handle
 </p>
 
 <p align="center">
-  This action was originally created for the <a href="https://github.community/t5/Events/Featured-Event-GitHub-Actions-Hackathon/td-p/48206">2020 GitHub Actions Hackathon</a>. You can read about my inspiration for this action <a href="https://jamesiv.es/github/actions/2020/03/07/fetching-authenticated-api-data/">here</a>. The README icon is provided by <a href="https://twemoji.twitter.com/">Twemoji</a>.
+  This action was originally created for the <a href="https://github.community/t5/Events/Featured-Event-GitHub-Actions-Hackathon/td-p/48206">2020 GitHub Actions Hackathon</a>. You can read about my inspiration for this action <a href="https://jamesiv.es/github/actions/2020/03/07/fetching-authenticated-api-data/">here</a>.
 </p>
 
 <p align="center">
@@ -56,7 +56,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fetch API Data 📦
-        uses: JamesIves/fetch-api-data-action@releases/v1
+        uses: JamesIves/fetch-api-data-action@2.0.0
         with:
           endpoint: https://example.com
           configuration: '{ "method": "GET", "headers": {"Authorization": "Bearer ${{ secrets.API_TOKEN }}"} }'
@@ -86,7 +86,7 @@ jobs:
           persist-credentials: false
 
       - name: Fetch API Data 📦
-        uses: JamesIves/fetch-api-data-action@releases/v1
+        uses: JamesIves/fetch-api-data-action@2.0.0
         with:
           endpoint: https://example.com
           configuration: '{ "method": "GET", "headers": {"Authorization": "Bearer ${{ secrets.API_TOKEN }}"} }'
@@ -201,7 +201,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fetch API Data 📦
-        uses: JamesIves/fetch-api-data-action@releases/v1
+        uses: JamesIves/fetch-api-data-action@2.0.0
         with:
           # The token endpoint is requested first. This retrieves the access token for the other endpoint.
           token-endpoint: https://example.com/auth/token
