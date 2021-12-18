@@ -6,8 +6,7 @@ on:
     tags-ignore:
       - '*.*'
     branches:
-      - dev
-      - releases/v1
+      - releases/v*
 jobs:
   refresh-api-data:
     runs-on: ubuntu-latest
