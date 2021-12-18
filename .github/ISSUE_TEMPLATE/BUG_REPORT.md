@@ -2,7 +2,7 @@
 name: Bug Report
 about: Create a bug report to help us improve the action.
 labels:
-  - bug
+  - triage
 ---
 
 <!-- Please check the Q&A before posting an issue: https://github.com/JamesIves/fetch-api-data-action/discussions/categories/q-a -->
