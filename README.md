@@ -133,7 +133,7 @@ In your project you can import the JSON file and make it part of your build scri
 
 #### Install as a Node Module 📦
 
-If you'd like to use the functionality provided by this action in your own action you can install it using [yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/get-npm) by running the following commands. It's available on both the [npm](https://www.npmjs.com/package/@jamesives/fetch-api-data-action) and [GitHub registry](https://github.com/JamesIves/fetch-api-data-action/packages/229982).
+If you'd like to use the functionality provided by this action in your own action you can either [create a composite action](https://docs.github.com/en/actions/creating-actions/creating-a-composite-action), or you can install it using [yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/get-npm) by running the following commands. It's available on both the [npm](https://www.npmjs.com/package/@jamesives/fetch-api-data-action) and [GitHub registry](https://github.com/JamesIves/fetch-api-data-action/packages/229982).
 
 ```
 yarn add @jamesives/fetch-api-data-action
