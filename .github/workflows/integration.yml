@@ -1,5 +1,11 @@
 name: integration-tests
 on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Specifies the branch which the integration tests should run on.'
+        required: true
+        default: 'releases/v2'
   schedule:
     - cron: 25 17 * * 0-6
   push:
@@ -12,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.4.0
         with:
           persist-credentials: false
 
@@ -25,7 +31,7 @@ jobs:
           retry: true
 
       - name: Build and Deploy Repo 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.7
+        uses: JamesIves/github-pages-deploy-action@4.2.0
         with:
           branch: gh-pages
           folder: fetch-api-data-custom

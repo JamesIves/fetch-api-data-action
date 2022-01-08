@@ -37,7 +37,7 @@ This <a href="https://github.com/features/actions">GitHub Action</a> will handle
 </p>
 
 <p align="center">
-  This action was originally created for the <a href="https://github.community/t5/Events/Featured-Event-GitHub-Actions-Hackathon/td-p/48206">2020 GitHub Actions Hackathon</a>. You can read about my inspiration for this action <a href="https://jamesiv.es/github/actions/2020/03/07/fetching-authenticated-api-data/">here</a>.
+  This action was originally created for the <a href="https://github.community/t5/Events/Featured-Event-GitHub-Actions-Hackathon/td-p/48206">2020 GitHub Actions Hackathon</a>. You can read about my inspiration for this action <a href="https://jamesiv.es/blog/github/actions/2020/03/07/fetching-authenticated-api-data/">here</a>.
 </p>
 
 <p align="center">
@@ -92,7 +92,7 @@ jobs:
           configuration: '{ "method": "GET", "headers": {"Authorization": "Bearer ${{ secrets.API_TOKEN }}"} }'
 
       - name: Build and Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.7
+        uses: JamesIves/github-pages-deploy-action@4.2.0
         with:
           branch: main # Pushes the updates to the master branch.
           folder: fetch-api-data-action # The location of the data.json file saved by the Fetch API Data action.
@@ -121,7 +121,7 @@ jobs:
           npm run-script build
 
       - name: Build and Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.1
+        uses: JamesIves/github-pages-deploy-action@4.2.0
         with:
           branch: gh-pages
           folder: build
@@ -133,7 +133,7 @@ In your project you can import the JSON file and make it part of your build scri
 
 #### Install as a Node Module 📦
 
-If you'd like to use the functionality provided by this action in your own action you can install it using [yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/get-npm) by running the following commands. It's available on both the [npm](https://www.npmjs.com/package/@jamesives/fetch-api-data-action) and [GitHub registry](https://github.com/JamesIves/fetch-api-data-action/packages/229982).
+If you'd like to use the functionality provided by this action in your own action you can either [create a composite action](https://docs.github.com/en/actions/creating-actions/creating-a-composite-action), or you can install it using [yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/get-npm) by running the following commands. It's available on both the [npm](https://www.npmjs.com/package/@jamesives/fetch-api-data-action) and [GitHub registry](https://github.com/JamesIves/fetch-api-data-action/packages/229982).
 
 ```
 yarn add @jamesives/fetch-api-data-action

@@ -36,6 +36,10 @@ inputs:
     description: 'You can override the name of the exported `.json` file by specifying a new one here. You should _not_ include the file extension in your name.'
     required: false
 
+  debug:
+    description: 'If set to true the action will log the API responses it receives in the terminal.'
+    required: false
+
 outputs:
   fetch-api-data:
     description: 'The requested data from the API stored as a string.'
