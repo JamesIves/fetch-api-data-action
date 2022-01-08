@@ -35,13 +35,11 @@ export async function retrieveData({
       async () => {
         // If anything throws the request is retried.
         const response = await fetch(endpoint, settings)
+        const data = await response.text();
 
         if (!response.ok) {
-          const error = await response.text()
-          return new Error(error)
+          return new Error(data)
         }
-
-        const data = await response.text();
 
         if (requestDebug) {
           info('📡  Request Response Debug: ')
