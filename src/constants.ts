@@ -12,10 +12,12 @@ export interface ActionInterface {
   tokenEndpoint?: string
   /** The configuration for the token endpoint. Must be a stringified JSON object. */
   tokenConfiguration?: string
-  /** The save location of the exported JSON file. */
+  /** The save location of the exported file. */
   saveLocation?: string
-  /** The save name of the exported JSON file. */
+  /** The save name of the exported file. */
   saveName?: string
+  /** The format of the file being saved. */
+  format?: string
   /** Optional configuration that allows the fetch request to make a series of retry requests before failing. */
   retry?: boolean | null
 }
@@ -42,6 +44,8 @@ export interface ExportInterface {
   saveLocation?: string
   /** The name of the file to save. */
   saveName?: string
+  /** The format of the file to save. */
+  format?: string
 }
 
 // Required action data that gets initialized when running within the GitHub Actions environment.
@@ -57,7 +61,8 @@ export const action = {
     : false,
   tokenConfiguration: getInput('token-configuration'),
   saveLocation: getInput('save-location'),
-  saveName: getInput('save-name')
+  saveName: getInput('save-name'),
+  format: getInput('format')
 }
 
 /** Status codes for the action. */
