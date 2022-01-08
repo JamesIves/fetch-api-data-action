@@ -7,7 +7,7 @@ The current versions are actively maintained and will receieve frequent updates 
 | Version | Supported          |
 | ------- | ------------------ |
 | 2.0.x   | :white_check_mark: |
-| < 2.0.0   | :x: |
+| < 2.0.0 | :x:                |
 
 ## Reporting a Vulnerability
 

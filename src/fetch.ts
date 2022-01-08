@@ -72,14 +72,12 @@ export async function generateExport({
   info('Saving the data... 📁')
   const output = JSON.stringify(data)
   await mkdirP(`${saveLocation ? saveLocation : 'fetch-api-data-action'}`)
-  await fs.writeFile(
-    `${saveLocation ? saveLocation : 'fetch-api-data-action'}/${
-      saveName ? saveName : 'data'
-    }.json`,
-    output,
-    'utf8'
-  )
+  const file = `${saveLocation ? saveLocation : 'fetch-api-data-action'}/${
+    saveName ? saveName : 'data'
+  }.json`
+  await fs.writeFile(file, output, 'utf8')
   exportVariable('fetch-api-data', output)
+  info(`Saved ${file} 💾`)
 
   return Status.SUCCESS
 }

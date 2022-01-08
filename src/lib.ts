@@ -21,12 +21,12 @@ export default async function run(
     info(`
     Fetch API Data Action 📦 🚚
 
-    🚀 Getting Started Guide: https://github.com/marketplace/actions/fetch-api-data
-    ❓ Discussions / Q&A: https://github.com/JamesIves/fetch-api-data-action/discussions
-    🔧 Report a Bug: https://github.com/JamesIves/fetch-api-data-action/issues
-
+    💖 Support: https://github.com/sponsors/JamesIves
     📣 Maintained by James Ives: https://jamesiv.es
-    💖 Support: https://github.com/sponsors/JamesIves`)
+
+    🚀 Getting Started Guide: https://github.com/JamesIves/fetch-api-data-action
+    ❓ Discussions / Q&A: https://github.com/JamesIves/fetch-api-data-action/discussions
+    🔧 Report a Bug: https://github.com/JamesIves/fetch-api-data-action/issues`)
 
     info('Checking configuration and initializing… 🚚')
     hasRequiredParameters(settings)
@@ -34,6 +34,7 @@ export default async function run(
     let auth: Record<string, unknown> = {}
     if (settings.tokenEndpoint) {
       auth = await retrieveData({
+        debug: settings.debug,
         configuration: settings.tokenConfiguration,
         endpoint: settings.tokenEndpoint,
         isTokenRequest: true,
@@ -43,6 +44,7 @@ export default async function run(
 
     const data = await retrieveData({
       auth,
+      debug: settings.debug,
       configuration: settings.configuration,
       endpoint: settings.endpoint,
       retry: settings.retry

@@ -47,7 +47,7 @@ export interface ExportInterface {
 // Required action data that gets initialized when running within the GitHub Actions environment.
 export const action = {
   debug: !isNullOrUndefined(getInput('debug'))
-    ? getInput('clean').toLowerCase() === 'true'
+    ? getInput('debug').toLowerCase() === 'true'
     : false,
   endpoint: getInput('endpoint'),
   configuration: getInput('configuration'),
