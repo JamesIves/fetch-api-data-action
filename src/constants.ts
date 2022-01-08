@@ -28,7 +28,7 @@ export interface DataInterface {
   /** Optional configuration settings that map to the fetch API configuration object. */
   configuration?: string
   /** Optional data fetched from the previous endpoint. This data can be accessed via the mustache syntax. */
-  auth?: Record<string, unknown>
+  auth?: string;
   /** Tells the log if the action is fetching from the token endpoint or not. */
   isTokenRequest?: boolean | null
   /** Optional configuration that allows the fetch request to make a series of retry requests before failing. */
@@ -37,7 +37,7 @@ export interface DataInterface {
 
 export interface ExportInterface {
   /** The data to save. */
-  data: Record<string, unknown>
+  data: string;
   /** The save location. */
   saveLocation?: string
   /** The name of the file to save. */

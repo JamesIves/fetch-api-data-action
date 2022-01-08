@@ -24,14 +24,14 @@ export default async function run(
     💖 Support: https://github.com/sponsors/JamesIves
     📣 Maintained by James Ives: https://jamesiv.es
 
-    🚀 Getting Started Guide: https://github.com/marketplace/actions/fetch-api-data
+    🚀 Getting Started Guide: https://github.com/JamesIves/fetch-api-data-action
     ❓ Discussions / Q&A: https://github.com/JamesIves/fetch-api-data-action/discussions
     🔧 Report a Bug: https://github.com/JamesIves/fetch-api-data-action/issues`)
 
     info('Checking configuration and initializing… 🚚')
     hasRequiredParameters(settings)
 
-    let auth: Record<string, unknown> = {}
+    let auth = '';
     if (settings.tokenEndpoint) {
       auth = await retrieveData({
         debug: settings.debug,

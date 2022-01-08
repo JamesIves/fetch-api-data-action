@@ -5,6 +5,7 @@ import {promises as fs} from 'fs'
 import {render} from 'mustache'
 import retryRequest from 'async-retry'
 import {DataInterface, ExportInterface, Status} from './constants'
+import {parseData} from './util'
 
 /* Fetches or Posts data to an API. If auth is provided it will replace the mustache variables with the data from it. */
 export async function retrieveData({
@@ -14,7 +15,7 @@ export async function retrieveData({
   auth,
   isTokenRequest,
   retry
-}: DataInterface): Promise<Record<string, unknown>> {
+}: DataInterface): Promise<string> {
   try {
     info(
       isTokenRequest
@@ -23,7 +24,7 @@ export async function retrieveData({
     )
 
     const settings = configuration
-      ? JSON.parse(render(configuration, auth))
+      ? JSON.parse(render(configuration, auth ? parseData(auth) : null))
       : {}
 
     if (settings.body) {
@@ -35,7 +36,7 @@ export async function retrieveData({
       async () => {
         // If anything throws the request is retried.
         const response = await fetch(endpoint, settings)
-        const data = await response.text();
+        const data = await response.text()
 
         if (!response.ok) {
           return new Error(data)
@@ -43,7 +44,7 @@ export async function retrieveData({
 
         if (requestDebug) {
           info('📡  Request Response Debug: ')
-          info(data)
+          info(JSON.stringify(data))
         }
 
         return data
@@ -68,20 +69,15 @@ export async function generateExport({
   saveName
 }: ExportInterface): Promise<Status> {
   info('Saving the data... 📁')
-  const output = JSON.stringify(data)
-  const file = `${saveLocation ? saveLocation : 'fetch-api-data-action'}/${
-    saveName ? saveName : 'data'
-  }.json`
   await mkdirP(`${saveLocation ? saveLocation : 'fetch-api-data-action'}`)
-
   await fs.writeFile(
-    file,
-    output,
+    `${saveLocation ? saveLocation : 'fetch-api-data-action'}/${
+      saveName ? saveName : 'data'
+    }.json`,
+    data,
     'utf8'
   )
-
-  info(`Saved ${file} `)
-  exportVariable('fetch-api-data', output)
+  exportVariable('fetch-api-data', data)
 
   return Status.SUCCESS
 }
