@@ -9,11 +9,9 @@ describe('fetch', () => {
     afterAll(nock.restore)
 
     it('should return some data', async () => {
-      nock('https://jamesiv.es')
-        .get('/')
-        .reply(200, {
-          data: '12345'
-        })
+      nock('https://jamesiv.es').get('/').reply(200, {
+        data: '12345'
+      })
 
       const data = await retrieveData({
         endpoint: 'https://jamesiv.es'
@@ -48,9 +46,7 @@ describe('fetch', () => {
 
     it('should error if improperly formatted json is passed in', async () => {
       try {
-        nock('https://jamesiv.es')
-          .get('/')
-          .reply(200)
+        nock('https://jamesiv.es').get('/').reply(200)
 
         await retrieveData({
           debug: true,
@@ -66,11 +62,9 @@ describe('fetch', () => {
     })
 
     it('should error if the response is not ok', async () => {
-      nock('https://jamesiv.es')
-        .post('/')
-        .reply(404, {
-          a: 1
-        })
+      nock('https://jamesiv.es').post('/').reply(404, {
+        a: 1
+      })
 
       try {
         await retrieveData({
@@ -94,18 +88,13 @@ describe('fetch', () => {
       jest.setTimeout(1000000)
 
       try {
-        nock('https://jives.dev')
-          .get('/')
-          .once()
-          .replyWithError({
-            message: 'This is catastrophic'
-          })
+        nock('https://jives.dev').get('/').once().replyWithError({
+          message: 'This is catastrophic'
+        })
 
-        nock('https://jives.dev')
-          .get('/')
-          .reply(200, {
-            data: '12345'
-          })
+        nock('https://jives.dev').get('/').reply(200, {
+          data: '12345'
+        })
 
         await retrieveData({
           debug: true,
