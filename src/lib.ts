@@ -34,6 +34,7 @@ export default async function run(
     let auth: Record<string, unknown> = {}
     if (settings.tokenEndpoint) {
       auth = await retrieveData({
+        debug: settings.debug,
         configuration: settings.tokenConfiguration,
         endpoint: settings.tokenEndpoint,
         isTokenRequest: true,
@@ -43,6 +44,7 @@ export default async function run(
 
     const data = await retrieveData({
       auth,
+      debug: settings.debug,
       configuration: settings.configuration,
       endpoint: settings.endpoint,
       retry: settings.retry
