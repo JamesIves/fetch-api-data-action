@@ -23,12 +23,9 @@ export async function retrieveData({
         : 'Fetching the requested data… 📦'
     )
 
-    console.log('AUTHHH', auth)
     const settings = configuration
       ? JSON.parse(render(configuration, auth ? parseData(auth) : null))
       : {}
-
-    console.log(settings)
 
     if (settings.body) {
       // Ensures the body is stringified in the case of a post request being made.
