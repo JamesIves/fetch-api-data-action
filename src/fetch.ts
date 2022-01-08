@@ -51,6 +51,7 @@ export async function retrieveData({
   
           return data
         } catch {    
+          info('data is not json')
           if (requestDebug) {
             info('📡  Request Response Debug: ')
             info(JSON.stringify(response))
