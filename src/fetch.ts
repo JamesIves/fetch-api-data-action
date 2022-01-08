@@ -41,25 +41,14 @@ export async function retrieveData({
           return new Error(error)
         }
 
-        try {
-          const data = await response.json()
+        const data = await response.text();
 
-          if (requestDebug) {
-            info('📡  Request Response Debug: ')
-            info(JSON.stringify(data))
-          }
-  
-          return data
-        } catch { 
-          const data = await response.text()
-
-          if (requestDebug) {
-            info('📡  Request Response Debug: ')
-            info(data)
-          }
-
-          return data
+        if (requestDebug) {
+          info('📡  Request Response Debug: ')
+          info(data)
         }
+
+        return data
       },
       {
         retries: retry ? 3 : 0,
@@ -82,14 +71,18 @@ export async function generateExport({
 }: ExportInterface): Promise<Status> {
   info('Saving the data... 📁')
   const output = JSON.stringify(data)
+  const file = `${saveLocation ? saveLocation : 'fetch-api-data-action'}/${
+    saveName ? saveName : 'data'
+  }.json`
   await mkdirP(`${saveLocation ? saveLocation : 'fetch-api-data-action'}`)
+
   await fs.writeFile(
-    `${saveLocation ? saveLocation : 'fetch-api-data-action'}/${
-      saveName ? saveName : 'data'
-    }.json`,
+    file,
     output,
     'utf8'
   )
+
+  info(`Saved ${file} `)
   exportVariable('fetch-api-data', output)
 
   return Status.SUCCESS
