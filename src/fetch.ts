@@ -50,14 +50,15 @@ export async function retrieveData({
           }
   
           return data
-        } catch {    
-          info('data is not json')
+        } catch { 
+          const data = await response.text()
+
           if (requestDebug) {
             info('📡  Request Response Debug: ')
-            info(JSON.stringify(response))
+            info(data)
           }
 
-          return response;
+          return data
         }
       },
       {
