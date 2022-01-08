@@ -23,9 +23,12 @@ export async function retrieveData({
         : 'Fetching the requested data… 📦'
     )
 
+    console.log('AUTHHH', auth)
     const settings = configuration
       ? JSON.parse(render(configuration, auth ? parseData(auth) : null))
       : {}
+
+    console.log(settings)
 
     if (settings.body) {
       // Ensures the body is stringified in the case of a post request being made.
@@ -65,18 +68,18 @@ export async function retrieveData({
 /* Saves the data to the local file system and exports an environment variable containing the retrieved data. */
 export async function generateExport({
   data,
-  format,
   saveLocation,
   saveName
 }: ExportInterface): Promise<Status> {
   info('Saving the data... 📁')
-  const file = `${saveLocation ? saveLocation : 'fetch-api-data-action'}/${
-    saveName ? saveName : 'data'
-  }.${format ? format : 'json'}`
   await mkdirP(`${saveLocation ? saveLocation : 'fetch-api-data-action'}`)
-  await fs.writeFile(file, data, 'utf8')
-
-  info(`Saved ${file} 💾`)
+  await fs.writeFile(
+    `${saveLocation ? saveLocation : 'fetch-api-data-action'}/${
+      saveName ? saveName : 'data'
+    }.json`,
+    data,
+    'utf8'
+  )
   exportVariable('fetch-api-data', data)
 
   return Status.SUCCESS

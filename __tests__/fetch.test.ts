@@ -9,24 +9,20 @@ describe('fetch', () => {
     afterAll(nock.restore)
 
     it('should return some data', async () => {
-      nock('https://jamesiv.es')
-        .get('/')
-        .reply(200, {
-          data: '12345'
-        })
+      nock('https://jamesiv.es').get('/').reply(200, {
+        data: '12345'
+      })
 
       const data = await retrieveData({
         endpoint: 'https://jamesiv.es'
       })
 
-      expect(data).toEqual({data: '12345'})
+      expect(data).toEqual('{"data":"12345"}')
     })
 
     it('should handle the triple bracket replacements ', async () => {
       nock('https://jives.dev/')
-        .post('/', {
-          bestCat: 'Montezuma'
-        })
+        .post('/', '{"bestCat":"montezuma"}')
         .reply(200, {
           data: '12345'
         })
@@ -40,37 +36,33 @@ describe('fetch', () => {
             bestCat: '{{{ cat }}}'
           }
         }),
-        auth: {cat: 'Montezuma'}
+        auth: '{"cat": "montezuma"}'
       })
 
-      expect(data).toEqual({data: '12345'})
+      expect(data).toEqual('{"data":"12345"}')
     })
 
     it('should error if improperly formatted json is passed in', async () => {
       try {
-        nock('https://jamesiv.es')
-          .get('/')
-          .reply(200)
+        nock('https://jamesiv.es').get('/').reply(200)
 
         await retrieveData({
           debug: true,
           endpoint: 'https://example.com',
           configuration: '"{"method:"POST","body":{"bestCat":"{{{ cat }}}"}}"',
-          auth: {cat: 'Montezuma'}
+          auth: '{"cat: "montezuma"}'
         })
       } catch (error) {
         expect(error instanceof Error && error.message).toBe(
-          'There was an error fetching from the API: SyntaxError: Unexpected token m in JSON at position 3'
+          "There was an error fetching from the API: TypeError: Cannot read property 'cat' of null"
         )
       }
     })
 
     it('should error if the response is not ok', async () => {
-      nock('https://jamesiv.es')
-        .post('/')
-        .reply(404, {
-          a: 1
-        })
+      nock('https://jamesiv.es').post('/').reply(404, {
+        a: 1
+      })
 
       try {
         await retrieveData({
@@ -94,18 +86,13 @@ describe('fetch', () => {
       jest.setTimeout(1000000)
 
       try {
-        nock('https://jives.dev')
-          .get('/')
-          .once()
-          .replyWithError({
-            message: 'This is catastrophic'
-          })
+        nock('https://jives.dev').get('/').once().replyWithError({
+          message: 'This is catastrophic'
+        })
 
-        nock('https://jives.dev')
-          .get('/')
-          .reply(200, {
-            data: '12345'
-          })
+        nock('https://jives.dev').get('/').reply(200, {
+          data: '12345'
+        })
 
         await retrieveData({
           debug: true,
@@ -123,18 +110,14 @@ describe('fetch', () => {
   describe('generateExport', () => {
     it('should save the file', async () => {
       await generateExport({
-        data: {
-          bestCat: 'montezuma'
-        }
+        data: '{"bestCat":"montezuma"}'
       })
       expect(process.env['fetch-api-data']).toBe('{"bestCat":"montezuma"}')
     })
 
     it('should save the file with customized file location/names', async () => {
       await generateExport({
-        data: {
-          bestCat: 'montezuma'
-        },
+        data: '{"bestCat":"montezuma"}',
         saveLocation: 'fetch-api-data-custom',
         saveName: 'montezuma'
       })
