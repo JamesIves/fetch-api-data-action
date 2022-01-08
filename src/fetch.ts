@@ -39,7 +39,7 @@ export async function retrieveData({
         const data = await response.text()
 
         if (!response.ok) {
-          return new Error(data)
+          throw new Error(data)
         }
 
         if (requestDebug) {

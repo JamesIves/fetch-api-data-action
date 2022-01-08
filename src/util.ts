@@ -23,8 +23,8 @@ export const extractErrorMessage = (error: unknown): string =>
 /* Attempt to parse data as JSON and catch any errors. */
 export const parseData = (data: string): Record<string, unknown> | null => {
   try {
-    return JSON.parse(data);
+    return JSON.parse(data)
   } catch {
-    return null;
+    return null
   }
 }
