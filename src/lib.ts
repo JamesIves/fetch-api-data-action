@@ -31,7 +31,7 @@ export default async function run(
     info('Checking configuration and initializing… 🚚')
     hasRequiredParameters(settings)
 
-    let auth: Record<string, unknown> = {}
+    let auth = '';
     if (settings.tokenEndpoint) {
       auth = await retrieveData({
         debug: settings.debug,
