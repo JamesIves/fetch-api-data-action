@@ -41,14 +41,23 @@ export async function retrieveData({
           return new Error(error)
         }
 
-        const data = await response.json()
+        try {
+          const data = await response.json()
 
-        if (requestDebug) {
-          info('📡  Request Response Debug: ')
-          info(JSON.stringify(data))
+          if (requestDebug) {
+            info('📡  Request Response Debug: ')
+            info(JSON.stringify(data))
+          }
+  
+          return data
+        } catch {    
+          if (requestDebug) {
+            info('📡  Request Response Debug: ')
+            info(JSON.stringify(response))
+          }
+
+          return response;
         }
-
-        return data
       },
       {
         retries: retry ? 3 : 0,

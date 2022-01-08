@@ -21,12 +21,12 @@ export default async function run(
     info(`
     Fetch API Data Action 📦 🚚
 
+    💖 Support: https://github.com/sponsors/JamesIves
+    📣 Maintained by James Ives: https://jamesiv.es
+
     🚀 Getting Started Guide: https://github.com/marketplace/actions/fetch-api-data
     ❓ Discussions / Q&A: https://github.com/JamesIves/fetch-api-data-action/discussions
-    🔧 Report a Bug: https://github.com/JamesIves/fetch-api-data-action/issues
-
-    📣 Maintained by James Ives: https://jamesiv.es
-    💖 Support: https://github.com/sponsors/JamesIves`)
+    🔧 Report a Bug: https://github.com/JamesIves/fetch-api-data-action/issues`)
 
     info('Checking configuration and initializing… 🚚')
     hasRequiredParameters(settings)
