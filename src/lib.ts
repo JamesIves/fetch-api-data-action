@@ -53,7 +53,8 @@ export default async function run(
     status = await generateExport({
       data,
       saveLocation: settings.saveLocation,
-      saveName: settings.saveName
+      saveName: settings.saveName,
+      format: settings.format
     })
   } catch (error) {
     status = Status.FAILED
