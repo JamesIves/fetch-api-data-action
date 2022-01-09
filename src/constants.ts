@@ -12,10 +12,12 @@ export interface ActionInterface {
   tokenEndpoint?: string
   /** The configuration for the token endpoint. Must be a stringified JSON object. */
   tokenConfiguration?: string
-  /** The save location of the exported JSON file. */
+  /** The save location of the exported file. */
   saveLocation?: string
-  /** The save name of the exported JSON file. */
+  /** The save name of the exported file. */
   saveName?: string
+  /** The format of the file being saved. */
+  format?: string
   /** Optional configuration that allows the fetch request to make a series of retry requests before failing. */
   retry?: boolean | null
 }
@@ -28,7 +30,7 @@ export interface DataInterface {
   /** Optional configuration settings that map to the fetch API configuration object. */
   configuration?: string
   /** Optional data fetched from the previous endpoint. This data can be accessed via the mustache syntax. */
-  auth?: Record<string, unknown>
+  auth?: string
   /** Tells the log if the action is fetching from the token endpoint or not. */
   isTokenRequest?: boolean | null
   /** Optional configuration that allows the fetch request to make a series of retry requests before failing. */
@@ -37,17 +39,19 @@ export interface DataInterface {
 
 export interface ExportInterface {
   /** The data to save. */
-  data: Record<string, unknown>
+  data: string
   /** The save location. */
   saveLocation?: string
   /** The name of the file to save. */
   saveName?: string
+  /** The format of the file to save. */
+  format?: string
 }
 
 // Required action data that gets initialized when running within the GitHub Actions environment.
 export const action = {
   debug: !isNullOrUndefined(getInput('debug'))
-    ? getInput('clean').toLowerCase() === 'true'
+    ? getInput('debug').toLowerCase() === 'true'
     : false,
   endpoint: getInput('endpoint'),
   configuration: getInput('configuration'),
@@ -57,7 +61,8 @@ export const action = {
     : false,
   tokenConfiguration: getInput('token-configuration'),
   saveLocation: getInput('save-location'),
-  saveName: getInput('save-name')
+  saveName: getInput('save-name'),
+  format: getInput('format')
 }
 
 /** Status codes for the action. */

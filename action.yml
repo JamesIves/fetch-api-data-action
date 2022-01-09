@@ -40,6 +40,9 @@ inputs:
     description: 'If set to true the action will log the API responses it receives in the terminal.'
     required: false
 
+  format:
+    description: 'Allows you to modify the format of the saved file, for example you can use txt here to save the file as a txt file. This field defaults to json.'
+
 outputs:
   fetch-api-data:
     description: 'The requested data from the API stored as a string.'

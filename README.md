@@ -56,7 +56,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fetch API Data 📦
-        uses: JamesIves/fetch-api-data-action@2.0.0
+        uses: JamesIves/fetch-api-data-action@2.0.1
         with:
           endpoint: https://example.com
           configuration: '{ "method": "GET", "headers": {"Authorization": "Bearer ${{ secrets.API_TOKEN }}"} }'
@@ -86,7 +86,7 @@ jobs:
           persist-credentials: false
 
       - name: Fetch API Data 📦
-        uses: JamesIves/fetch-api-data-action@2.0.0
+        uses: JamesIves/fetch-api-data-action@2.0.1
         with:
           endpoint: https://example.com
           configuration: '{ "method": "GET", "headers": {"Authorization": "Bearer ${{ secrets.API_TOKEN }}"} }'
@@ -185,7 +185,7 @@ The following configuration options should be set.
 | `retry`               | If you're working with an intermittent API you can toggle this option to `true`. Doing so will make the action try the request 3 times at random invervals before failing.                                                                                                                                                                                                                                                                                     | `with`           | **No**   |
 | `save-location`       | By default the save location of the JSON file is `fetch-api-data-action/data.json`, if you'd like to override the directory you can do so by specifying a new one with this variable.                                                                                                                                                                                                                                                                          | `with`           | **No**   |
 | `save-name`           | You can override the name of the exported `.json` file by specifying a new one here. You should _not_ include the file extension in your name.                                                                                                                                                                                                                                                                                                                 | `with`           | **No**   |
-| `debug`           | If set to `true` the action will log the API responses it receives in the terminal.                                                                                                                                                                                                                                                                                                                 | `with`           | **No**   |
+| `debug`               | If set to `true` the action will log the API responses it receives in the terminal.                                                                                                                                                                                                                                                                                                                                                                            | `with`           | **No**   |
 
 ---
 
@@ -201,7 +201,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fetch API Data 📦
-        uses: JamesIves/fetch-api-data-action@2.0.0
+        uses: JamesIves/fetch-api-data-action@2.0.1
         with:
           # The token endpoint is requested first. This retrieves the access token for the other endpoint.
           token-endpoint: https://example.com/auth/token
