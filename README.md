@@ -56,7 +56,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fetch API Data 📦
-        uses: JamesIves/fetch-api-data-action@2.0.1
+        uses: JamesIves/fetch-api-data-action@v2.1.0
         with:
           endpoint: https://example.com
           configuration: '{ "method": "GET", "headers": {"Authorization": "Bearer ${{ secrets.API_TOKEN }}"} }'
@@ -86,13 +86,13 @@ jobs:
           persist-credentials: false
 
       - name: Fetch API Data 📦
-        uses: JamesIves/fetch-api-data-action@2.0.1
+        uses: JamesIves/fetch-api-data-action@v2.1.0
         with:
           endpoint: https://example.com
           configuration: '{ "method": "GET", "headers": {"Authorization": "Bearer ${{ secrets.API_TOKEN }}"} }'
 
       - name: Build and Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.2.0
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: main # Pushes the updates to the main branch.
           folder: fetch-api-data-action # The location of the data.json file saved by the Fetch API Data action.
@@ -121,7 +121,7 @@ jobs:
           npm run-script build
 
       - name: Build and Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.2.0
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: build
@@ -202,7 +202,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fetch API Data 📦
-        uses: JamesIves/fetch-api-data-action@2.0.1
+        uses: JamesIves/fetch-api-data-action@v2.1.0
         with:
           # The token endpoint is requested first. This retrieves the access token for the other endpoint.
           token-endpoint: https://example.com/auth/token
