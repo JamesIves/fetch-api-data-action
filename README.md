@@ -32,7 +32,7 @@
 
 <p align="center">
 
-This <a href="https://github.com/features/actions">GitHub Action</a> will handle authenticated API requests for you, allowing you to save the data from the request into your workspace as an environment variable and a <b>.json</b> file. Using this action will allow you to save data from these queries on a schedule so they can be used in a static page without exposing your API credentials.
+This <a href="https://github.com/features/actions">GitHub Action</a> will handle authenticated API requests for you, allowing you to save the data from the request into your workspace as an environment variable and a file. Using this action will allow you to save data from these queries on a schedule so they can be used in a static page without exposing your API credentials.
 
 </p>
 
@@ -56,20 +56,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fetch API Data 📦
-        uses: JamesIves/fetch-api-data-action@2.0.1
+        uses: JamesIves/fetch-api-data-action@v2.1.0
         with:
           endpoint: https://example.com
           configuration: '{ "method": "GET", "headers": {"Authorization": "Bearer ${{ secrets.API_TOKEN }}"} }'
 ```
 
-Once the action has run the requested data will be exported into the `FETCH_API_DATA` environment variable and will also be available as a `.json` file in your workspace located by default in the `fetch-api-data-action/data.json` directory.
+Once the action has run the requested data will be exported into the `FETCH_API_DATA` environment variable and will also be available as a `.json` file in your workspace located by default in the `fetch-api-data-action/data.json` directory. If you need something other than `.json` file please refer to the `format` parameter.
 
 You can combine the use of this with the [GitHub Pages Deploy Action](https://github.com/JamesIves/github-pages-deploy-action) to trigger scheduled updates to a feed on your website.
 
 <details>
 <summary>You can view a full example of this here.</summary>
 
-In one workflow you can fetch data from an API on a schedule and push it to your `master` branch.
+In one workflow you can fetch data from an API on a schedule and push it to your `main` branch.
 
 ```yml
 name: Refresh Feed
@@ -86,17 +86,17 @@ jobs:
           persist-credentials: false
 
       - name: Fetch API Data 📦
-        uses: JamesIves/fetch-api-data-action@2.0.1
+        uses: JamesIves/fetch-api-data-action@v2.1.0
         with:
           endpoint: https://example.com
           configuration: '{ "method": "GET", "headers": {"Authorization": "Bearer ${{ secrets.API_TOKEN }}"} }'
 
       - name: Build and Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.2.0
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: main # Pushes the updates to the master branch.
+          branch: main # Pushes the updates to the main branch.
           folder: fetch-api-data-action # The location of the data.json file saved by the Fetch API Data action.
-          target-folder: data # Saves the data into the 'data' directory on the master branch.
+          target-folder: data # Saves the data into the 'data' directory on the main branch.
 ```
 
 In another workflow you can then build and deploy your page.
@@ -121,7 +121,7 @@ jobs:
           npm run-script build
 
       - name: Build and Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.2.0
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: build
@@ -183,8 +183,9 @@ The following configuration options should be set.
 | `token-endpoint`      | If the `endpoint` API requires you to make a request to get an access token prior to fetching data you can perform this task by specifying a token endpoint. Any data returned from the token end can be referenced in the `configuration` variable using the triple bracket syntax: `{{{ access_token }}}`. For more information refer to the [Token Request part of the readme](https://github.com/JamesIves/fetch-api-data-action#token-request-%EF%B8%8F); | `with`           | **No**   |
 | `token-configuration` | Any applicable configuration settings that should be set such as authentication tokens. You can reference secrets using the `${{ secrets.secret_name }}` syntax. For more information refer to the [Fetch API documentation](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).                                                                                                                                                          | `secrets / with` | **No**   |
 | `retry`               | If you're working with an intermittent API you can toggle this option to `true`. Doing so will make the action try the request 3 times at random invervals before failing.                                                                                                                                                                                                                                                                                     | `with`           | **No**   |
-| `save-location`       | By default the save location of the JSON file is `fetch-api-data-action/data.json`, if you'd like to override the directory you can do so by specifying a new one with this variable.                                                                                                                                                                                                                                                                          | `with`           | **No**   |
+| `save-location`       | By default the save location of the file is `fetch-api-data-action/data.json`, if you'd like to override the directory you can do so by specifying a new one with this variable.                                                                                                                                                                                                                                                                          | `with`           | **No**   |
 | `save-name`           | You can override the name of the exported `.json` file by specifying a new one here. You should _not_ include the file extension in your name.                                                                                                                                                                                                                                                                                                                 | `with`           | **No**   |
+| `format`              | Allows you to modify the extension of the file saved from the API response, for example you can set this field to `json` or `txt`. This field defaults to `json`.                                                                                                                                                                                                                                                                                              | `with`           | **No**   |
 | `debug`               | If set to `true` the action will log the API responses it receives in the terminal.                                                                                                                                                                                                                                                                                                                                                                            | `with`           | **No**   |
 
 ---
@@ -201,7 +202,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fetch API Data 📦
-        uses: JamesIves/fetch-api-data-action@2.0.1
+        uses: JamesIves/fetch-api-data-action@v2.1.0
         with:
           # The token endpoint is requested first. This retrieves the access token for the other endpoint.
           token-endpoint: https://example.com/auth/token

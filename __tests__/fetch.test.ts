@@ -115,6 +115,16 @@ describe('fetch', () => {
       expect(process.env['fetch-api-data']).toBe('{"bestCat":"montezuma"}')
     })
 
+    it('should save non standard file types', async () => {
+      await generateExport({
+        data: 'hello',
+        format: 'txt',
+        saveLocation: 'fetch-api-data-custom',
+        saveName: 'montezuma'
+      })
+      expect(process.env['fetch-api-data']).toBe('hello')
+    })
+
     it('should save the file with customized file location/names', async () => {
       await generateExport({
         data: '{"bestCat":"montezuma"}',
