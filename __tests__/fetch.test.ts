@@ -133,5 +133,15 @@ describe('fetch', () => {
       })
       expect(process.env['fetch-api-data']).toBe('{"bestCat":"montezuma"}')
     })
+
+    it('should save file with custom encoding', async () => {
+      await generateExport({
+        data: '68656C6C6F21',
+        encoding: 'hex',
+        format: 'txt',
+        saveName: 'hex-data'
+      })
+      expect(process.env['fetch-api-data']).toBe('68656C6C6F21')
+    })
   })
 })

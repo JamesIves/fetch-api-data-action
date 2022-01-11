@@ -52,6 +52,7 @@ export default async function run(
 
     status = await generateExport({
       data,
+      encoding: settings.encoding,
       saveLocation: settings.saveLocation,
       saveName: settings.saveName,
       format: settings.format

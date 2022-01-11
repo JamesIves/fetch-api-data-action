@@ -42,6 +42,11 @@ inputs:
 
   format:
     description: 'Allows you to modify the format of the saved file, for example you can use txt here to save the file as a txt file. This field defaults to json.'
+    required: false
+
+  encoding:
+    description: 'Allows you to specify the encoding the saved file, can be of type BufferEncoding: "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex".'
+    required: false
 
 outputs:
   fetch-api-data:
