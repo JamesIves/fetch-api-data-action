@@ -146,13 +146,13 @@ import run, {
   retrieveData,
   generateExport,
   ActionInterface
-} from 'fetch-api-data-action'
+} from '@jamesives/fetch-api-data-action'
 ```
 
 Calling the functions directly will require you to pass in an object containing the variables found in the [configuration section](https://github.com/JamesIves/fetch-api-data-action#configuration-).
 
 ```javascript
-import run from 'fetch-api-data-action'
+import run from '@jamesives/fetch-api-data-action'
 
 run({
   endpoint: 'https://example.com',
