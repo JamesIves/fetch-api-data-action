@@ -31,8 +31,7 @@
 </p>
 
 <p align="center">
-
-This <a href="https://github.com/features/actions">GitHub Action</a> will handle authenticated API requests for you, allowing you to save the data from the request into your workspace as an environment variable and a file. Using this action will allow you to save data from these queries on a schedule so they can be used in a static page without exposing your API credentials. You can read more about the inspiration for this action <a href="https://jamesiv.es/blog/github/actions/2020/03/07/fetching-authenticated-api-data/">here</a>. 
+  This <a href="https://github.com/features/actions">GitHub Action</a> will handle authenticated API requests for you, allowing you to save the data from the request into your workspace as an environment variable and a file. Using this action will allow you to save data from these queries on a schedule so they can be used in a static page without exposing your API credentials. You can read more about the inspiration for this action <a href="https://jamesiv.es/blog/github/actions/2020/03/07/fetching-authenticated-api-data/">here</a>. 
 </p>
 
 <p align="center">
