@@ -36,6 +36,11 @@ This <a href="https://github.com/features/actions">GitHub Action</a> will handle
 </p>
 
 <p align="center">
+  <img src="https://github.com/JamesIves/fetch-api-data-action/raw/dev/assets/screenshot.png">
+</p>
+
+
+<p align="center">
   Maintainence of this project is made possible by all the <a href="https://github.com/JamesIves/github-pages-deploy-action/graphs/contributors">contributors</a> and <a href="https://github.com/sponsors/JamesIves">sponsors</a>. If you'd like to sponsor this project and have your avatar or company logo appear below <a href="https://github.com/sponsors/JamesIves">click here</a>. 💖
 </p>
 
@@ -45,10 +50,6 @@ This <a href="https://github.com/features/actions">GitHub Action</a> will handle
 
 <p align="center">
 <!-- sponsors --><a href="https://github.com/milanpollock"><img src="https://github.com/milanpollock.png" width="50px" alt="milanpollock" /></a>&nbsp;&nbsp;<a href="https://github.com/raoulvdberge"><img src="https://github.com/raoulvdberge.png" width="50px" alt="raoulvdberge" /></a>&nbsp;&nbsp;<!-- sponsors -->
-</p>
-
-<p align="center">
-  <img src="https://github.com/JamesIves/fetch-api-data-action/raw/dev/assets/screenshot.png">
 </p>
 
 ## Getting Started ✈️
