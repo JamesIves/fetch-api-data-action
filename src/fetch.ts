@@ -58,13 +58,14 @@ export async function retrieveData({
       }
     )
   } catch (error) {
-    throw new Error(`There was an error fetching from the API: ${error}`)
+    throw new Error(`There was an error fetching from the API: ${error} ❌`)
   }
 }
 
 /* Saves the data to the local file system and exports an environment variable containing the retrieved data. */
 export async function generateExport({
   data,
+  encoding,
   format,
   saveLocation,
   saveName
@@ -73,19 +74,20 @@ export async function generateExport({
   const file = `${saveLocation ? saveLocation : 'fetch-api-data-action'}/${
     saveName ? saveName : 'data'
   }.${format ? format : 'json'}`
-  await mkdirP(`${saveLocation ? saveLocation : 'fetch-api-data-action'}`)
-  await fs.writeFile(file, data, 'utf8')
+  const dataEncoding = encoding ? encoding : 'utf8'
 
-  info(`Saved ${file} 💾`)
-  await fs.writeFile(
-    `${saveLocation ? saveLocation : 'fetch-api-data-action'}/${
-      saveName ? saveName : 'data'
-    }.json`,
-    data,
-    'utf8'
-  )
+  try {
+    await mkdirP(`${saveLocation ? saveLocation : 'fetch-api-data-action'}`)
+    await fs.writeFile(file, data, dataEncoding)
 
-  exportVariable('fetch-api-data', data)
+    info(`Saved ${file} 💾`)
 
-  return Status.SUCCESS
+    exportVariable('fetch-api-data', data)
+
+    return Status.SUCCESS
+  } catch (error) {
+    throw new Error(
+      `There was an error generating the export file: ${error} ❌`
+    )
+  }
 }

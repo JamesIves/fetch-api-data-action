@@ -23,7 +23,7 @@ jobs:
           persist-credentials: false
 
       - name: Fetch Data 📦
-        uses: JamesIves/fetch-api-data-action@releases/v2
+        uses: JamesIves/fetch-api-data-action@v2
         with:
           endpoint: https://jsonplaceholder.typicode.com/todos/1
           save-location: fetch-api-data-custom
@@ -36,4 +36,30 @@ jobs:
           branch: gh-pages
           folder: fetch-api-data-custom
           target-folder: data
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
+
+  refresh-api-data-modified-formatting-encoding:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.4.0
+        with:
+          persist-credentials: false
+
+      - name: Fetch Data 📦
+        uses: JamesIves/fetch-api-data-action@v2
+        with:
+          endpoint: https://jsonplaceholder.typicode.com/todos/1
+          save-location: fetch-api-data-custom-encoding
+          save-name: todo2
+          encoding: hex
+          format: txt
+          retry: true
+
+      - name: Build and Deploy Repo 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.2.2
+        with:
+          branch: gh-pages
+          folder: fetch-api-data-custom-encoding
+          target-folder: encoding
           ssh-key: ${{ secrets.DEPLOY_KEY }}

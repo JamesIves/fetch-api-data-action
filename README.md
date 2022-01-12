@@ -146,13 +146,13 @@ import run, {
   retrieveData,
   generateExport,
   ActionInterface
-} from 'fetch-api-data-action'
+} from '@jamesives/fetch-api-data-action'
 ```
 
 Calling the functions directly will require you to pass in an object containing the variables found in the [configuration section](https://github.com/JamesIves/fetch-api-data-action#configuration-).
 
 ```javascript
-import run from 'fetch-api-data-action'
+import run from '@jamesives/fetch-api-data-action'
 
 run({
   endpoint: 'https://example.com',
@@ -183,9 +183,10 @@ The following configuration options should be set.
 | `token-endpoint`      | If the `endpoint` API requires you to make a request to get an access token prior to fetching data you can perform this task by specifying a token endpoint. Any data returned from the token end can be referenced in the `configuration` variable using the triple bracket syntax: `{{{ access_token }}}`. For more information refer to the [Token Request part of the readme](https://github.com/JamesIves/fetch-api-data-action#token-request-%EF%B8%8F); | `with`           | **No**   |
 | `token-configuration` | Any applicable configuration settings that should be set such as authentication tokens. You can reference secrets using the `${{ secrets.secret_name }}` syntax. For more information refer to the [Fetch API documentation](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).                                                                                                                                                          | `secrets / with` | **No**   |
 | `retry`               | If you're working with an intermittent API you can toggle this option to `true`. Doing so will make the action try the request 3 times at random invervals before failing.                                                                                                                                                                                                                                                                                     | `with`           | **No**   |
-| `save-location`       | By default the save location of the file is `fetch-api-data-action/data.json`, if you'd like to override the directory you can do so by specifying a new one with this variable.                                                                                                                                                                                                                                                                          | `with`           | **No**   |
+| `save-location`       | By default the save location of the file is `fetch-api-data-action/data.json`, if you'd like to override the directory you can do so by specifying a new one with this variable.                                                                                                                                                                                                                                                                               | `with`           | **No**   |
 | `save-name`           | You can override the name of the exported `.json` file by specifying a new one here. You should _not_ include the file extension in your name.                                                                                                                                                                                                                                                                                                                 | `with`           | **No**   |
 | `format`              | Allows you to modify the extension of the file saved from the API response, for example you can set this field to `json` or `txt`. This field defaults to `json`.                                                                                                                                                                                                                                                                                              | `with`           | **No**   |
+| `encoding`            | Allows you to modify the encoding of the file saved from the API response, for example you can set this field to `utf8` or `hex`. This field defaults to `utf8`. Choose from `ascii`, `utf8`, `utf-8`, `utf16le`, `ucs2`, `ucs-2`, `base64`, `latin1`, `binary` or `hex`.                                                                                                                                                                                      | `with`           | **No**   |
 | `debug`               | If set to `true` the action will log the API responses it receives in the terminal.                                                                                                                                                                                                                                                                                                                                                                            | `with`           | **No**   |
 
 ---
