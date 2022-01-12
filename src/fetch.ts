@@ -58,7 +58,7 @@ export async function retrieveData({
       }
     )
   } catch (error) {
-    throw new Error(`There was an error fetching from the API: ${error}`)
+    throw new Error(`There was an error fetching from the API: ${error} ❌`)
   }
 }
 
@@ -75,12 +75,19 @@ export async function generateExport({
     saveName ? saveName : 'data'
   }.${format ? format : 'json'}`
   const dataEncoding = encoding ? encoding : 'utf8'
-  await mkdirP(`${saveLocation ? saveLocation : 'fetch-api-data-action'}`)
-  await fs.writeFile(file, data, dataEncoding)
 
-  info(`Saved ${file} 💾`)
+  try {
+    await mkdirP(`${saveLocation ? saveLocation : 'fetch-api-data-action'}`)
+    await fs.writeFile(file, data, dataEncoding)
 
-  exportVariable('fetch-api-data', data)
+    info(`Saved ${file} 💾`)
 
-  return Status.SUCCESS
+    exportVariable('fetch-api-data', data)
+
+    return Status.SUCCESS
+  } catch (error) {
+    throw new Error(
+      `There was an error generating the export file: ${error} ❌`
+    )
+  }
 }

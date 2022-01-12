@@ -54,7 +54,7 @@ describe('fetch', () => {
         })
       } catch (error) {
         expect(error instanceof Error && error.message).toBe(
-          "There was an error fetching from the API: TypeError: Cannot read property 'cat' of null"
+          "There was an error fetching from the API: TypeError: Cannot read property 'cat' of null ❌"
         )
       }
     })
@@ -77,7 +77,7 @@ describe('fetch', () => {
         })
       } catch (error) {
         expect(error instanceof Error && error.message).toBe(
-          'There was an error fetching from the API: Error: {"a":1}'
+          'There was an error fetching from the API: Error: {"a":1} ❌'
         )
       }
     })
@@ -101,7 +101,7 @@ describe('fetch', () => {
         })
       } catch (error) {
         expect(error instanceof Error && error.message).toBe(
-          'There was an error fetching from the API: FetchError: invalid json response body at https://jives.dev/ reason: Unexpected token < in JSON at position 0'
+          'There was an error fetching from the API: FetchError: invalid json response body at https://jives.dev/ reason: Unexpected token < in JSON at position 0 ❌'
         )
       }
     })
@@ -142,6 +142,21 @@ describe('fetch', () => {
         saveName: 'hex-data'
       })
       expect(process.env['fetch-api-data']).toBe('68656C6C6F21')
+    })
+
+    it('should fail if invalid encoding is used', async () => {
+      try {
+        await generateExport({
+          data: '68656C6C6F21',
+          encoding: 'hexxxxx' as BufferEncoding,
+          format: 'txt',
+          saveName: 'hex-data'
+        })
+      } catch (error) {
+        expect(error instanceof Error && error.message).toBe(
+          `There was an error generating the export file: TypeError [ERR_INVALID_OPT_VALUE_ENCODING]: The value "hexxxxx" is invalid for option "encoding" ❌`
+        )
+      }
     })
   })
 })
