@@ -1,6 +1,9 @@
+/// <reference types="node" />
 export interface ActionInterface {
     /** Allows you to log the retrieved data to the terminal. */
     debug?: boolean;
+    /** The encoding of the data to be finally stored */
+    encoding?: BufferEncoding;
     /** The primary endpoint to fetch data from. */
     endpoint: string;
     /** The configuration for the primary endpoint. Must be a stringified JSON object. */
@@ -35,6 +38,8 @@ export interface DataInterface {
 export interface ExportInterface {
     /** The data to save. */
     data: string;
+    /** The encoding of the data to be finally stored */
+    encoding?: BufferEncoding;
     /** The save location. */
     saveLocation?: string;
     /** The name of the file to save. */
@@ -44,6 +49,7 @@ export interface ExportInterface {
 }
 export declare const action: {
     debug: boolean;
+    encoding: BufferEncoding;
     endpoint: string;
     configuration: string;
     tokenEndpoint: string;
