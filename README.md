@@ -45,7 +45,7 @@ This <a href="https://github.com/features/actions">GitHub Action</a> will handle
 </p>
 
 <p align="center">
-<!-- premium --> <!-- premium -->
+<!-- premium --><!-- premium -->
 </p>
 
 <p align="center">
