@@ -22,7 +22,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Fetch Data 📦
+      - name: Fetch UTF8 Data 📦
         uses: JamesIves/fetch-api-data-action@v2
         with:
           endpoint: https://jsonplaceholder.typicode.com/todos/1
@@ -50,9 +50,9 @@ jobs:
       - name: Fetch Hex encoded Data 📦
         uses: JamesIves/fetch-api-data-action@v2
         with:
-          endpoint: https://hexendpoint-nh0yqdi130h9.runkit.sh/
+          endpoint: https://hexendpoint-y87ci26b7sb3.runkit.sh/
           save-location: fetch-api-data-custom-encoding
-          save-name: todo1
+          save-name: hexendpointdata
           encoding: hex
           format: txt
           retry: true
@@ -60,9 +60,9 @@ jobs:
       - name: Fetch Base64 Data 📦
         uses: JamesIves/fetch-api-data-action@v2
         with:
-          endpoint: https://base64endpoint-83z1ttylbpmh.runkit.sh/
+          endpoint: https://base64endpoint-hfdurtfq9iyz.runkit.sh/
           save-location: fetch-api-data-custom-encoding
-          save-name: todo2
+          save-name: base64endpointdata
           encoding: base64
           format: txt
           retry: true
