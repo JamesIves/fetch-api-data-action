@@ -65,6 +65,7 @@ export async function retrieveData({
 /* Saves the data to the local file system and exports an environment variable containing the retrieved data. */
 export async function generateExport({
   data,
+  encoding,
   format,
   saveLocation,
   saveName
@@ -73,17 +74,11 @@ export async function generateExport({
   const file = `${saveLocation ? saveLocation : 'fetch-api-data-action'}/${
     saveName ? saveName : 'data'
   }.${format ? format : 'json'}`
+  const dataEncoding = encoding ? encoding : 'utf8'
   await mkdirP(`${saveLocation ? saveLocation : 'fetch-api-data-action'}`)
-  await fs.writeFile(file, data, 'utf8')
+  await fs.writeFile(file, data, dataEncoding)
 
   info(`Saved ${file} 💾`)
-  await fs.writeFile(
-    `${saveLocation ? saveLocation : 'fetch-api-data-action'}/${
-      saveName ? saveName : 'data'
-    }.json`,
-    data,
-    'utf8'
-  )
 
   exportVariable('fetch-api-data', data)
 
