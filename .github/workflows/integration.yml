@@ -50,7 +50,7 @@ jobs:
       - name: Fetch Hex encoded Data 📦
         uses: JamesIves/fetch-api-data-action@v2
         with:
-          endpoint: https://hexendpoint-1i6tdpio4m6h.runkit.sh/
+          endpoint: https://hexendpoint-nh0yqdi130h9.runkit.sh/
           save-location: fetch-api-data-custom-encoding
           save-name: todo1
           encoding: hex
@@ -60,7 +60,7 @@ jobs:
       - name: Fetch Base64 Data 📦
         uses: JamesIves/fetch-api-data-action@v2
         with:
-          endpoint: https://base64endpoint-prgyuqhv7685.runkit.sh/
+          endpoint: https://base64endpoint-83z1ttylbpmh.runkit.sh/
           save-location: fetch-api-data-custom-encoding
           save-name: todo2
           encoding: base64
