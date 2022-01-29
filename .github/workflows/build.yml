@@ -27,7 +27,7 @@ jobs:
 
       - name: Install and Test
         run: |
-          yarn install
+          yarn install --frozen-lockfile
           yarn lint
           yarn test
 
