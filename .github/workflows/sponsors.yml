@@ -30,7 +30,7 @@ jobs:
 
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4.2.2
+        uses: JamesIves/github-pages-deploy-action@v4.2.3
         with:
           branch: dev
           folder: '.'
