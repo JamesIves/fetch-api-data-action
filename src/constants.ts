@@ -24,7 +24,6 @@ export interface ActionInterface {
   format?: string
   /** Optional configuration that allows the fetch request to make a series of retry requests before failing. */
   retry?: boolean | null
-  
 }
 
 export interface DataInterface {
