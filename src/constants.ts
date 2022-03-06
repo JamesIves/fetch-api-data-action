@@ -19,7 +19,7 @@ export interface ActionInterface {
   /** The save name of the exported file. */
   saveName?: string
   /** Determines if the output shoudl be saved or not. */
-  setOutput: string
+  setOutput: boolean
   /** The format of the file being saved. */
   format?: string
   /** Optional configuration that allows the fetch request to make a series of retry requests before failing. */
@@ -51,7 +51,7 @@ export interface ExportInterface {
   /** The name of the file to save. */
   saveName?: string
   /** Determines if the output shoudl be saved or not. */
-  setOutput: string
+  setOutput: boolean
   /** The format of the file to save. */
   format?: string
 }
