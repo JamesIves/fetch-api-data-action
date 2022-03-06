@@ -22,7 +22,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Fetch Data 📦
+      - name: Fetch UTF8 Data 📦
         uses: JamesIves/fetch-api-data-action@v2
         with:
           endpoint: https://jsonplaceholder.typicode.com/todos/1
@@ -31,7 +31,7 @@ jobs:
           retry: true
 
       - name: Build and Deploy Repo 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.2.2
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
           branch: gh-pages
           folder: fetch-api-data-custom
@@ -40,24 +40,35 @@ jobs:
 
   refresh-api-data-modified-formatting-encoding:
     runs-on: ubuntu-latest
+    needs: refresh-api-data
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.4.0
         with:
           persist-credentials: false
 
-      - name: Fetch Data 📦
+      - name: Fetch Hex encoded Data 📦
         uses: JamesIves/fetch-api-data-action@v2
         with:
-          endpoint: https://jsonplaceholder.typicode.com/todos/1
+          endpoint: https://hexendpoint-y87ci26b7sb3.runkit.sh/
           save-location: fetch-api-data-custom-encoding
-          save-name: todo2
+          save-name: hexendpointdata
           encoding: hex
           format: txt
           retry: true
 
+      - name: Fetch Base64 Data 📦
+        uses: JamesIves/fetch-api-data-action@v2
+        with:
+          endpoint: https://base64endpoint-hfdurtfq9iyz.runkit.sh/
+          save-location: fetch-api-data-custom-encoding
+          save-name: base64endpointdata
+          encoding: base64
+          format: txt
+          retry: true
+
       - name: Build and Deploy Repo 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.2.2
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
           branch: gh-pages
           folder: fetch-api-data-custom-encoding

@@ -55,7 +55,8 @@ export default async function run(
       encoding: settings.encoding,
       saveLocation: settings.saveLocation,
       saveName: settings.saveName,
-      format: settings.format
+      format: settings.format,
+      setOutput: settings.setOutput
     })
   } catch (error) {
     status = Status.FAILED

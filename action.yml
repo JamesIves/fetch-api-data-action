@@ -36,6 +36,11 @@ inputs:
     description: 'You can override the name of the exported `.json` file by specifying a new one here. You should _not_ include the file extension in your name.'
     required: false
 
+  set-output:
+    description: 'Determines if the returned data should be saved as an environment variable or not. This field defaults to `true`.'
+    required: false
+    default: 'true'
+
   debug:
     description: 'If set to true the action will log the API responses it receives in the terminal.'
     required: false

@@ -31,17 +31,24 @@
 </p>
 
 <p align="center">
-
-This <a href="https://github.com/features/actions">GitHub Action</a> will handle authenticated API requests for you, allowing you to save the data from the request into your workspace as an environment variable and a file. Using this action will allow you to save data from these queries on a schedule so they can be used in a static page without exposing your API credentials.
-
-</p>
-
-<p align="center">
-  This action was originally created for the <a href="https://github.community/t5/Events/Featured-Event-GitHub-Actions-Hackathon/td-p/48206">2020 GitHub Actions Hackathon</a>. You can read about my inspiration for this action <a href="https://jamesiv.es/blog/github/actions/2020/03/07/fetching-authenticated-api-data/">here</a>.
+  This <a href="https://github.com/features/actions">GitHub Action</a> will handle authenticated API requests for you, allowing you to save the data from the request into your workspace as an environment variable and a file. Using this action will allow you to save data from these queries on a schedule so they can be used in a static page without exposing your API credentials. You can read more about the inspiration for this action <a href="https://jamesiv.es/blog/github/actions/2020/03/07/fetching-authenticated-api-data/">here</a>. 
 </p>
 
 <p align="center">
   <img src="https://github.com/JamesIves/fetch-api-data-action/raw/dev/assets/screenshot.png">
+</p>
+
+
+<p align="center">
+  Maintainence of this project is made possible by all the <a href="https://github.com/JamesIves/github-pages-deploy-action/graphs/contributors">contributors</a> and <a href="https://github.com/sponsors/JamesIves">sponsors</a>. If you'd like to sponsor this project and have your avatar or company logo appear below <a href="https://github.com/sponsors/JamesIves">click here</a>. 💖
+</p>
+
+<p align="center">
+<!-- premium --><!-- premium -->
+</p>
+
+<p align="center">
+<!-- sponsors --><a href="https://github.com/Chooksta69"><img src="https://github.com/Chooksta69.png" width="50px" alt="Chooksta69" /></a>&nbsp;&nbsp;<a href="https://github.com/milanpollock"><img src="https://github.com/milanpollock.png" width="50px" alt="milanpollock" /></a>&nbsp;&nbsp;<a href="https://github.com/robjtede"><img src="https://github.com/robjtede.png" width="50px" alt="robjtede" /></a>&nbsp;&nbsp;<!-- sponsors -->
 </p>
 
 ## Getting Started ✈️
@@ -62,7 +69,7 @@ jobs:
           configuration: '{ "method": "GET", "headers": {"Authorization": "Bearer ${{ secrets.API_TOKEN }}"} }'
 ```
 
-Once the action has run the requested data will be exported into the `FETCH_API_DATA` environment variable and will also be available as a `.json` file in your workspace located by default in the `fetch-api-data-action/data.json` directory. If you need something other than `.json` file please refer to the `format` parameter.
+Once the action has run the requested data will be exported into the `fetch-api-data` environment variable and will also be available as a `.json` file in your workspace located by default in the `fetch-api-data-action/data.json` directory. If you need something other than `.json` file please refer to the `format` parameter.
 
 You can combine the use of this with the [GitHub Pages Deploy Action](https://github.com/JamesIves/github-pages-deploy-action) to trigger scheduled updates to a feed on your website.
 
@@ -185,6 +192,7 @@ The following configuration options should be set.
 | `retry`               | If you're working with an intermittent API you can toggle this option to `true`. Doing so will make the action try the request 3 times at random invervals before failing.                                                                                                                                                                                                                                                                                     | `with`           | **No**   |
 | `save-location`       | By default the save location of the file is `fetch-api-data-action/data.json`, if you'd like to override the directory you can do so by specifying a new one with this variable.                                                                                                                                                                                                                                                                               | `with`           | **No**   |
 | `save-name`           | You can override the name of the exported `.json` file by specifying a new one here. You should _not_ include the file extension in your name.                                                                                                                                                                                                                                                                                                                 | `with`           | **No**   |
+| `set-output`               | Determines if the returned data should be saved as an environment variable or not. This field defaults to `true`.                                                                                                                                                                                                                                                                                                                                                          | `with`           | **No**   |
 | `format`              | Allows you to modify the extension of the file saved from the API response, for example you can set this field to `json` or `txt`. This field defaults to `json`.                                                                                                                                                                                                                                                                                              | `with`           | **No**   |
 | `encoding`            | Allows you to modify the encoding of the file saved from the API response, for example you can set this field to `utf8` or `hex`. This field defaults to `utf8`. Choose from `ascii`, `utf8`, `utf-8`, `utf16le`, `ucs2`, `ucs-2`, `base64`, `latin1`, `binary` or `hex`.                                                                                                                                                                                      | `with`           | **No**   |
 | `debug`               | If set to `true` the action will log the API responses it receives in the terminal.                                                                                                                                                                                                                                                                                                                                                                            | `with`           | **No**   |
@@ -214,11 +222,3 @@ jobs:
           # The bearer token here is returned from the TOKEN_ENDPOINT call. The returned data looks like so: {data: {access_token: '123'}}, meaning it can be accessed using the triple bracket syntax.
           configuration: '{ "method": "GET", "headers": {"Authorization": "Bearer {{{ data.access_token }}}"} }'
 ```
-
----
-
-## Support 💖
-
-This project would not be possible without all of our fantastic [contributors](https://github.com/JamesIves/fetch-api-data-action/graphs/contributors) and [sponsors](https://github.com/sponsors/JamesIves). If you'd like to support the maintenance and upkeep of this project you can [donate via GitHub Sponsors](https://github.com/sponsors/JamesIves).
-
-<!-- sponsors --><a href="https://github.com/milanpollock"><img src="https://github.com/milanpollock.png" width="50px" alt="" /></a><a href="https://github.com/raoulvdberge"><img src="https://github.com/raoulvdberge.png" width="50px" alt="" /></a><!-- sponsors -->
