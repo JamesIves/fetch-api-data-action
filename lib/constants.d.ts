@@ -16,6 +16,8 @@ export interface ActionInterface {
     saveLocation?: string;
     /** The save name of the exported file. */
     saveName?: string;
+    /** Determines if the output shoudl be saved or not. */
+    setOutput: boolean;
     /** The format of the file being saved. */
     format?: string;
     /** Optional configuration that allows the fetch request to make a series of retry requests before failing. */
@@ -44,6 +46,8 @@ export interface ExportInterface {
     saveLocation?: string;
     /** The name of the file to save. */
     saveName?: string;
+    /** Determines if the output shoudl be saved or not. */
+    setOutput: boolean;
     /** The format of the file to save. */
     format?: string;
 }
@@ -57,6 +61,7 @@ export declare const action: {
     tokenConfiguration: string;
     saveLocation: string;
     saveName: string;
+    setOutput: boolean;
     format: string;
 };
 /** Status codes for the action. */
