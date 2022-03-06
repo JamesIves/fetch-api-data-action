@@ -110,7 +110,8 @@ describe('fetch', () => {
   describe('generateExport', () => {
     it('should save the file', async () => {
       await generateExport({
-        data: '{"bestCat":"montezuma"}'
+        data: '{"bestCat":"montezuma"}',
+        setOutput: true
       })
       expect(process.env['fetch-api-data']).toBe('{"bestCat":"montezuma"}')
     })
@@ -120,7 +121,8 @@ describe('fetch', () => {
         data: 'hello',
         format: 'txt',
         saveLocation: 'fetch-api-data-custom',
-        saveName: 'montezuma'
+        saveName: 'montezuma',
+        setOutput: true
       })
       expect(process.env['fetch-api-data']).toBe('hello')
     })
@@ -129,7 +131,8 @@ describe('fetch', () => {
       await generateExport({
         data: '{"bestCat":"montezuma"}',
         saveLocation: 'fetch-api-data-custom',
-        saveName: 'montezuma'
+        saveName: 'montezuma',
+        setOutput: true
       })
       expect(process.env['fetch-api-data']).toBe('{"bestCat":"montezuma"}')
     })
@@ -139,7 +142,8 @@ describe('fetch', () => {
         data: '68656C6C6F21',
         encoding: 'hex',
         format: 'txt',
-        saveName: 'hex-data'
+        saveName: 'hex-data',
+        setOutput: true
       })
       expect(process.env['fetch-api-data']).toBe('68656C6C6F21')
     })
@@ -150,7 +154,8 @@ describe('fetch', () => {
           data: '68656C6C6F21',
           encoding: 'hexxxxx' as BufferEncoding,
           format: 'txt',
-          saveName: 'hex-data'
+          saveName: 'hex-data',
+          setOutput: true
         })
       } catch (error) {
         expect(error instanceof Error && error.message).toBe(

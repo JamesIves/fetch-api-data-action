@@ -37,7 +37,7 @@ inputs:
     required: false
 
   set-output:
-    description: 'Determines if the returned data should be saved as an environment variable or not. This field defaults to `true`.'
+    description: 'Determines if the returned data should be saved as an environment variable or not. This field defaults to `true`, but depending on your API response length you may need to toggle this.'
     required: false
     default: 'true'
 

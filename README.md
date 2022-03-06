@@ -38,7 +38,6 @@
   <img src="https://github.com/JamesIves/fetch-api-data-action/raw/dev/assets/screenshot.png">
 </p>
 
-
 <p align="center">
   Maintainence of this project is made possible by all the <a href="https://github.com/JamesIves/github-pages-deploy-action/graphs/contributors">contributors</a> and <a href="https://github.com/sponsors/JamesIves">sponsors</a>. If you'd like to sponsor this project and have your avatar or company logo appear below <a href="https://github.com/sponsors/JamesIves">click here</a>. 💖
 </p>
@@ -93,7 +92,7 @@ jobs:
           persist-credentials: false
 
       - name: Fetch API Data 📦
-        uses: JamesIves/fetch-api-data-action@v2.1.0
+        uses: JamesIves/fetch-api-data-action@v2.2.2
         with:
           endpoint: https://example.com
           configuration: '{ "method": "GET", "headers": {"Authorization": "Bearer ${{ secrets.API_TOKEN }}"} }'
@@ -192,7 +191,7 @@ The following configuration options should be set.
 | `retry`               | If you're working with an intermittent API you can toggle this option to `true`. Doing so will make the action try the request 3 times at random invervals before failing.                                                                                                                                                                                                                                                                                     | `with`           | **No**   |
 | `save-location`       | By default the save location of the file is `fetch-api-data-action/data.json`, if you'd like to override the directory you can do so by specifying a new one with this variable.                                                                                                                                                                                                                                                                               | `with`           | **No**   |
 | `save-name`           | You can override the name of the exported `.json` file by specifying a new one here. You should _not_ include the file extension in your name.                                                                                                                                                                                                                                                                                                                 | `with`           | **No**   |
-| `set-output`               | Determines if the returned data should be saved as an environment variable or not. This field defaults to `true`.                                                                                                                                                                                                                                                                                                                                                          | `with`           | **No**   |
+| `set-output`          | Determines if the returned data should be saved as an environment variable or not. This field defaults to `true`, but depending on your API response length you may need to toggle this.                                                                                                                                                                                                                                                                       | `with`           | **No**   |
 | `format`              | Allows you to modify the extension of the file saved from the API response, for example you can set this field to `json` or `txt`. This field defaults to `json`.                                                                                                                                                                                                                                                                                              | `with`           | **No**   |
 | `encoding`            | Allows you to modify the encoding of the file saved from the API response, for example you can set this field to `utf8` or `hex`. This field defaults to `utf8`. Choose from `ascii`, `utf8`, `utf-8`, `utf16le`, `ucs2`, `ucs-2`, `base64`, `latin1`, `binary` or `hex`.                                                                                                                                                                                      | `with`           | **No**   |
 | `debug`               | If set to `true` the action will log the API responses it receives in the terminal.                                                                                                                                                                                                                                                                                                                                                                            | `with`           | **No**   |
@@ -211,7 +210,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fetch API Data 📦
-        uses: JamesIves/fetch-api-data-action@v2.1.0
+        uses: JamesIves/fetch-api-data-action@v2.2.2
         with:
           # The token endpoint is requested first. This retrieves the access token for the other endpoint.
           token-endpoint: https://example.com/auth/token

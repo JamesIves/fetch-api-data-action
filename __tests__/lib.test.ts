@@ -30,11 +30,23 @@ describe('lib', () => {
   it('should run through the commands', async () => {
     Object.assign(action, {
       debug: true,
-      endpoint: 'https://jamesiv.es'
+      endpoint: 'https://jamesiv.es',
+      setOutput: true
     })
     await run(action)
 
     expect(exportVariable).toBeCalled()
+  })
+
+  it('should run through the commands but not save output', async () => {
+    Object.assign(action, {
+      debug: true,
+      endpoint: 'https://jamesiv.es',
+      setOutput: false
+    })
+    await run(action)
+
+    expect(exportVariable).toBeCalledTimes(0)
   })
 
   it('should throw an error if no endpoint is provided', async () => {
