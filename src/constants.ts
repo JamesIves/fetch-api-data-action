@@ -18,10 +18,13 @@ export interface ActionInterface {
   saveLocation?: string
   /** The save name of the exported file. */
   saveName?: string
+  /** Determines if the output shoudl be saved or not. */
+  setOutput: string
   /** The format of the file being saved. */
   format?: string
   /** Optional configuration that allows the fetch request to make a series of retry requests before failing. */
   retry?: boolean | null
+  
 }
 
 export interface DataInterface {
@@ -48,6 +51,8 @@ export interface ExportInterface {
   saveLocation?: string
   /** The name of the file to save. */
   saveName?: string
+  /** Determines if the output shoudl be saved or not. */
+  setOutput: string
   /** The format of the file to save. */
   format?: string
 }
@@ -67,6 +72,9 @@ export const action = {
   tokenConfiguration: getInput('token-configuration'),
   saveLocation: getInput('save-location'),
   saveName: getInput('save-name'),
+  setOutput: !isNullOrUndefined(getInput('set-output'))
+    ? getInput('set-output').toLowerCase() === 'true'
+    : false,
   format: getInput('format')
 }
 

@@ -68,7 +68,8 @@ export async function generateExport({
   encoding,
   format,
   saveLocation,
-  saveName
+  saveName,
+  setOutput
 }: ExportInterface): Promise<Status> {
   info('Saving the data... 📁')
   const file = `${saveLocation ? saveLocation : 'fetch-api-data-action'}/${
@@ -82,7 +83,9 @@ export async function generateExport({
 
     info(`Saved ${file} 💾`)
 
-    exportVariable('fetch-api-data', data)
+    if (setOutput) {
+      exportVariable('fetch-api-data', data)
+    }
 
     return Status.SUCCESS
   } catch (error) {
