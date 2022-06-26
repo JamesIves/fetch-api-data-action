@@ -28,10 +28,11 @@ jobs:
       - name: Install and Test
         run: |
           yarn install --frozen-lockfile
-          yarn lint
+          yarn lint:check
+          yarn lint:format:check
           yarn test
 
       - name: Uploade CodeCov Report
-        uses: codecov/codecov-action@v2.1.0
+        uses: codecov/codecov-action@v3.1.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
