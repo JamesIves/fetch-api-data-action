@@ -1,0 +1,6 @@
+# Ignore artifacts:
+build
+coverage
+lib
+fetch-api-data-action
+fetch-api-data-custom
