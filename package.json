@@ -50,7 +50,7 @@
     "@typescript-eslint/parser": "5.20.0",
     "eslint": "8.18.0",
     "eslint-config-prettier": "8.5.0",
-    "eslint-plugin-jest": "26.5.3",
+    "eslint-plugin-jest": "26.8.7",
     "eslint-plugin-prettier": "4.0.0",
     "jest": "27.5.1",
     "jest-circus": "27.5.1",
