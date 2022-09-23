@@ -54,7 +54,7 @@ describe('fetch', () => {
         })
       } catch (error) {
         expect(error instanceof Error && error.message).toBe(
-          "There was an error fetching from the API: TypeError: Cannot read property 'cat' of null ❌"
+          "There was an error fetching from the API: TypeError: Cannot read properties of null (reading 'cat') ❌"
         )
       }
     })
@@ -159,7 +159,7 @@ describe('fetch', () => {
         })
       } catch (error) {
         expect(error instanceof Error && error.message).toBe(
-          `There was an error generating the export file: TypeError [ERR_INVALID_OPT_VALUE_ENCODING]: The value "hexxxxx" is invalid for option "encoding" ❌`
+          "There was an error generating the export file: TypeError [ERR_INVALID_ARG_VALUE]: The argument 'hexxxxx' is invalid encoding. Received 'encoding' ❌"
         )
       }
     })
