@@ -20,7 +20,7 @@ describe('fetch', () => {
       expect(data).toEqual('{"data":"12345"}')
     })
 
-    it('should handle the triple bracket replacements ', async () => {
+    it('should handle the triple bracket replacements', async () => {
       nock('https://jives.dev/')
         .post('/', '{"bestCat":"montezuma"}')
         .reply(200, {
@@ -43,20 +43,18 @@ describe('fetch', () => {
     })
 
     it('should error if improperly formatted json is passed in', async () => {
-      try {
-        nock('https://jamesiv.es').get('/').reply(200)
+      nock('https://jamesiv.es').get('/').reply(200)
 
-        await retrieveData({
+      await expect(
+        retrieveData({
           debug: true,
           endpoint: 'https://example.com',
           configuration: '"{"method:"POST","body":{"bestCat":"{{{ cat }}}"}}"',
           auth: '{"cat: "montezuma"}'
         })
-      } catch (error) {
-        expect(error instanceof Error && error.message).toBe(
-          "There was an error fetching from the API: TypeError: Cannot read property 'cat' of null ❌"
-        )
-      }
+      ).rejects.toThrow(
+        "There was an error fetching from the API: TypeError: Cannot read property 'cat' of null ❌"
+      )
     })
 
     it('should error if the response is not ok', async () => {
@@ -64,8 +62,8 @@ describe('fetch', () => {
         a: 1
       })
 
-      try {
-        await retrieveData({
+      await expect(
+        retrieveData({
           debug: true,
           endpoint: 'https://jamesiv.es',
           configuration: JSON.stringify({
@@ -75,35 +73,31 @@ describe('fetch', () => {
             }
           })
         })
-      } catch (error) {
-        expect(error instanceof Error && error.message).toBe(
-          'There was an error fetching from the API: Error: {"a":1} ❌'
-        )
-      }
+      ).rejects.toThrow(
+        'There was an error fetching from the API: Error: {"a":1} ❌'
+      )
     })
 
     it('should error if the response is not ok after several retrys', async () => {
       jest.setTimeout(1000000)
 
-      try {
-        nock('https://jives.dev').get('/').once().replyWithError({
-          message: 'This is catastrophic'
-        })
+      nock('https://jives.dev').get('/').once().replyWithError({
+        message: 'This is catastrophic'
+      })
 
-        nock('https://jives.dev').get('/').reply(200, {
-          data: '12345'
-        })
+      nock('https://jives.dev').get('/').reply(200, {
+        data: '12345'
+      })
 
-        await retrieveData({
+      await expect(
+        retrieveData({
           debug: true,
           endpoint: 'https://jives.dev',
           retry: true
         })
-      } catch (error) {
-        expect(error instanceof Error && error.message).toBe(
-          'There was an error fetching from the API: FetchError: invalid json response body at https://jives.dev/ reason: Unexpected token < in JSON at position 0 ❌'
-        )
-      }
+      ).rejects.toThrow(
+        'There was an error fetching from the API: FetchError: invalid json response body at https://jives.dev/ reason: Unexpected token < in JSON at position 0 ❌'
+      )
     })
   })
 
@@ -149,19 +143,17 @@ describe('fetch', () => {
     })
 
     it('should fail if invalid encoding is used', async () => {
-      try {
-        await generateExport({
+      await expect(
+        generateExport({
           data: '68656C6C6F21',
           encoding: 'hexxxxx' as BufferEncoding,
           format: 'txt',
           saveName: 'hex-data',
           setOutput: true
         })
-      } catch (error) {
-        expect(error instanceof Error && error.message).toBe(
-          `There was an error generating the export file: TypeError [ERR_INVALID_OPT_VALUE_ENCODING]: The value "hexxxxx" is invalid for option "encoding" ❌`
-        )
-      }
+      ).rejects.toThrow(
+        `There was an error generating the export file: TypeError [ERR_INVALID_OPT_VALUE_ENCODING]: The value "hexxxxx" is invalid for option "encoding" ❌`
+      )
     })
   })
 })
