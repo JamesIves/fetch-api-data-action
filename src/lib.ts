@@ -66,7 +66,7 @@ export default async function run(
       `${
         status === Status.FAILED
           ? 'There was an error fetching the data. ❌'
-          : 'The data was succesfully retrieved and saved! ✅ 🚚'
+          : 'The data was successfully retrieved and saved! ✅ 🚚'
       }`
     )
   }
