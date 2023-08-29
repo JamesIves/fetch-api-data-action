@@ -1,4 +1,9 @@
-import {info, exportVariable, debug} from '@actions/core'
+import {
+  info,
+  exportVariable,
+  setOutput as setEnvironmentOutput,
+  debug
+} from '@actions/core'
 import {mkdirP} from '@actions/io'
 import 'cross-fetch/polyfill'
 import {promises as fs} from 'fs'
@@ -84,7 +89,8 @@ export async function generateExport({
     info(`Saved ${file} 💾`)
 
     if (setOutput) {
-      exportVariable('fetch-api-data', data)
+      exportVariable('fetchApiData', data)
+      setEnvironmentOutput('fetchApiData', data)
     }
 
     return Status.SUCCESS

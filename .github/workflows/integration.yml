@@ -23,6 +23,7 @@ jobs:
           persist-credentials: false
 
       - name: Fetch UTF8 Data 📦
+        id: validate
         uses: JamesIves/fetch-api-data-action@v2
         with:
           endpoint: https://jsonplaceholder.typicode.com/todos/1
@@ -37,6 +38,16 @@ jobs:
           folder: fetch-api-data-custom
           target-folder: data
           ssh-key: ${{ secrets.DEPLOY_KEY }}
+        
+      - name: Access environment variable output
+        if: always()
+        shell: bash
+        run: |
+          echo "${env.fetchApiData}"
+
+      - name: Access step output
+        run: |
+          echo "Output: ${{ steps.validation.outputs.fetchApiData }}"
 
   refresh-api-data-modified-formatting-encoding:
     runs-on: ubuntu-latest
