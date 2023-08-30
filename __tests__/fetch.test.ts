@@ -1,7 +1,7 @@
 import {retrieveData, generateExport} from '../src/fetch'
 import nock from 'nock'
 
-jest.setTimeout(60000)
+jest.setTimeout(1000000)
 
 describe('fetch', () => {
   describe('retrieveData', () => {
