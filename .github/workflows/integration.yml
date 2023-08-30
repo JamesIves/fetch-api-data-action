@@ -47,7 +47,7 @@ jobs:
 
       - name: Access step output
         run: |
-          echo "Output: ${{ steps.validation.outputs.fetchApiData }}"
+          echo "Output: ${{ steps.validate.outputs.fetchApiData }}"
 
   refresh-api-data-modified-formatting-encoding:
     runs-on: ubuntu-latest
