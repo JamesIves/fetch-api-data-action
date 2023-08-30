@@ -18,12 +18,14 @@ export interface ActionInterface {
   saveLocation?: string
   /** The save name of the exported file. */
   saveName?: string
-  /** Determines if the output shoudl be saved or not. */
+  /** Determines if the output should be saved or not. */
   setOutput: boolean
   /** The format of the file being saved. */
   format?: string
   /** Optional configuration that allows the fetch request to make a series of retry requests before failing. */
   retry?: boolean | null
+  /** The variable name the data exports as. */
+  variableName?: string
 }
 
 export interface DataInterface {
@@ -54,6 +56,8 @@ export interface ExportInterface {
   setOutput: boolean
   /** The format of the file to save. */
   format?: string
+  /** The variable name the data exports as. */
+  variableName?: string
 }
 
 // Required action data that gets initialized when running within the GitHub Actions environment.
@@ -74,7 +78,8 @@ export const action = {
   setOutput: !isNullOrUndefined(getInput('set-output'))
     ? getInput('set-output').toLowerCase() === 'true'
     : false,
-  format: getInput('format')
+  format: getInput('format'),
+  variableName: getInput('variable-name')
 }
 
 /** Status codes for the action. */
