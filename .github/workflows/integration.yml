@@ -46,7 +46,7 @@ jobs:
           folder: fetch-api-data-custom
           target-folder: data
           ssh-key: ${{ secrets.DEPLOY_KEY }}
-        
+
   refresh-api-data-modified-formatting-encoding:
     runs-on: ubuntu-latest
     needs: refresh-api-data
@@ -85,7 +85,6 @@ jobs:
       - name: Access step output
         run: |
           echo "Output: ${{ steps.validate.outputs.fetchApiData }}"
-
 
       - name: Build and Deploy Repo 🚀
         uses: JamesIves/github-pages-deploy-action@v4
