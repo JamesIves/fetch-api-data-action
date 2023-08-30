@@ -74,13 +74,18 @@ export async function generateExport({
   format,
   saveLocation,
   saveName,
-  setOutput
+  setOutput,
+  variableName
 }: ExportInterface): Promise<Status> {
   info('Saving the data... 📁')
   const file = `${saveLocation ? saveLocation : 'fetch-api-data-action'}/${
     saveName ? saveName : 'data'
   }.${format ? format : 'json'}`
   const dataEncoding = encoding ? encoding : 'utf8'
+  const defaultVariableName = 'fetchApiData'
+  const environmentVariableName = variableName
+    ? variableName
+    : defaultVariableName
 
   try {
     await mkdirP(`${saveLocation ? saveLocation : 'fetch-api-data-action'}`)
@@ -89,8 +94,8 @@ export async function generateExport({
     info(`Saved ${file} 💾`)
 
     if (setOutput) {
-      exportVariable('fetchApiData', data)
-      setEnvironmentOutput('fetchApiData', data)
+      exportVariable(environmentVariableName, data)
+      setEnvironmentOutput(defaultVariableName, data)
     }
 
     return Status.SUCCESS
