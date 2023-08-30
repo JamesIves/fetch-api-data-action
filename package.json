@@ -42,7 +42,7 @@
     "mustache": "4.2.0"
   },
   "devDependencies": {
-    "@types/async-retry": "1.4.3",
+    "@types/async-retry": "1.4.5",
     "@types/jest": "27.5.0",
     "@types/mustache": "4.2.2",
     "@types/node": "18.11.10",
