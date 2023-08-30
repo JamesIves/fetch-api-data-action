@@ -54,7 +54,7 @@ describe('fetch', () => {
         })
       } catch (error) {
         expect(error instanceof Error && error.message).toBe(
-          "There was an error fetching from the API: TypeError: Cannot read properties of null (reading 'cat') ❌"
+          "There was an error fetching from the API: TypeError: Cannot read property 'cat' of null ❌"
         )
       }
     })
@@ -113,7 +113,7 @@ describe('fetch', () => {
         data: '{"bestCat":"montezuma"}',
         setOutput: true
       })
-      expect(process.env['fetch-api-data']).toBe('{"bestCat":"montezuma"}')
+      expect(process.env['fetchApiData']).toBe('{"bestCat":"montezuma"}')
     })
 
     it('should save non standard file types', async () => {
@@ -124,7 +124,7 @@ describe('fetch', () => {
         saveName: 'montezuma',
         setOutput: true
       })
-      expect(process.env['fetch-api-data']).toBe('hello')
+      expect(process.env['fetchApiData']).toBe('hello')
     })
 
     it('should save the file with customized file location/names', async () => {
@@ -134,7 +134,7 @@ describe('fetch', () => {
         saveName: 'montezuma',
         setOutput: true
       })
-      expect(process.env['fetch-api-data']).toBe('{"bestCat":"montezuma"}')
+      expect(process.env['fetchApiData']).toBe('{"bestCat":"montezuma"}')
     })
 
     it('should save file with custom encoding', async () => {
@@ -145,7 +145,7 @@ describe('fetch', () => {
         saveName: 'hex-data',
         setOutput: true
       })
-      expect(process.env['fetch-api-data']).toBe('68656C6C6F21')
+      expect(process.env['fetchApiData']).toBe('68656C6C6F21')
     })
 
     it('should fail if invalid encoding is used', async () => {
@@ -159,7 +159,7 @@ describe('fetch', () => {
         })
       } catch (error) {
         expect(error instanceof Error && error.message).toBe(
-          "There was an error generating the export file: TypeError [ERR_INVALID_ARG_VALUE]: The argument 'hexxxxx' is invalid encoding. Received 'encoding' ❌"
+          'There was an error generating the export file: TypeError [ERR_INVALID_OPT_VALUE_ENCODING]: The value "hexxxxx" is invalid for option "encoding" ❌'
         )
       }
     })
