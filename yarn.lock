@@ -972,10 +972,12 @@
   resolved "https://registry.yarnpkg.com/@types/mustache/-/mustache-4.2.2.tgz#825bf5c214c3ab84d0b23fef2c8eb898f3ff8717"
   integrity sha512-MUSpfpW0yZbTgjekDbH0shMYBUD+X/uJJJMm9LXN1d5yjl5lCY1vN/eWKD6D1tOtjA6206K0zcIPnUaFMurdNA==
 
-"@types/node@*", "@types/node@20.5.7":
-  version "20.5.7"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.5.7.tgz#4b8ecac87fbefbc92f431d09c30e176fc0a7c377"
-  integrity sha512-dP7f3LdZIysZnmvP3ANJYTSwg+wLLl8p7RqniVlV7j+oXSXAbt9h0WIBFmJy5inWZoX9wZN6eXx+YXd9Rh3RBA==
+"@types/node@*", "@types/node@20.8.7":
+  version "20.8.7"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.8.7.tgz#ad23827850843de973096edfc5abc9e922492a25"
+  integrity sha512-21TKHHh3eUHIi2MloeptJWALuCu5H7HQTdTrWIFReA8ad+aggoX+lRes3ex7/FtpC+sVUpFMQ+QTfYr74mruiQ==
+  dependencies:
+    undici-types "~5.25.1"
 
 "@types/prettier@^2.1.5":
   version "2.4.2"
@@ -3273,6 +3275,11 @@ typescript@4.9.5:
   version "4.9.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.5.tgz#095979f9bcc0d09da324d58d03ce8f8374cbe65a"
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
+
+undici-types@~5.25.1:
+  version "5.25.3"
+  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-5.25.3.tgz#e044115914c85f0bcbb229f346ab739f064998c3"
+  integrity sha512-Ga1jfYwRn7+cP9v8auvEXN1rX3sWqlayd4HP7OKk4mZWylEmu3KzXDUGrQUN6Ol7qo1gPvB2e5gX6udnyEPgdA==
 
 universalify@^0.2.0:
   version "0.2.0"
