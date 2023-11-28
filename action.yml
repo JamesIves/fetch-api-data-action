@@ -2,7 +2,7 @@ name: 'Fetch API Data'
 description: 'This action will handle authenticated API requests, allowing you to save the data from the request into your workspace.'
 author: 'James Ives <iam@jamesiv.es>'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'lib/main.js'
 branding:
   icon: 'truck'
