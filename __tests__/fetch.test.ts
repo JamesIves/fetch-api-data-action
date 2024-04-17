@@ -2,7 +2,7 @@ import {retrieveData, generateExport} from '../src/fetch'
 import nock from 'nock'
 
 jest.setTimeout(1000000)
-nock.enableNetConnect();
+nock.enableNetConnect()
 
 describe('fetch', () => {
   describe('retrieveData', () => {
