@@ -6,8 +6,6 @@ on:
       - releases/v1
       - releases/v2
   push:
-    branches:
-      - dev
     tags-ignore:
       - '*.*'
 jobs:
