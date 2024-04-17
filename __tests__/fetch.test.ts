@@ -2,6 +2,7 @@ import {retrieveData, generateExport} from '../src/fetch'
 import nock from 'nock'
 
 jest.setTimeout(1000000)
+nock.enableNetConnect();
 
 describe('fetch', () => {
   describe('retrieveData', () => {
@@ -20,7 +21,7 @@ describe('fetch', () => {
       expect(data).toEqual('{"data":"12345"}')
     })
 
-    it('should handle the triple bracket replacements ', async () => {
+    it('should handle the triple bracket replacements', async () => {
       nock('https://jives.dev/')
         .post('/', '{"bestCat":"montezuma"}')
         .reply(200, {

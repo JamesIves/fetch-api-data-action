@@ -35,7 +35,7 @@ describe('lib', () => {
     })
     await run(action)
 
-    expect(exportVariable).toBeCalled()
+    expect(exportVariable).toHaveBeenCalled()
   })
 
   it('should run through the commands but not save output', async () => {
@@ -46,7 +46,7 @@ describe('lib', () => {
     })
     await run(action)
 
-    expect(exportVariable).toBeCalledTimes(0)
+    expect(exportVariable).toHaveBeenCalledTimes(0)
   })
 
   it('should throw an error if no endpoint is provided', async () => {
@@ -58,7 +58,7 @@ describe('lib', () => {
     try {
       await run(action)
     } catch (error) {
-      expect(setFailed).toBeCalled()
+      expect(setFailed).toHaveBeenCalled()
     }
   })
 
@@ -73,7 +73,7 @@ describe('lib', () => {
     try {
       await run(action)
     } catch (error) {
-      expect(setFailed).toBeCalled()
+      expect(setFailed).toHaveBeenCalled()
     }
   })
 })

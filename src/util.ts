@@ -17,8 +17,8 @@ export const extractErrorMessage = (error: unknown): string =>
   error instanceof Error
     ? error.message
     : typeof error == 'string'
-    ? error
-    : JSON.stringify(error)
+      ? error
+      : JSON.stringify(error)
 
 /* Attempt to parse data as JSON and catch any errors. */
 export const parseData = (data: string): Record<string, unknown> | null => {
