@@ -932,10 +932,12 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
 
-"@types/async-retry@1.3.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@types/async-retry/-/async-retry-1.3.0.tgz#9a442a89dd1708b582de214789dd2a0d2118216a"
-  integrity sha512-2ljqDql4TPLQQee+/Z19PIWbrBEIkOohpAInlPrwi0VHbwtx4Ke6KXNmcwezwITMxX8gOYj2u+pn+3DMa4bDCg==
+"@types/async-retry@1.4.8":
+  version "1.4.8"
+  resolved "https://registry.yarnpkg.com/@types/async-retry/-/async-retry-1.4.8.tgz#eb32df13aceb9ba1a8a80e7fe518ff4e3fe46bb3"
+  integrity sha512-Qup/B5PWLe86yI5I3av6ePGaeQrIHNKCwbsQotD6aHQ6YkHsMUxVZkZsmx/Ry3VZQ6uysHwTjQ7666+k6UjVJA==
+  dependencies:
+    "@types/retry" "*"
 
 "@types/babel__core@^7.0.0":
   version "7.20.5"
@@ -1049,7 +1051,7 @@
   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.7.3.tgz#3e51a17e291d01d17d3fc61422015a933af7a08f"
   integrity sha512-+68kP9yzs4LMp7VNh8gdzMSPZFL44MLGqiHWvttYJe+6qnuVr4Ek9wSBQoveqY/r+LwjCcU29kNVkidwim+kYA==
 
-"@types/retry@0.12.5":
+"@types/retry@*", "@types/retry@0.12.5":
   version "0.12.5"
   resolved "https://registry.yarnpkg.com/@types/retry/-/retry-0.12.5.tgz#f090ff4bd8d2e5b940ff270ab39fd5ca1834a07e"
   integrity sha512-3xSjTp3v03X/lSQLkczaN9UIEwJMoMCA1+Nb5HfbJEQWogdeQIyVtTvxPXDQjZ5zws8rFQfVfRdz03ARihPJgw==
