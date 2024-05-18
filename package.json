@@ -59,6 +59,6 @@
     "prettier": "3.2.5",
     "ts-jest": "29.1.2",
     "typescript": "5.4.5",
-    "typescript-eslint": "7.7.0"
+    "typescript-eslint": "7.9.0"
   }
 }
