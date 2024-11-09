@@ -1,6 +1,9 @@
 import {getInput} from '@actions/core'
 import {isNullOrUndefined} from './util'
 
+/**
+ * Required action data that gets initialized when running within the GitHub Actions environment.
+ */
 export interface ActionInterface {
   /** Allows you to log the retrieved data to the terminal. */
   debug?: boolean
@@ -28,6 +31,9 @@ export interface ActionInterface {
   variableName?: string
 }
 
+/**
+ * Required data to fetch the data.
+ */
 export interface DataInterface {
   /** Allows you to log the retrieved data to the terminal. */
   debug?: boolean
@@ -43,6 +49,9 @@ export interface DataInterface {
   retry?: boolean | null
 }
 
+/**
+ * Required data to export the data.
+ */
 export interface ExportInterface {
   /** The data to save. */
   data: string
@@ -60,7 +69,9 @@ export interface ExportInterface {
   variableName?: string
 }
 
-// Required action data that gets initialized when running within the GitHub Actions environment.
+/**
+ * Required action data that gets initialized when running within the GitHub Actions environment.
+ */
 export const action = {
   debug: !isNullOrUndefined(getInput('debug'))
     ? getInput('debug').toLowerCase() === 'true'
