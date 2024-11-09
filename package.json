@@ -2,7 +2,7 @@
   "name": "@jamesives/fetch-api-data-action",
   "description": "GitHub action for handling authenticated API requests, allowing you to save the data from the request into your workspace as an environment variable and a .json file.",
   "author": "James Ives <iam@jamesiv.es> (https://jamesiv.es)",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "license": "MIT",
   "main": "lib/lib.js",
   "types": "lib/lib.d.ts",

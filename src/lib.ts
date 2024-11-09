@@ -3,12 +3,11 @@ import {action, ActionInterface, Status} from './constants'
 import {generateExport, retrieveData} from './fetch'
 import {extractErrorMessage, hasRequiredParameters} from './util'
 
-/** Initializes and runs the action.
- *
- * @param {ActionInterface} configuration - The configuration object.
+/**
+ * Initializes and runs the action.
  */
 export default async function run(
-  configuration: ActionInterface
+  configuration?: ActionInterface
 ): Promise<void> {
   let status: Status = Status.RUNNING
 
