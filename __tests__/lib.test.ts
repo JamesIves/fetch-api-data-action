@@ -1,5 +1,4 @@
 import {exportVariable, setFailed} from '@actions/core'
-import nock from 'nock'
 import {action} from '../src/constants'
 import run from '../src/lib'
 import '../src/main'
@@ -15,38 +14,49 @@ jest.mock('@actions/core', () => ({
 
 describe('lib', () => {
   beforeEach(() => {
-    nock('https://jamesiv.es').get('/').reply(200, {
-      data: '12345'
+    jest.clearAllMocks()
+
+    global.fetch = jest.fn().mockResolvedValue({
+      json: jest.fn().mockResolvedValue({data: '12345'}),
+      text: jest.fn().mockResolvedValue('{"data":"12345"}'),
+      ok: true
     })
   })
 
   afterEach(() => {
-    nock.restore()
     Object.assign(action, JSON.parse(originalAction))
   })
-
-  afterEach(nock.cleanAll)
 
   it('should run through the commands', async () => {
     Object.assign(action, {
       debug: true,
-      endpoint: 'https://jamesiv.es',
+      endpoint: 'https://jives.dev',
       setOutput: true
     })
+
     await run(action)
 
-    expect(exportVariable).toHaveBeenCalled()
+    expect(exportVariable).toHaveBeenCalledTimes(1)
+    expect(global.fetch).toHaveBeenCalledWith(
+      'https://jives.dev',
+      expect.any(Object)
+    )
   })
 
   it('should run through the commands but not save output', async () => {
     Object.assign(action, {
       debug: true,
-      endpoint: 'https://jamesiv.es',
+      endpoint: 'https://jives.dev',
       setOutput: false
     })
+
     await run(action)
 
     expect(exportVariable).toHaveBeenCalledTimes(0)
+    expect(global.fetch).toHaveBeenCalledWith(
+      'https://jives.dev',
+      expect.any(Object)
+    )
   })
 
   it('should throw an error if no endpoint is provided', async () => {
@@ -58,6 +68,7 @@ describe('lib', () => {
     try {
       await run(action)
     } catch (error) {
+      console.error(error)
       expect(setFailed).toHaveBeenCalled()
     }
   })
@@ -73,6 +84,7 @@ describe('lib', () => {
     try {
       await run(action)
     } catch (error) {
+      console.error(error)
       expect(setFailed).toHaveBeenCalled()
     }
   })

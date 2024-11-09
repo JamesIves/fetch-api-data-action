@@ -1,17 +1,18 @@
 import {retrieveData, generateExport} from '../src/fetch'
-import nock from 'nock'
 
 jest.setTimeout(1000000)
-nock.enableNetConnect()
 
 describe('fetch', () => {
   describe('retrieveData', () => {
-    afterEach(nock.cleanAll)
-    afterAll(nock.restore)
+    afterEach(() => {
+      jest.clearAllMocks()
+    })
 
     it('should return some data', async () => {
-      nock('https://jamesiv.es').get('/').reply(200, {
-        data: '12345'
+      global.fetch = jest.fn().mockResolvedValue({
+        ok: true,
+        json: jest.fn().mockResolvedValue({data: '12345'}),
+        text: jest.fn().mockResolvedValue('{"data":"12345"}')
       })
 
       const data = await retrieveData({
@@ -22,11 +23,11 @@ describe('fetch', () => {
     })
 
     it('should handle the triple bracket replacements', async () => {
-      nock('https://jives.dev/')
-        .post('/', '{"bestCat":"montezuma"}')
-        .reply(200, {
-          data: '12345'
-        })
+      global.fetch = jest.fn().mockResolvedValue({
+        ok: true,
+        json: jest.fn().mockResolvedValue({data: '12345'}),
+        text: jest.fn().mockResolvedValue('{"data":"12345"}')
+      })
 
       const data = await retrieveData({
         debug: true,
@@ -45,8 +46,6 @@ describe('fetch', () => {
 
     it('should error if improperly formatted json is passed in', async () => {
       try {
-        nock('https://jamesiv.es').get('/').reply(200)
-
         await retrieveData({
           debug: true,
           endpoint: 'https://example.com',
@@ -61,8 +60,10 @@ describe('fetch', () => {
     })
 
     it('should error if the response is not ok', async () => {
-      nock('https://jamesiv.es').post('/').reply(404, {
-        a: 1
+      global.fetch = jest.fn().mockResolvedValue({
+        ok: false,
+        json: jest.fn().mockResolvedValue({a: 1}),
+        text: jest.fn().mockResolvedValue('{"a":1}')
       })
 
       try {
@@ -83,18 +84,18 @@ describe('fetch', () => {
       }
     })
 
-    it('should error if the response is not ok after several retrys', async () => {
+    it('should error if the response is not ok after several retries', async () => {
       jest.setTimeout(1000000)
+      global.fetch = jest
+        .fn()
+        .mockRejectedValueOnce(new Error('This is catastrophic'))
+        .mockResolvedValueOnce({
+          ok: true,
+          json: jest.fn().mockResolvedValue({data: '12345'}),
+          text: jest.fn().mockResolvedValue('{"data":"12345"}')
+        })
 
       try {
-        nock('https://jives.dev').get('/').once().replyWithError({
-          message: 'This is catastrophic'
-        })
-
-        nock('https://jives.dev').get('/').reply(200, {
-          data: '12345'
-        })
-
         await retrieveData({
           debug: true,
           endpoint: 'https://jives.dev',
@@ -117,7 +118,7 @@ describe('fetch', () => {
       expect(process.env['fetchApiData']).toBe('{"bestCat":"montezuma"}')
     })
 
-    it('should save non standard file types', async () => {
+    it('should save non-standard file types', async () => {
       await generateExport({
         data: 'hello',
         format: 'txt',

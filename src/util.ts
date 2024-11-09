@@ -1,10 +1,14 @@
 import {ActionInterface} from './constants'
 
-/* Utility function that checks to see if a value is undefined or not. */
+/**
+ * Checks to see if a value is null or undefined.
+ */
 export const isNullOrUndefined = (value: string | undefined | null): boolean =>
   typeof value === 'undefined' || value === null || value === ''
 
-/* Checks for the required inputs. Throws an error if any case is matched. */
+/**
+ *  Checks to see if the action has the required parameters to run.
+ */
 export const hasRequiredParameters = (action: ActionInterface): void => {
   if (isNullOrUndefined(action.endpoint)) {
     throw new Error(
@@ -13,6 +17,9 @@ export const hasRequiredParameters = (action: ActionInterface): void => {
   }
 }
 
+/**
+ * Extracts the error message from an error object or string.
+ */
 export const extractErrorMessage = (error: unknown): string =>
   error instanceof Error
     ? error.message
@@ -20,7 +27,9 @@ export const extractErrorMessage = (error: unknown): string =>
       ? error
       : JSON.stringify(error)
 
-/* Attempt to parse data as JSON and catch any errors. */
+/**
+ * Parses a string into a JSON object.
+ */
 export const parseData = (data: string): Record<string, unknown> | null => {
   try {
     return JSON.parse(data)

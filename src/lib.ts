@@ -31,6 +31,7 @@ export default async function run(
     hasRequiredParameters(settings)
 
     let auth = ''
+
     if (settings.tokenEndpoint) {
       auth = await retrieveData({
         debug: settings.debug,
