@@ -1,4 +1,6 @@
-/// <reference types="node" />
+/**
+ * Required action data that gets initialized when running within the GitHub Actions environment.
+ */
 export interface ActionInterface {
     /** Allows you to log the retrieved data to the terminal. */
     debug?: boolean;
@@ -25,6 +27,9 @@ export interface ActionInterface {
     /** The variable name the data exports as. */
     variableName?: string;
 }
+/**
+ * Required data to fetch the data.
+ */
 export interface DataInterface {
     /** Allows you to log the retrieved data to the terminal. */
     debug?: boolean;
@@ -39,6 +44,9 @@ export interface DataInterface {
     /** Optional configuration that allows the fetch request to make a series of retry requests before failing. */
     retry?: boolean | null;
 }
+/**
+ * Required data to export the data.
+ */
 export interface ExportInterface {
     /** The data to save. */
     data: string;
@@ -55,6 +63,9 @@ export interface ExportInterface {
     /** The variable name the data exports as. */
     variableName?: string;
 }
+/**
+ * Required action data that gets initialized when running within the GitHub Actions environment.
+ */
 export declare const action: {
     debug: boolean;
     encoding: BufferEncoding;
