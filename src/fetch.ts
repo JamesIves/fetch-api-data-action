@@ -5,14 +5,15 @@ import {
   debug
 } from '@actions/core'
 import {mkdirP} from '@actions/io'
-import 'cross-fetch/polyfill'
 import {promises as fs} from 'fs'
 import {render} from 'mustache'
 import retryRequest from 'async-retry'
 import {DataInterface, ExportInterface, Status} from './constants'
 import {parseData} from './util'
 
-/* Fetches or Posts data to an API. If auth is provided it will replace the mustache variables with the data from it. */
+/**
+ * Retrieves data from an API endpoint.
+ */
 export async function retrieveData({
   debug: requestDebug,
   endpoint,
@@ -67,7 +68,9 @@ export async function retrieveData({
   }
 }
 
-/* Saves the data to the local file system and exports an environment variable containing the retrieved data. */
+/**
+ * Generates an export file from the data provided.
+ */
 export async function generateExport({
   data,
   encoding,

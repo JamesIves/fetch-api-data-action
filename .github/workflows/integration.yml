@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
   schedule:
     - cron: 30 15 * * 0-6
-
   push:
     tags-ignore:
       - '*.*'
