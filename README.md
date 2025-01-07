@@ -9,28 +9,6 @@
 </h1>
 
 <p align="center">
-  <a href="https://github.com/JamesIves/fetch-api-data-action/actions">
-    <img src="https://github.com/JamesIves/fetch-api-data-action/workflows/unit-tests/badge.svg">
-  </a>
-
-  <a href="https://github.com/JamesIves/fetch-api-data-action/actions">
-    <img src="https://github.com/JamesIves/fetch-api-data-action/workflows/integration-tests/badge.svg">
-  </a>
-  
-  <a href="https://codecov.io/gh/JamesIves/fetch-api-data-action/branch/dev">
-    <img src="https://codecov.io/gh/JamesIves/fetch-api-data-action/branch/dev/graph/badge.svg">
-  </a>
-
-  <a href="https://github.com/JamesIves/fetch-api-data-action/releases">
-    <img src="https://img.shields.io/github/v/release/JamesIves/fetch-api-data-action.svg?logo=github">
-  </a>
-  
-   <a href="https://github.com/marketplace/actions/fetch-api-data">
-    <img src="https://img.shields.io/badge/action-marketplace-blue.svg?logo=github&color=orange">
-  </a>
-</p>
-
-<p align="center">
   This <a href="https://github.com/features/actions">GitHub Action</a> will handle authenticated API requests for you, allowing you to save the data from the request into your workspace as an environment variable and a file. Using this action will allow you to save data from these queries on a schedule so they can be used in a static page without exposing your API credentials. You can read more about the inspiration for this action <a href="https://jamesiv.es/blog/github/actions/2020/03/07/fetching-authenticated-api-data/">here</a>. 
 </p>
 
