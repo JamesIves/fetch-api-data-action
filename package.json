@@ -53,7 +53,7 @@
     "eslint-plugin-jest": "29.0.1",
     "eslint-plugin-prettier": "5.5.0",
     "jest": "30.0.1",
-    "jest-circus": "30.0.1",
+    "jest-circus": "30.0.2",
     "prettier": "3.5.3",
     "ts-jest": "29.4.0",
     "typescript": "5.8.3",
