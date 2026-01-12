@@ -161,7 +161,7 @@ describe('fetch', () => {
         })
       } catch (error) {
         expect(error instanceof Error && error.message).toBe(
-          "There was an error generating the export file: TypeError [ERR_INVALID_ARG_VALUE]: The argument 'hexxxxx' is invalid encoding. Received 'encoding' ❌"
+          "There was an error generating the export file: TypeError [ERR_INVALID_ARG_VALUE]: The argument 'encoding' is invalid encoding. Received 'hexxxxx' ❌"
         )
       }
     })
