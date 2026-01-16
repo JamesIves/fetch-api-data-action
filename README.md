@@ -9,28 +9,6 @@
 </h1>
 
 <p align="center">
-  <a href="https://github.com/JamesIves/fetch-api-data-action/actions">
-    <img src="https://github.com/JamesIves/fetch-api-data-action/workflows/unit-tests/badge.svg">
-  </a>
-
-  <a href="https://github.com/JamesIves/fetch-api-data-action/actions">
-    <img src="https://github.com/JamesIves/fetch-api-data-action/workflows/integration-tests/badge.svg">
-  </a>
-  
-  <a href="https://codecov.io/gh/JamesIves/fetch-api-data-action/branch/dev">
-    <img src="https://codecov.io/gh/JamesIves/fetch-api-data-action/branch/dev/graph/badge.svg">
-  </a>
-
-  <a href="https://github.com/JamesIves/fetch-api-data-action/releases">
-    <img src="https://img.shields.io/github/v/release/JamesIves/fetch-api-data-action.svg?logo=github">
-  </a>
-  
-   <a href="https://github.com/marketplace/actions/fetch-api-data">
-    <img src="https://img.shields.io/badge/action-marketplace-blue.svg?logo=github&color=orange">
-  </a>
-</p>
-
-<p align="center">
   This <a href="https://github.com/features/actions">GitHub Action</a> will handle authenticated API requests for you, allowing you to save the data from the request into your workspace as an environment variable and a file. Using this action will allow you to save data from these queries on a schedule so they can be used in a static page without exposing your API credentials. You can read more about the inspiration for this action <a href="https://jamesiv.es/blog/github/actions/2020/03/07/fetching-authenticated-api-data/">here</a>. 
 </p>
 
@@ -43,11 +21,11 @@
 </p>
 
 <p align="center">
-<!-- premium --><a href="https://github.com/github"><img src="https://github.com/github.png" width="80px" alt="github" /></a>&nbsp;&nbsp;<a href="https://github.com/annegentle"><img src="https://github.com/annegentle.png" width="80px" alt="annegentle" /></a>&nbsp;&nbsp;<a href="https://github.com/tonjohn"><img src="https://github.com/tonjohn.png" width="80px" alt="tonjohn" /></a>&nbsp;&nbsp;<!-- premium -->
+<!-- premium --><a href="https://github.com/github"><img src="https://github.com/github.png" width="80px" alt="github" /></a>&nbsp;&nbsp;<a href="https://github.com/annegentle"><img src="https://github.com/annegentle.png" width="80px" alt="annegentle" /></a>&nbsp;&nbsp;<a href="https://github.com/tonjohn"><img src="https://github.com/tonjohn.png" width="80px" alt="tonjohn" /></a>&nbsp;&nbsp;<a href="https://github.com/Zhenglei-BCS"><img src="https://github.com/Zhenglei-BCS.png" width="80px" alt="Zhenglei-BCS" /></a>&nbsp;&nbsp;<!-- premium -->
 </p>
 
 <p align="center">
-<!-- sponsors --><a href="https://github.com/Chooksta69"><img src="https://github.com/Chooksta69.png" width="50px" alt="Chooksta69" /></a>&nbsp;&nbsp;<a href="https://github.com/MattWillFlood"><img src="https://github.com/MattWillFlood.png" width="50px" alt="MattWillFlood" /></a>&nbsp;&nbsp;<a href="https://github.com/jonathan-milan-pollock"><img src="https://github.com/jonathan-milan-pollock.png" width="50px" alt="jonathan-milan-pollock" /></a>&nbsp;&nbsp;<a href="https://github.com/raoulvdberge"><img src="https://github.com/raoulvdberge.png" width="50px" alt="raoulvdberge" /></a>&nbsp;&nbsp;<a href="https://github.com/robjtede"><img src="https://github.com/robjtede.png" width="50px" alt="robjtede" /></a>&nbsp;&nbsp;<a href="https://github.com/hadley"><img src="https://github.com/hadley.png" width="50px" alt="hadley" /></a>&nbsp;&nbsp;<a href="https://github.com/kevinchalet"><img src="https://github.com/kevinchalet.png" width="50px" alt="kevinchalet" /></a>&nbsp;&nbsp;<a href="https://github.com/Yousazoe"><img src="https://github.com/Yousazoe.png" width="50px" alt="Yousazoe" /></a>&nbsp;&nbsp;<a href="https://github.com/planetoftheweb"><img src="https://github.com/planetoftheweb.png" width="50px" alt="planetoftheweb" /></a>&nbsp;&nbsp;<a href="https://github.com/melton1968"><img src="https://github.com/melton1968.png" width="50px" alt="melton1968" /></a>&nbsp;&nbsp;<a href="https://github.com/szepeviktor"><img src="https://github.com/szepeviktor.png" width="50px" alt="szepeviktor" /></a>&nbsp;&nbsp;<a href="https://github.com/sckott"><img src="https://github.com/sckott.png" width="50px" alt="sckott" /></a>&nbsp;&nbsp;<a href="https://github.com/provinzkraut"><img src="https://github.com/provinzkraut.png" width="50px" alt="provinzkraut" /></a>&nbsp;&nbsp;<a href="https://github.com/electrovir"><img src="https://github.com/electrovir.png" width="50px" alt="electrovir" /></a>&nbsp;&nbsp;<a href="https://github.com/Griefed"><img src="https://github.com/Griefed.png" width="50px" alt="Griefed" /></a>&nbsp;&nbsp;<a href="https://github.com/MontezumaIves"><img src="https://github.com/MontezumaIves.png" width="50px" alt="MontezumaIves" /></a>&nbsp;&nbsp;<a href="https://github.com/wylie"><img src="https://github.com/wylie.png" width="50px" alt="wylie" /></a>&nbsp;&nbsp;<!-- sponsors -->
+<!-- sponsors --><a href="https://github.com/Chooksta69"><img src="https://github.com/Chooksta69.png" width="50px" alt="Chooksta69" /></a>&nbsp;&nbsp;<a href="https://github.com/MattWillFlood"><img src="https://github.com/MattWillFlood.png" width="50px" alt="MattWillFlood" /></a>&nbsp;&nbsp;<a href="https://github.com/jonathan-milan-pollock"><img src="https://github.com/jonathan-milan-pollock.png" width="50px" alt="jonathan-milan-pollock" /></a>&nbsp;&nbsp;<a href="https://github.com/raoulvdberge"><img src="https://github.com/raoulvdberge.png" width="50px" alt="raoulvdberge" /></a>&nbsp;&nbsp;<a href="https://github.com/robjtede"><img src="https://github.com/robjtede.png" width="50px" alt="robjtede" /></a>&nbsp;&nbsp;<a href="https://github.com/hadley"><img src="https://github.com/hadley.png" width="50px" alt="hadley" /></a>&nbsp;&nbsp;<a href="https://github.com/kevinchalet"><img src="https://github.com/kevinchalet.png" width="50px" alt="kevinchalet" /></a>&nbsp;&nbsp;<a href="https://github.com/Yousazoe"><img src="https://github.com/Yousazoe.png" width="50px" alt="Yousazoe" /></a>&nbsp;&nbsp;<a href="https://github.com/planetoftheweb"><img src="https://github.com/planetoftheweb.png" width="50px" alt="planetoftheweb" /></a>&nbsp;&nbsp;<a href="https://github.com/melton1968"><img src="https://github.com/melton1968.png" width="50px" alt="melton1968" /></a>&nbsp;&nbsp;<a href="https://github.com/szepeviktor"><img src="https://github.com/szepeviktor.png" width="50px" alt="szepeviktor" /></a>&nbsp;&nbsp;<a href="https://github.com/sckott"><img src="https://github.com/sckott.png" width="50px" alt="sckott" /></a>&nbsp;&nbsp;<a href="https://github.com/provinzkraut"><img src="https://github.com/provinzkraut.png" width="50px" alt="provinzkraut" /></a>&nbsp;&nbsp;<a href="https://github.com/electrovir"><img src="https://github.com/electrovir.png" width="50px" alt="electrovir" /></a>&nbsp;&nbsp;<a href="https://github.com/Griefed"><img src="https://github.com/Griefed.png" width="50px" alt="Griefed" /></a>&nbsp;&nbsp;<a href="https://github.com/MontezumaIves"><img src="https://github.com/MontezumaIves.png" width="50px" alt="MontezumaIves" /></a>&nbsp;&nbsp;<a href="https://github.com/wylie"><img src="https://github.com/wylie.png" width="50px" alt="wylie" /></a>&nbsp;&nbsp;<a href="https://github.com/pylapp"><img src="https://github.com/pylapp.png" width="50px" alt="pylapp" /></a>&nbsp;&nbsp;<a href="https://github.com/leoxeno"><img src="https://github.com/leoxeno.png" width="50px" alt="leoxeno" /></a>&nbsp;&nbsp;<!-- sponsors -->
 </p>
 
 ## Getting Started ✈️

@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6.0.1
         with:
           persist-credentials: false
 
@@ -41,51 +41,4 @@ jobs:
           branch: gh-pages
           folder: fetch-api-data-custom
           target-folder: data
-          ssh-key: ${{ secrets.DEPLOY_KEY }}
-
-  refresh-api-data-modified-formatting-encoding:
-    runs-on: ubuntu-latest
-    needs: refresh-api-data
-    steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-
-      - name: Fetch Hex encoded Data 📦
-        uses: JamesIves/fetch-api-data-action@v2
-        with:
-          endpoint: https://hexendpoint-y87ci26b7sb3.runkit.sh/
-          save-location: fetch-api-data-custom-encoding
-          save-name: hexendpointdata
-          encoding: hex
-          format: txt
-          retry: true
-
-      - name: Fetch Base64 Data 📦
-        id: validate
-        uses: JamesIves/fetch-api-data-action@v2
-        with:
-          endpoint: https://base64endpoint-hfdurtfq9iyz.runkit.sh/
-          save-location: fetch-api-data-custom-encoding
-          save-name: base64endpointdata
-          encoding: base64
-          format: txt
-          variable-name: CATS
-          retry: true
-
-      - name: Access environment variable output
-        run: |
-          echo "${CATS}"
-
-      - name: Access step output
-        run: |
-          echo "Output: ${{ steps.validate.outputs.fetchApiData }}"
-
-      - name: Build and Deploy Repo 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: fetch-api-data-custom-encoding
-          target-folder: encoding
           ssh-key: ${{ secrets.DEPLOY_KEY }}

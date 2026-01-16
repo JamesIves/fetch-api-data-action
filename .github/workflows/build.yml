@@ -15,9 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6.0.1
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6.1.0
         with:
           node-version-file: '.node-version'
           registry-url: 'https://registry.npmjs.org'
@@ -33,6 +33,6 @@ jobs:
           yarn test
 
       - name: Uploade CodeCov Report
-        uses: codecov/codecov-action@v4.6.0
+        uses: codecov/codecov-action@v5.5.2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
