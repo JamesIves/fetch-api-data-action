@@ -45,6 +45,7 @@ jobs:
       - run: yarn build
       - run: git stash
       - name: Set version to match the tag
+        continue-on-error: true
         run: |
           VERSION=${GITHUB_REF#refs/tags/v}
           npm version $VERSION -m "Release $VERSION 📣"
