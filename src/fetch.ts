@@ -6,7 +6,7 @@ import {
 } from '@actions/core'
 import {mkdirP} from '@actions/io'
 import {promises as fs} from 'fs'
-import {render} from 'mustache'
+import Mustache from 'mustache'
 import retryRequest from 'async-retry'
 import {DataInterface, ExportInterface, Status} from './constants'
 import {parseData} from './util'
@@ -30,7 +30,9 @@ export async function retrieveData({
     )
 
     const settings = configuration
-      ? JSON.parse(render(configuration, auth ? parseData(auth) : null))
+      ? JSON.parse(
+          Mustache.render(configuration, auth ? parseData(auth) : null)
+        )
       : {}
 
     if (settings.body) {
