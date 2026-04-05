@@ -1,6 +1,5 @@
-import {retrieveData, generateExport} from '../src/fetch'
-
-jest.setTimeout(1000000)
+import {jest, describe, it, expect, afterEach} from '@jest/globals'
+import {retrieveData, generateExport} from '../src/fetch.js'
 
 describe('fetch', () => {
   describe('retrieveData', () => {

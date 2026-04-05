@@ -1,4 +1,5 @@
-import {extractErrorMessage, isNullOrUndefined} from '../src/util'
+import {describe, it, expect} from '@jest/globals'
+import {extractErrorMessage, isNullOrUndefined} from '../src/util.js'
 
 describe('util', () => {
   describe('isNullOrUndefined', () => {

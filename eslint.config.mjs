@@ -5,6 +5,13 @@ import jest from 'eslint-plugin-jest'
 
 export default tseslint.config(
   {ignores: ['lib/', 'coverage/']},
+  {
+    files: ['**/*.cjs'],
+    languageOptions: {
+      sourceType: 'commonjs',
+      globals: {module: 'readonly', require: 'readonly', exports: 'writable'}
+    }
+  },
   eslintConfigPrettier,
   jest.configs['flat/recommended'],
   eslint.configs.recommended,
@@ -12,8 +19,7 @@ export default tseslint.config(
   {
     languageOptions: {
       globals: {
-        process: true,
-        module: true
+        process: true
       }
     },
     rules: {

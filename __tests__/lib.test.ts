@@ -1,16 +1,25 @@
-import {exportVariable, setFailed} from '@actions/core'
-import {action} from '../src/constants'
-import run from '../src/lib'
-import '../src/main'
+import {jest, describe, it, expect, beforeEach, afterEach} from '@jest/globals'
+import type {Mock} from 'jest-mock'
 
-const originalAction = JSON.stringify(action)
-
-jest.mock('@actions/core', () => ({
+jest.unstable_mockModule('@actions/core', () => ({
   info: jest.fn(),
   setFailed: jest.fn(),
   getInput: jest.fn(),
-  exportVariable: jest.fn()
+  exportVariable: jest.fn(),
+  debug: jest.fn(),
+  setOutput: jest.fn()
 }))
+
+const {exportVariable: mockExportVariable, setFailed: mockSetFailed} =
+  (await import('@actions/core')) as {
+    exportVariable: Mock
+    setFailed: Mock
+  }
+const {action} = await import('../src/constants.js')
+const {default: run} = await import('../src/lib.js')
+await import('../src/main.js')
+
+const originalAction = JSON.stringify(action)
 
 describe('lib', () => {
   beforeEach(() => {
@@ -36,7 +45,7 @@ describe('lib', () => {
 
     await run(action)
 
-    expect(exportVariable).toHaveBeenCalledTimes(1)
+    expect(mockExportVariable).toHaveBeenCalledTimes(1)
     expect(global.fetch).toHaveBeenCalledWith(
       'https://jives.dev',
       expect.any(Object)
@@ -52,7 +61,7 @@ describe('lib', () => {
 
     await run(action)
 
-    expect(exportVariable).toHaveBeenCalledTimes(0)
+    expect(mockExportVariable).toHaveBeenCalledTimes(0)
     expect(global.fetch).toHaveBeenCalledWith(
       'https://jives.dev',
       expect.any(Object)
@@ -69,7 +78,7 @@ describe('lib', () => {
       await run(action)
     } catch (error) {
       console.error(error)
-      expect(setFailed).toHaveBeenCalled()
+      expect(mockSetFailed).toHaveBeenCalled()
     }
   })
 
@@ -85,7 +94,7 @@ describe('lib', () => {
       await run(action)
     } catch (error) {
       console.error(error)
-      expect(setFailed).toHaveBeenCalled()
+      expect(mockSetFailed).toHaveBeenCalled()
     }
   })
 })

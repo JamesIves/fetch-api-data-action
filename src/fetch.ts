@@ -8,8 +8,9 @@ import {mkdirP} from '@actions/io'
 import {promises as fs} from 'fs'
 import Mustache from 'mustache'
 import retryRequest from 'async-retry'
-import {DataInterface, ExportInterface, Status} from './constants'
-import {parseData} from './util'
+import type {DataInterface, ExportInterface} from './constants.js'
+import {Status} from './constants.js'
+import {parseData} from './util.js'
 
 /**
  * Retrieves data from an API endpoint.

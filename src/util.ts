@@ -1,4 +1,4 @@
-import {ActionInterface} from './constants'
+import type {ActionInterface} from './constants.js'
 
 /**
  * Checks to see if a value is null or undefined.

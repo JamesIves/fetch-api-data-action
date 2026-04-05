@@ -4,12 +4,13 @@
   "author": "James Ives <iam@jamesiv.es> (https://jamesiv.es)",
   "version": "2.5.0",
   "license": "MIT",
+  "type": "module",
   "main": "lib/lib.js",
   "types": "lib/lib.d.ts",
   "root": true,
   "scripts": {
     "build": "rm -rf lib && tsc --declaration",
-    "test": "jest",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "lint": "eslint --fix .",
     "lint:check": "eslint .",
     "lint:format": "prettier --write .",
@@ -35,8 +36,8 @@
     "github-action"
   ],
   "dependencies": {
-    "@actions/core": "2.0.2",
-    "@actions/io": "2.0.0",
+    "@actions/core": "3.0.0",
+    "@actions/io": "3.0.2",
     "async-retry": "1.3.3",
     "mustache": "4.2.0"
   },

@@ -1,7 +1,8 @@
 import {info, setFailed} from '@actions/core'
-import {action, ActionInterface, Status} from './constants'
-import {generateExport, retrieveData} from './fetch'
-import {extractErrorMessage, hasRequiredParameters} from './util'
+import {action, Status} from './constants.js'
+import type {ActionInterface} from './constants.js'
+import {generateExport, retrieveData} from './fetch.js'
+import {extractErrorMessage, hasRequiredParameters} from './util.js'
 
 /**
  * Initializes and runs the action.
@@ -72,4 +73,4 @@ export default async function run(
   }
 }
 
-export {retrieveData, generateExport, ActionInterface}
+export {retrieveData, generateExport, type ActionInterface}
