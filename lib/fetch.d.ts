@@ -1,4 +1,4 @@
-import { DataInterface, ExportInterface, Status } from './constants';
+import { DataInterface, ExportInterface, Status } from './constants.js';
 /**
  * Retrieves data from an API endpoint.
  */
