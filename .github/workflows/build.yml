@@ -20,17 +20,13 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version-file: '.node-version'
-          registry-url: 'https://registry.npmjs.org'
-
-      - name: Install Yarn
-        run: npm install -g yarn
 
       - name: Install and Test
         run: |
-          yarn install --frozen-lockfile
-          yarn lint:check
-          yarn lint:format:check
-          yarn test
+          npm ci
+          npm run lint:check
+          npm run lint:format:check
+          npm test
 
       - name: Uploade CodeCov Report
         uses: codecov/codecov-action@v7.0.0
