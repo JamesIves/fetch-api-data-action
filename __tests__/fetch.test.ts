@@ -153,6 +153,15 @@ describe('fetch', () => {
       expect(process.env['fetchApiData']).toBe('68656C6C6F21')
     })
 
+    it('should export using a custom variable name', async () => {
+      await generateExport({
+        data: '{"bestCat":"montezuma"}',
+        setOutput: true,
+        variableName: 'customCatVariable'
+      })
+      expect(process.env['customCatVariable']).toBe('{"bestCat":"montezuma"}')
+    })
+
     it('should fail if invalid encoding is used', async () => {
       try {
         await generateExport({

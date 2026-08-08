@@ -56,7 +56,8 @@ export default async function run(
       saveLocation: settings.saveLocation,
       saveName: settings.saveName,
       format: settings.format,
-      setOutput: settings.setOutput
+      setOutput: settings.setOutput,
+      variableName: settings.variableName
     })
   } catch (error) {
     status = Status.FAILED
@@ -72,4 +73,5 @@ export default async function run(
   }
 }
 
-export {retrieveData, generateExport, ActionInterface}
+export {retrieveData, generateExport}
+export type {ActionInterface}

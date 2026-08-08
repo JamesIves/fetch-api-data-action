@@ -1,4 +1,9 @@
-import {extractErrorMessage, isNullOrUndefined} from '../src/util'
+import {
+  extractErrorMessage,
+  hasRequiredParameters,
+  isNullOrUndefined,
+  parseData
+} from '../src/util'
 
 describe('util', () => {
   describe('isNullOrUndefined', () => {
@@ -33,6 +38,44 @@ describe('util', () => {
       expect(extractErrorMessage({special: 'a error message'})).toBe(
         `{"special":"a error message"}`
       )
+    })
+  })
+
+  describe('hasRequiredParameters', () => {
+    it('throws when endpoint is missing', () => {
+      expect(() =>
+        hasRequiredParameters({
+          endpoint: '',
+          configuration: '',
+          setOutput: false
+        })
+      ).toThrow(
+        'You must provide the action with at least an endpoint to retrieve data from.'
+      )
+    })
+
+    it('does not throw when endpoint is provided', () => {
+      expect(() =>
+        hasRequiredParameters({
+          endpoint: 'https://example.com',
+          configuration: '',
+          setOutput: false
+        })
+      ).not.toThrow()
+    })
+  })
+
+  describe('parseData', () => {
+    it('parses valid JSON', () => {
+      expect(parseData('{"cat":"montezuma"}')).toEqual({cat: 'montezuma'})
+    })
+
+    it('returns null for invalid JSON', () => {
+      expect(parseData('{cat: montezuma}')).toBeNull()
+    })
+
+    it('returns null for an empty string', () => {
+      expect(parseData('')).toBeNull()
     })
   })
 })
