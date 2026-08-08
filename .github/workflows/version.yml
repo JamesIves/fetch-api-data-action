@@ -5,22 +5,32 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  contents: read
+
 jobs:
   update-majorver:
     name: Update Major Version Tag
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: nowactions/update-majorver@v1.1.2
 
   call-integration-workflow:
     name: Verify Major Tag 🚀
     needs: update-majorver
+    permissions:
+      contents: write
     uses: ./.github/workflows/integration.yml
 
   update-registries:
     needs: call-integration-workflow
     name: Publish to Registries 📦
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
     steps:
       - uses: actions/checkout@v7.0.1
         with:

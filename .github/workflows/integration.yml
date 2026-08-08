@@ -16,6 +16,10 @@ on:
         default: 'v2'
   schedule:
     - cron: 30 15 * * 0-6
+
+permissions:
+  contents: read
+
 jobs:
   refresh-api-data:
     runs-on: ubuntu-latest
