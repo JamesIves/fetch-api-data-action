@@ -1,14 +1,21 @@
 name: Integration Tests 🧪
 on:
   workflow_call:
+    inputs:
+      action-ref:
+        description: 'The fetch-api-data-action ref (tag, branch, or SHA) to validate.'
+        required: false
+        type: string
+        default: 'v2'
   workflow_dispatch:
+    inputs:
+      action-ref:
+        description: 'The fetch-api-data-action ref (tag, branch, or SHA) to validate.'
+        required: false
+        type: string
+        default: 'v2'
   schedule:
     - cron: 30 15 * * 0-6
-  push:
-    tags-ignore:
-      - '*.*'
-    branches:
-      - releases/v*
 jobs:
   refresh-api-data:
     runs-on: ubuntu-latest
@@ -18,9 +25,17 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Checkout Action Under Test
+        uses: actions/checkout@v7.0.1
+        with:
+          repository: JamesIves/fetch-api-data-action
+          ref: ${{ inputs.action-ref || 'v2' }}
+          path: action-under-test
+          persist-credentials: false
+
       - name: Fetch UTF8 Data 📦
         id: validate
-        uses: JamesIves/fetch-api-data-action@v2
+        uses: ./action-under-test
         with:
           endpoint: https://jsonplaceholder.typicode.com/todos/1
           save-location: fetch-api-data-custom
