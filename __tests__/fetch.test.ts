@@ -1,5 +1,8 @@
 import {retrieveData, generateExport} from '../src/fetch'
 
+jest.mock('@actions/core')
+jest.mock('@actions/io')
+
 jest.setTimeout(1000000)
 
 describe('fetch', () => {

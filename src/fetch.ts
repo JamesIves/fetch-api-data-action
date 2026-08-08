@@ -6,10 +6,10 @@ import {
 } from '@actions/core'
 import {mkdirP} from '@actions/io'
 import {promises as fs} from 'fs'
-import {render} from 'mustache'
+import mustache from 'mustache'
 import retryRequest from 'async-retry'
-import {DataInterface, ExportInterface, Status} from './constants'
-import {parseData} from './util'
+import {DataInterface, ExportInterface, Status} from './constants.js'
+import {parseData} from './util.js'
 
 /**
  * Retrieves data from an API endpoint.
@@ -30,7 +30,9 @@ export async function retrieveData({
     )
 
     const settings = configuration
-      ? JSON.parse(render(configuration, auth ? parseData(auth) : null))
+      ? JSON.parse(
+          mustache.render(configuration, auth ? parseData(auth) : null)
+        )
       : {}
 
     if (settings.body) {
@@ -64,7 +66,9 @@ export async function retrieveData({
       }
     )
   } catch (error) {
-    throw new Error(`There was an error fetching from the API: ${error} ❌`)
+    throw new Error(`There was an error fetching from the API: ${error} ❌`, {
+      cause: error
+    })
   }
 }
 
@@ -104,7 +108,8 @@ export async function generateExport({
     return Status.SUCCESS
   } catch (error) {
     throw new Error(
-      `There was an error generating the export file: ${error} ❌`
+      `There was an error generating the export file: ${error} ❌`,
+      {cause: error}
     )
   }
 }
