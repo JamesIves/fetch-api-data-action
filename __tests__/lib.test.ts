@@ -5,12 +5,7 @@ import '../src/main'
 
 const originalAction = JSON.stringify(action)
 
-jest.mock('@actions/core', () => ({
-  info: jest.fn(),
-  setFailed: jest.fn(),
-  getInput: jest.fn(),
-  exportVariable: jest.fn()
-}))
+jest.mock('@actions/core')
 
 describe('lib', () => {
   beforeEach(() => {

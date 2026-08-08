@@ -1,5 +1,5 @@
 import {getInput} from '@actions/core'
-import {isNullOrUndefined} from './util'
+import {isNullOrUndefined} from './util.js'
 
 /**
  * Required action data that gets initialized when running within the GitHub Actions environment.

@@ -1,26 +1,45 @@
 name: Integration Tests 🧪
 on:
   workflow_call:
+    inputs:
+      action-ref:
+        description: 'The fetch-api-data-action ref (tag, branch, or SHA) to validate.'
+        required: false
+        type: string
+        default: 'v2'
   workflow_dispatch:
+    inputs:
+      action-ref:
+        description: 'The fetch-api-data-action ref (tag, branch, or SHA) to validate.'
+        required: false
+        type: string
+        default: 'v2'
   schedule:
-    - cron: 30 15 * * 0-6
-  push:
-    tags-ignore:
-      - '*.*'
-    branches:
-      - releases/v*
+    - cron: 30 15 * * 1
+
+permissions:
+  contents: read
+
 jobs:
   refresh-api-data:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v7.0.1
         with:
+          persist-credentials: false
+
+      - name: Checkout Action Under Test
+        uses: actions/checkout@v7.0.1
+        with:
+          repository: JamesIves/fetch-api-data-action
+          ref: ${{ inputs.action-ref || 'v2' }}
+          path: action-under-test
           persist-credentials: false
 
       - name: Fetch UTF8 Data 📦
         id: validate
-        uses: JamesIves/fetch-api-data-action@v2
+        uses: ./action-under-test
         with:
           endpoint: https://jsonplaceholder.typicode.com/todos/1
           save-location: fetch-api-data-custom
@@ -42,3 +61,109 @@ jobs:
           folder: fetch-api-data-custom
           target-folder: data
           ssh-key: ${{ secrets.DEPLOY_KEY }}
+
+  # Exercises documented inputs the primary job above doesn't touch.
+  integration-input-variants:
+    needs: refresh-api-data
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Checkout Action Under Test
+        uses: actions/checkout@v7.0.1
+        with:
+          repository: JamesIves/fetch-api-data-action
+          ref: ${{ inputs.action-ref || 'v2' }}
+          path: action-under-test
+          persist-credentials: false
+
+      - name: Fetch with set-output disabled
+        uses: ./action-under-test
+        with:
+          endpoint: https://jsonplaceholder.typicode.com/todos/1
+          save-location: fetch-api-data-no-output
+          save-name: todo
+          set-output: false
+
+      - name: Verify no environment variable was exported
+        run: |
+          if [ -n "${fetchApiData}" ]; then
+            echo "Expected fetchApiData to remain unset when set-output is false"
+            exit 1
+          fi
+
+      - name: Fetch as a custom format with a custom encoding
+        uses: ./action-under-test
+        with:
+          endpoint: https://jsonplaceholder.typicode.com/todos/1
+          save-location: fetch-api-data-format-test
+          save-name: todo
+          format: txt
+          encoding: utf8
+
+      - name: Verify the custom format extension was used
+        run: test -f fetch-api-data-format-test/todo.txt
+
+      - name: Fetch with a custom variable name
+        uses: ./action-under-test
+        with:
+          endpoint: https://jsonplaceholder.typicode.com/todos/1
+          save-location: fetch-api-data-variable-test
+          save-name: todo
+          variable-name: customTodoData
+
+      - name: Verify the custom environment variable was exported
+        run: |
+          if [ -z "${customTodoData}" ]; then
+            echo "Expected customTodoData to be set via variable-name"
+            exit 1
+          fi
+
+      - name: Fetch with debug logging enabled
+        uses: ./action-under-test
+        with:
+          endpoint: https://jsonplaceholder.typicode.com/todos/1
+          save-location: fetch-api-data-debug-test
+          save-name: todo
+          debug: true
+
+  # Verifies the real two-hop token-endpoint flow: fetch a token, then
+  # reference it via triple-mustache templating in the main request.
+  integration-token-endpoint-flow:
+    needs: integration-input-variants
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Checkout Action Under Test
+        uses: actions/checkout@v7.0.1
+        with:
+          repository: JamesIves/fetch-api-data-action
+          ref: ${{ inputs.action-ref || 'v2' }}
+          path: action-under-test
+          persist-credentials: false
+
+      - name: Fetch via a real token-issuing endpoint, then reference it in the main request
+        uses: ./action-under-test
+        with:
+          token-endpoint: https://httpbingo.org/uuid
+          endpoint: https://httpbingo.org/anything
+          configuration: |
+            {"method":"GET","headers":{"X-Auth-Token":"{{{ uuid }}}"}}
+          save-location: fetch-api-data-token-flow
+          save-name: result
+
+      - name: Verify the token from hop 1 flowed into hop 2's request
+        run: |
+          token=$(jq -r '.headers["X-Auth-Token"][0] // empty' fetch-api-data-token-flow/result.json)
+          if [ -z "$token" ]; then
+            echo "Expected X-Auth-Token to be populated from the token-endpoint response"
+            exit 1
+          fi
+          echo "Token flowed through correctly: $token"
